@@ -1,0 +1,18 @@
+karcher:
+    resource: "@KarcherBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+gspem_security:
+    resource: "@GSPEMSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
+gspemgspem:
+    resource: "@GSPEMGSPEMBundle/Resources/config/routing.yml"
+    prefix:   /gspem
+# app/config/routing.yml
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

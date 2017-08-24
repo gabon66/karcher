@@ -1,0 +1,49 @@
+GSPEM\GSPEMBundle\Entity\Material:
+    type: entity
+    table: materiales
+    repositoryClass: GSPEM\GSPEMBundle\Repository\MaterialRepository
+    id:
+        id:
+            type: integer
+            id: true
+            column: id
+            generator:
+                strategy: AUTO
+    fields:
+            name:
+                type: string
+                column: name
+            descript:
+                type: string
+                column: descript
+            type:
+                type: integer
+                column: type
+            idCustom:
+                type: string
+                column: id_custom
+            img:
+                type: string
+                column: img
+            date:
+                type: datetime
+                column: date
+            origen:
+                type: string
+            ubicacion:
+                type: string
+            referencia:
+                type: text
+            umbralmin:
+                type: integer
+            umbralmax:
+                type: integer
+            cod_barra:
+                type: string
+            serial_n:
+                type: string
+            model:
+                type: string
+            pn:
+                type: string
+    lifecycleCallbacks: {  }

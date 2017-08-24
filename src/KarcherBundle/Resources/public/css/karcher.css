@@ -1,0 +1,318 @@
+
+.jumbotron{
+    background-color: #757575!important;
+}
+
+
+
+.input-login{
+    background-color: white!important;
+}
+
+.img-menu{
+    height: 60px;
+}
+.img-menu-small{
+    width: 70px;
+}
+
+.karcher-header-menu{
+    background-color: white;
+    height: 90px;
+    border-bottom: 3px solid #ededed
+}
+
+
+
+.karcher-header-logo{
+    width: 146px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-left: 45px;
+}
+
+.login-box{
+    border-radius: 0px!important;
+    padding-right: 30px!important;
+    padding-top: 30px!important;
+    padding-left: 30px!important;
+    padding-bottom: 30px!important;
+    background-color:#ededed!important ;
+}
+.input-karcher{
+    padding: 5px 25px 5px 10px!important;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
+    height: 29px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 20px;
+}
+.input-search-karcher{
+    padding: 5px 25px 5px 10px;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
+    width: 220px;
+    height: 29px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 20px;
+}
+.btn-karcher{
+    font-weight: 500!important;
+    line-height: 18px!important;
+    height: 40px!important;
+    border-radius: 0!important;
+    border: 1px solid #e3e3e3!important;
+    color: #2b2b2b;
+
+    font-size: 13px!important;
+    font-weight: bold!important;
+    width: 100%!important;
+
+    background: #FFF465!important;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF465), to(#FFED00))!important;
+    background: -webkit-linear-gradient(0% 0%, 0% 100%, from(#FFF465), to(#FFED00))!important;
+    background: -moz-linear-gradient(center top, #FFF465, #FFED00)!important;
+}
+
+.btn-karcher:hover{
+
+    line-height: 18px!important;
+    height: 40px!important;
+    border-radius: 0!important;
+    border: 1px solid #e3e3e3!important;
+    color: #2b2b2b;
+
+    font-size: 13px!important;
+    font-weight: bold!important;
+    width: 100%!important;
+    background: #FFF362!important;
+}
+
+.btn-karcher-sm{
+    font-weight: 500!important;
+    line-height: 18px!important;
+    height: 40px!important;
+    border-radius: 0!important;
+    border: 1px solid #e3e3e3!important;
+    color: #2b2b2b;
+
+    font-size: 13px!important;
+    font-weight: bold!important;
+
+    background: #FFF465!important;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF465), to(#FFED00))!important;
+    background: -webkit-linear-gradient(0% 0%, 0% 100%, from(#FFF465), to(#FFED00))!important;
+    background: -moz-linear-gradient(center top, #FFF465, #FFED00)!important;
+}
+
+.btn-karcher-sm:hover{
+
+    line-height: 18px!important;
+    height: 40px!important;
+    border-radius: 0!important;
+    border: 1px solid #e3e3e3!important;
+    color: #2b2b2b;
+
+    font-size: 13px!important;
+    font-weight: bold!important;
+    background: #FFF362!important;
+}
+.btn-karcher-sm-table{
+    color:#2b2b2b!important;
+}
+
+.btn-karcher-sm-table:hover{
+    color: #FFED00!important;
+}
+
+
+.title-login{
+    margin-top: 0px!important;
+    margin-bottom: 30px!important;
+}
+.link-karcher-forgot{
+    text-decoration: none;
+    color: #2b2b2b;
+    font-size: 13px!important;
+    font-weight: bold!important;
+    width: 100%!important;
+}
+.link-karcher-forgot:hover{
+    text-decoration: none;
+    color: #757575;
+    font-size: 13px!important;
+    font-weight: bold!important;
+    width: 100%!important;
+}
+
+
+.menu-karcher-nav{
+    position: absolute;
+}
+
+
+
+.menu-karcher-ul{
+    padding-right: 35px;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+
+
+.menu-karcher-li{
+    float: left;
+    width: auto;
+}
+.menu-karcher-li a{
+    display: block;
+    color: #2b2b2b;
+    font-size: 14px!important;
+    font-weight: bold!important;
+    width: 100%!important;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-right: 25px;
+    text-decoration: none;
+}
+
+
+.menu-karcher-li a:hover {
+    color:#757575!important;
+}
+.menu-karcher-li a:active {
+    font-weight: bold!important;
+}
+
+li:hover
+    ul{
+        visibility: visible!important;
+    }
+
+
+ul.sub-menu{
+    visibility: hidden;
+    display:block;
+    position: absolute;
+}
+ul.sub-menu li{
+    float: left;
+    width: auto;
+}
+
+.karcher-header-second-menu{
+    visibility: hidden;
+    background-color: white;
+    height: 50px;
+    border-bottom: 2px solid #ededed;
+    margin-bottom: 40px;
+}
+
+.sub-menu-karcher-ul{
+    height: 50px;
+    visibility: hidden;
+    padding-left: 45px;
+    list-style-type: none;
+    overflow: hidden;
+}
+.visible{
+    visibility: visible;
+}
+.sub-menu-karcher-li
+{
+    height: 50px;
+    margin-right: 1px;
+    float: left;
+    width: auto;
+    background-color: #ededed;
+}
+.sub-menu-karcher-li a
+{
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #2b2b2b;
+    font-weight: bold!important;
+    text-transform: uppercase;
+    margin-bottom: -1px;
+    padding: 1.25em;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+
+}
+.sub-menu-karcher-li a:hover{
+    color:#757575!important;
+}
+.sub-menu-karcher-li-active{
+    background-color: #333333;
+}
+.sub-menu-karcher-li-active a{
+    color: #ffed00!important;
+}
+.sub-menu-karcher-li-active a:hover{
+    color: #ffed00!important;
+}
+
+.body-content-karcher{
+    padding-right: 45px;
+    padding-left: 45px;
+}
+
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 17px;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #e3e3e3;
+}
+.table > thead > tr > th {
+    height: 50px!important;
+    background-color: #f8f8f8;
+    font-size: 14px!important;
+    color: #2b2b2b;
+    text-transform: uppercase;
+    vertical-align: middle;
+    border-bottom: 2px solid #e3e3e3;
+}
+
+.table > tbody > tr > td {
+    height: 20px!important;
+    font-size: 13px!important;
+    color: #2b2b2b;
+    vertical-align: middle;
+    border-bottom: 1px solid #e3e3e3;
+}
+.table > thead > tr > th > a{
+    color: #2b2b2b!important;
+    text-decoration: none;
+}
+.row{
+    margin-left: 0px!important;
+    margin-right: 0px!important;
+}

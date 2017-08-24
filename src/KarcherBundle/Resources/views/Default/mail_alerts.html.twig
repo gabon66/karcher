@@ -1,0 +1,15 @@
+{% block stylesheets %}
+{% endblock %}
+{% block body %}
+    <br/>
+        <h3>{{ Tiene envio de stock pendiente para acepter }}</h3>
+        <h4>Datos  del envio:</h4>
+        <h5></h5>
+
+        {% for material in materiales %}
+        <label>{{ material.id }} - {{ material.name }} - {{ material.descript }}</label>
+        <h4>Valor actual en stock: {{ material.stock }} </h4>
+            <hr>
+        {% endfor %}
+    <h4>Gracias.</h4>
+{% endblock %}

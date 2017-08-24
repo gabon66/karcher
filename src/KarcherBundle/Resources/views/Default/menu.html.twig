@@ -1,0 +1,182 @@
+
+    <div class="col-md-3 left_col">
+        <div class="left_col scroll-view karcher-header-menu">
+            <div class="navbar nav_title karcher-header-menu" style="border: 0;" >
+                <img src="{{ asset('bundles/karcher/images/karcher-logo.png') }}" alt="..."  class="img-menu logo-big" >
+                <img src="{{ asset('bundles/karcher/images/logo_karcher_small.gif') }}" alt="..."  class="img-menu-small logo-small" >
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile" style="background-color: #00AEEF">
+                <div class="profile_pic">
+                    <img src="{{ asset('bundles/gspemgspem/images/servicioa-tcnico.png') }}" alt="..." class="img-circle profile_img" >
+                </div>
+                <div class="profile_info">
+                    <span>Bienvenido, </span>
+
+                    {% if user== "admin" %}
+                        <h2>Admin</h2>
+                    {% else %}
+                        <h2>{{ app.user.name }} {{ app.user.lastname }}</h2>
+                    {% endif %}
+
+                </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div class="menu_section">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <ul class="nav side-menu">
+
+                        {% if user== "admin"  %}
+                        <!-- menu admin-->
+                        <li><a><i class="fa fa-users"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <li><a href="#perfiles_abm">ABM Perfiles</a></li>
+                                <li><a href="#contratistas_abm">ABM Contratistas</a></li>
+                                <li><a href="#usuarios_abm">ABM Usuarios</a></li>
+
+                            </ul>
+                        </li>
+                        <!--<li><a><i class="fa fa-map-marker"></i> Sitios <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="#sitios_abm">ABM Sitios</a></li>
+                            </ul>
+                        </li>
+                        <li><a><i class="fa fa-home"></i> Materiales <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="#materiales_typo_abm">ABM Tipo Materiales</a></li>
+                                <li><a href="#materiales_abm">ABM Materiales</a></li>
+
+
+                            </ul>
+                        </li>
+
+
+
+                        <li><a><i class="fa fa-wrench"></i> Operaciones <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="#tareas_abm">Tareas</a></li>
+                                <li><a href="#stock_maestro">Stock Maestro</a></li>
+                                <li><a href="#stock_to_tec">Stock Maestro => Tecnico</a></li>
+                                <li><a href="#stock_tec_to_tec">Stock Tecnico => Tecnico</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li><a><i class="fa fa-car"></i> Operaciones Técnico <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="#tareas_tecnico">Tareas</a></li>
+                                <li><a href="#stock_tecnico">Mi Stock</a></li>
+                                <li><a href="#stock_pend">Stock Pendiente</a></li>
+                                <li><a href="#mi_stock_to_tec">Stock => Tecnico</a></li>
+                                <li><a href="#stock_to_sit">Stock => Sitio</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a><i class="fa fa-area-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="#stock_report">Stock Maestro</a></li>
+                                <li><a href="#stock_report_tec">Stock por Técnico</a></li>
+                                <li><a href="#stock_report_sit">Stock por Sitio</a></li>
+                            </ul>
+                        </li>-->
+                        {% else %}
+                            {% if access.sitios.all is defined and access.sitios.all== true %}
+                                <li><a><i class="fa fa-map-marker"></i> Puntos de Distribución <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        {% if access.sitios.abm is defined and access.sitios.abm== true %}
+                                            <li><a href="#dist_abm">ABM</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if access.user.all is defined and  access.user.all== true %}
+                                <li><a><i class="fa fa-users"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        {% if access.user.abm is defined  and access.user.abm==true %}
+                                            <li><a href="#perfiles_abm">ABM Perfiles</a></li>
+                                        {% endif %}
+                                        {% if access.user.perfiles is defined and access.user.perfiles== true %}
+                                            <li><a href="#usuarios_abm">ABM Usuarios</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+
+                            {% if access.materiales.all is defined and access.materiales.all== true %}
+                            <li><a><i class="fa fa-home"></i> Maquinas <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    {% if access.materiales.abm_tipo is defined and access.materiales.abm_tipo== true %}
+                                        <li><a href="#materiales_typo_abm">ABM Tipo Maquinas</a></li>
+                                    {% endif %}
+                                    {% if access.materiales.abm is defined and access.materiales.abm== true %}
+                                        <li><a href="#materiales_abm">ABM Maquinas</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            {% endif %}
+
+
+                            {% if access.opertec.all is defined and access.opertec.all== true %}
+                            <li><a><i class="fa fa-wrench"></i> Ordenes de Servicio  <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    {% if access.opertec.stock is defined and access.opertec.stock== true %}
+                                        <li><a href="#stock_tecnicoo">Nueva Orden</a></li>
+                                    {% endif %}
+                                    {% if access.opertec.stoc_pend is defined and access.opertec.stoc_pend== true %}
+                                        <li><a href="#stock_pendo">Control de Ordenes</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            {% endif %}
+                            {% if access.reportes.all is defined and access.reportes.all== true %}
+                            <li><a><i class="fa fa-area-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    {% if access.reportes.stock_maestro is defined and access.reportes.stock_maestro== true %}
+                                        <li><a href="#stock_reportt">Ordenes por Usuario</a></li>
+                                    {% endif %}
+                                    {% if access.reportes.stock_tec is defined and access.reportes.stock_tec== true %}
+                                        <li><a href="#stock_report_tecc">Ordenes por Estado</a></li>
+                                    {% endif %}
+                                    {% if access.reportes.stock_sit is defined and access.reportes.stock_sit== true %}
+                                        <li><a href="#stock_report_sitt">Ordenes por Sitio</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <!--<div class="sidebar-footer hidden-small">
+                <a data-toggle="tooltip" data-placement="top" title="Settings">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="Lock">
+                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="Logout">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                </a>
+            </div>-->
+            <!-- /menu footer buttons -->
+        </div>
+    </div>

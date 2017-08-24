@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        <h3>Orden Numero: {{newNumOrder}}</h3>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <fieldset>
+
+                <div class="form-group has-success has-feedback">
+                    <label>Fecha Ingreso</label>
+                    <input
+                            disabled
+
+                            ng-model="date"
+                            class="form-control"
+                            >
+                </div>
+
+                <div class="form-group has-success has-feedback">
+                    <label>Tipo Orden:</label>
+                    <select  class="form-control" name="typematerial" id="mySelect"
+                             ng-options="type.name for type in types track by type.id"
+
+                             ng-model="typematerial"></select>
+                </div>
+
+                <div class="form-group has-success has-feedback">
+                    <label>Recivido por:</label>
+                    <input
+                            disabled
+                            ng-model="userName"
+                            class="form-control"
+                            >
+                </div>
+
+
+                <div class="form-group has-success has-feedback">
+                    <label>Centro de atencion:</label>
+                    <input
+                            disabled
+                            ng-model="distName"
+                            class="form-control"
+                            >
+                </div>
+
+            </fieldset>
+
+        </div>
+        <div class="col-md-4">dddddddd</div>
+        <div class="col-md-4">aaaaaaaaaaa</div>
+    </div>
+</div>

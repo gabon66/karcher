@@ -1,0 +1,307 @@
+{# app/Resources/views/base.html.twig #}
+{% verbatim %}
+
+
+<script type="text/ng-template" id="dist_modal.html">
+    <div class="modal-header">
+        <h3>Distribuidor</h3>
+    </div>
+    <div class="modal-body">
+     <div class="modal-body">
+        <fieldset>
+
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="name"
+                        class="form-control"
+                        placeholder="Nombre(*)">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="descript"
+                        class="form-control"
+                        placeholder="Descripción">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="email"
+                        class="form-control"
+                        placeholder="Email">
+            </div>
+
+                        <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="web"
+                        class="form-control"
+                        placeholder="Web">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+            <button ng-show="id!=0" ng-click="editing=true" class="btn-karcher-sm">Editar</button>
+            <label ng-show="!editing" >{{ direccion_str  }}</label>
+            <input ng-show="editing" type="text" ng-model="direccion" placeholder="Ingrese direccion aqui (*)" class="form-control" g-places-autocomplete ng-model="myScopeVar" />
+              <!--  <input type="text"  id="Autocomplete" placeholder="Ingrese direccion aqui " class="form-control" ng-autocomplete="result1" ng-change="placeChanged()" on-place-changed="placeChanged(place)" details="details1" options="options1"/>-->
+            </div>
+
+        </fieldset>
+    </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn-karcher-sm" ng-click="saveDist()">GUARDAR</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="newUserKarcher.html">
+    <div class="modal-header">
+        <h3>Usuario</h3>
+    </div>
+
+    <div class="modal-body">
+    <fieldset>
+
+
+<div class="form-inline">
+    <div class="form-group">
+     <label>Nombre(*)</label>
+     <input
+             ng-model="nombre"
+             class="form-control"
+             placeholder="Nombre">
+    </div>
+
+    <div class="form-group">
+     <label>Apellido</label>
+     <input
+             ng-model="apellido"
+             class="form-control"
+             placeholder="Apellido">
+    </div>
+</div>
+<hr>
+            <div class="form-inline">
+                <div class="form-group">
+                <label>E-Mail(*)</label>
+                <input
+                        ng-model="mail"
+                        class="form-control"
+                        placeholder="eMail">
+               </div>
+
+               <div class="form-group">
+                <label>Telefono</label>
+                <input
+                        ng-model="phone"
+                        class="form-control"
+                        placeholder="Telefono">
+               </div>
+            </div>
+
+<hr>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group has-success has-feedback">
+
+             <label>Usuario(*)</label>
+             <input
+                     ng-model="user"
+                     class="form-control"
+                     placeholder="Usuario">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group has-success has-feedback">
+             <label>Clave(*)</label>
+             <div class="form-inline">
+               <a ng-click="editPass()" class="btn btn-sm  btn-karcher-sm-table"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+
+              <input
+                     type="password"
+                     ng-model="pass"
+                     class="form-control"
+                     placeholder="Clave" ng-disabled="passedite">
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<hr>
+            <div class="row">
+                <div class="col-lg-4">
+                            <div class="form-group has-success has-feedback">
+
+                                <label>Perfil :</label>
+
+                                <select  class="form-control" name="typematerial" id="mySelect"
+                                 ng-options="perfil.name for perfil in perfiles track by perfil.id"
+
+                                 ng-model="profileselected"></select>
+
+                            </div>
+</div>
+                <div class="col-lg-4">
+
+                        <div class="form-group has-success has-feedback">
+
+                            <label>Rol :</label>
+
+                            <select  class="form-control" ng-change="reloadBosses()" name="typematerial" id="mySelect"
+                             ng-options="level.name for level in levels track by level.id"
+
+                             ng-model="levelselected"></select>
+
+                        </div>
+
+</div>
+                <div class="col-lg-4">
+
+
+                       <div class="form-group has-success has-feedback">
+
+                       <label>Punto de Distribución :</label>
+
+
+
+                                <select  class="form-control" style="padding-right: 0px !important;" name="typematerial" id="mySelect"
+                                 ng-options="dist.name for dist in dists track by dist.id"
+
+                                 ng-model="distsselected"></select>
+                        <!--<select   ng-change=bosseschane()  class="form-control"  name="ngvalueselect" ng-model="bosseselected"  data-ng-change="fixIE()" multiple>
+                            <option ng-repeat="bosse in bosses" ng-value="bosse.id"><span>{{bosse.name + " " +  bosse.lastName}}</span></option>
+                        </select>-->
+
+                        </div>
+</div>
+            </div>
+
+
+
+        </fieldset>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn-karcher-sm pull-right" ng-click="saveUser()">Guardar</button>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="material_karcher_form.html">
+    <div class="modal-header">
+        <h3>Material</h3>
+    </div>
+    <div class="modal-body">
+        <fieldset>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="name"
+                        class="form-control"
+                        placeholder="Nombre">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="descript"
+                        class="form-control"
+                        placeholder="Descripción">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="model"
+                        class="form-control"
+                        placeholder="Modelo">
+            </div>
+
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="pn"
+                        class="form-control"
+                        placeholder="Numero de Parte">
+            </div>
+
+
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="serial_n"
+                        class="form-control"
+                            placeholder="Numero de Serie">
+            </div>
+
+
+
+
+            <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group has-success has-feedback">
+                        <label>Tipo (Product Mix):</label>
+
+                        <select  class="form-control" name="typematerial" id="mySelect"
+                         ng-options="type.name for type in types track by type.id"
+
+                         ng-model="typematerial"></select>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group has-success has-feedback">
+                        <label>Origen:</label>
+
+                        <select  class="form-control" name="origenmaterial" id="mySelect1"
+                         ng-options="origen.name for origen in origenes track by origen.id"
+                         ng-model="origenmaterial"></select>
+                </div>
+
+            </div>
+            </div>
+
+
+        </fieldset>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn-karcher-sm pull-right " ng-click="saveMaterial()">Guardar</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="dist_admin.html">
+    <div class="modal-header">
+        <h3>Administrador : {{item.admin}}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">Email: </div>
+            <div class="col-md-8">{{item.mail}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">Telefono: </div>
+            <div class="col-md-8">{{item.phone}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">Habilitado: </div>
+            <div class="col-md-8" ng-if="item.disabled==1">No</div>
+            <div class="col-md-8" ng-if="item.disabled==0">Si</div>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn-karcher-sm pull-right " ng-click="cerrar()">Cerrar</button>
+    </div>
+</script>
+
+
+{% endverbatim %}

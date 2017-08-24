@@ -1,0 +1,88 @@
+<div class="row">
+
+
+
+    <div ng-show="cargando"  class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
+        <h3>Cargando Stock Maestro   </h3>
+
+        <i ng-show="cargando==true" class="fa fa-cog fa-spin fa-5x fa-fw"></i>
+    </div>
+
+
+    <div ng-show="!cargando"  class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Stock Maestro </h2>
+
+
+
+
+
+                <div class="clearfix">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                        <div class="input-group col-lg-4 pull-right">
+                            <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                            <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" ID / Nombre / Stock / Descripción / *">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="x_content" style="height:  60% ;overflow: auto" ng-show="!cargando">
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th><a ng-click="sortBy('id')">ID <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th>Ref.</th>
+                        <th><a ng-click="sortBy('name')"> Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('descript')"> Descripción <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('ubicacion')"> Ubicacíon <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('stock')"> Stock Actual <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <!--<th>Stock Entrante / Saliente</th>-->
+                        <th>Operaciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in stock | filter:filtromaterial | orderBy:propertyName:reverse" >
+                        <th>{{ $index +1 }}</th>
+                        <td>{{ item.idCustom }}</td>
+                        <td>
+                            <button class="btn btn-sm" ng-style="{'background-color':item.referencia.ref1}"></button>
+                            <button class="btn btn-sm" ng-style="{'background-color':item.referencia.ref2}"></button>
+                        </td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.descript }}</td>
+                        <td>{{ item.ubicacion }}</td>
+                        <td style="text-align: right" ng-class="{danger: parseInt(item.stock) < parseInt(item.umbralmin)}">
+                            <i ng-show="parseInt(item.umbralmin) > parseInt(item.stock)"  class="fa fa-exclamation" aria-hidden="true"></i>
+                            {{ item.stock }}
+                        </td>
+
+                        <!--<td style="text-align: right">
+                            <input class="input-group-sm" ng-model="item.cant" type="number" style="width: 60px;height: 22px;text-align: right" placeholder="0"  />
+                        </td>-->
+                        <td ng-if="!item.new_stock" ><a  class="btn btn-sm btn-add btn-success" ng-click="altaStock(item)" ><i class="fa fa-plus" aria-hidden="true"></i></a>
+                        </td>
+                        <td ng-if="item.new_stock" ><a  class="btn btn-sm btn-add btn-warning" ng-click="resetStock(item)" ><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="x_content">
+                <a ng-if="enviando" class="btn btn-success pull-right disabled" ng-click="confirmar()">Cargando...</a>
+                <a ng-if="!enviando" class="btn btn-success pull-right" ng-click="confirmar()">Confirmar</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

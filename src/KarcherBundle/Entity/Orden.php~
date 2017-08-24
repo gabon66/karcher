@@ -1,0 +1,160 @@
+<?php
+
+namespace KarcherBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Orden
+ *
+ * @ORM\Table(name="orden")
+ * @ORM\Entity(repositoryClass="KarcherBundle\Repository\OrdenRepository")
+ */
+class Orden
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="numero", type="string")
+     */
+    private $numero;
+
+    /**
+     * @ORM\Column(name="fing", type="datetime")
+     */
+    private $fing;
+
+    /**
+     * @ORM\Column(name="tipo", type="integer")
+     */
+    private $tipo;
+
+    /**
+     * @ORM\Column(name="ak", type="string")
+     */
+    private $ak;
+
+    /**
+     * @ORM\Column(name="dtr", type="string")
+     */
+    private $dtr;
+
+    /**
+     * @ORM\Column(name="cuno", type="string")
+     */
+    private $cuno;
+
+    /**
+     * @ORM\Column(name="nme", type="string")
+     */
+    private $phn;
+
+    /**
+     * @ORM\Column(name="eml", type="string")
+     */
+    private $eml;
+
+    /**
+     * @ORM\Column(name="prod_id", type="string")
+     */
+    private $prodId;
+
+    /**
+     * @ORM\Column(name="prod_pn", type="string")
+     */
+    private $prodPn;
+
+    /**
+     * @ORM\Column(name="prod_mdl", type="string")
+     */
+    private $prodMdl;
+
+    /**
+     * @ORM\Column(name="prod_sn", type="string")
+     */
+    private $prodSn;
+
+    /**
+     * @ORM\Column(name="acc1", type="string")
+     */
+    private $acc1;
+
+    /**
+     * @ORM\Column(name="acc2", type="string")
+     */
+    private $acc2;
+
+    /**
+     * @ORM\Column(name="acc3", type="string")
+     */
+    private $acc3;
+
+    /**
+     * @ORM\Column(name="acc4", type="string")
+     */
+    private $acc4;
+
+    /**
+     * @ORM\Column(name="acc5", type="string")
+     */
+    private $acc5;
+
+    /**
+     * @ORM\Column(name="acc6", type="string")
+     */
+    private $acc6;
+
+    /**
+     * @ORM\Column(name="acc7", type="string")
+     */
+    private $acc7;
+
+    /**
+     * @ORM\Column(name="img1", type="string")
+     */
+    private $img1;
+
+    /**
+     * @ORM\Column(name="img2", type="string")
+     */
+    private $img2;
+
+    /**
+     * @ORM\Column(name="img3", type="string")
+     */
+    private $img3;
+
+    /**
+     * @ORM\Column(name="prd", type="integer")
+     */
+    private $prd;
+
+    /**
+     * @ORM\Column(name="estd", type="integer")
+     */
+    private $estd;
+
+    /**
+     * @ORM\Column(name="est", type="datetime")
+     */
+    private $fmod;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+

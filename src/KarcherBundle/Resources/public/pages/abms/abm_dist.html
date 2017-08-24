@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3>Distribuidores</h3>
+                    </div>
+                    <div class="col-md-9">
+
+                        <button type="button" ng-click="new(null)" class="btn-karcher-sm pull-right" >NUEVO</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="x_content">
+
+                <table class="table" ng-if="distribuidores.length>0">
+                    <thead>
+                    <tr>
+                        <th><a ng-click="sortBy('name')"> Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th>Administrador</th>
+                        <th>Email</th>
+                        <th>Web</th>
+
+                        <th>Dirección</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="dist in distribuidores | orderBy:propertyName:reverse">
+
+                        <td class="col-md-2">{{ dist.name  }} </td>
+                        <td class="col-md-2"><a ng-if="dist.admin!=null" class="link-karcher-forgot" ng-click="showAdmin(dist)">> {{ dist.admin  }} </a></td>
+                        <td class="col-md-2">{{ dist.email }} </td>
+                        <td class="col-md-2">{{ dist.web }} </td>
+
+                        <td class="col-md-2">{{ dist.dir }} </td>
+
+                        <td class="col-md-3" style="text-align: right">
+                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="new(dist)" ><i class="fa fa-edit fa-2x"></i> </a>
+                            <a  class="btn btn-sm btn-karcher-sm-table" ng-click="delete(dist.id)" ><i class="fa fa-remove fa-2x"></i> </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

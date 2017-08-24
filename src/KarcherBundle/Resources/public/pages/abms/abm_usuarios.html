@@ -1,0 +1,69 @@
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <div class="row">
+                <div class="col-md-3">
+                    <h3>Usuarios</h3>
+                </div>
+                    <div class="col-md-9">
+
+                        <button type="button" ng-click="new(null,'newUserKarcher.html','ModalNewUserCtrl')" class="btn-karcher-sm pull-right" >NUEVO</button>
+                    </div>
+                </div>
+            </div>
+            <div class="x_content">
+
+                <table class="table" >
+
+                    <thead>
+                    <tr>
+
+                        <th><a ng-click="sortBy(['lastName','name'])">  Apellido / Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <!--<th><a ng-click="sortBy('username')"> Username <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        -->
+                        <th><a ng-click="sortBy('mail')"> Mail <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('contratista')"> Distribuidor <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th>Rol</th>
+                        <th>Perfil</th>
+
+
+                        <th>Estado</th>
+                        <th></th>
+
+                    </tr>
+                    </thead>
+                    <tbody >
+                    <tr  ng-repeat="user in users | orderBy:propertyName:reverse">
+                        <td>{{ user.lastName}} -  {{ user.name}} - </td>
+                        <!--<td>{{ user.username}}</td>-->
+
+                        <td>{{ user.mail}}</td>
+                        <td>{{ user.distribuidor }}</td>
+
+                        <td ng-if="user.level==1">Administrador General</td>
+                        <td ng-if="user.level==2">Administrador Regional</td>
+                        <td ng-if="user.level==3">Administrador Distribuidora</td>
+                        <td ng-if="user.level==4">Técnico</td>
+                        <td> {{user.profilename}}</td>
+
+                        <td ng-if="user.disabled==false"><i class="fa fa-thumbs-up" style="color: green" aria-hidden="true"></i></td>
+                        <td ng-if="user.disabled==true"><i class="fa fa-thumbs-down"  style="color: red" aria-hidden="true"></i></td>
+
+                        <td style="text-align: right"><a  ng-click="new(user,'newUserKarcher.html','ModalNewUserCtrl')" class="btn btn-sm  btn-karcher-sm-table"><i class="fa fa-edit fa-2x" aria-hidden="true"></i></a>
+                            <a  ng-click="chaneStateUser(user.id , user.disabled)" class="btn btn-sm  btn-karcher-sm-table">
+                                <i ng-if="user.disabled==false" class="fa fa-thumbs-o-down fa-2x" style="color: red" aria-hidden="true"></i>
+                                <i ng-if="user.disabled==true" class="fa fa-thumbs-o-up fa-2x" style="color: green" aria-hidden="true"></i>
+                                <a  ng-click="deleteUser(user.id)" class="btn btn-sm  btn-karcher-sm-table"><i class="fa fa-remove fa-2x" aria-hidden="true"></i></a>
+                            </a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,244 @@
+{# app/Resources/views/base.html.twig #}
+<html ng-app='AppGSPEM'>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <title> KARCHER</title>
+    {# ... #}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% block stylesheets %}
+        <link href="{{ asset('bower_components/gentelella/vendors/bootstrap/dist/css_new/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/gentelella/vendors/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/gentelella/vendors/iCheck/skins/flat/green.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/gentelella/production/css/maps/jquery-jvectormap-2.0.3.css') }}" type="text/css" rel="stylesheet" />
+       <!-- <link href="{{ asset('bower_components/gentelella/build/css/custom.css') }}" type="text/css" rel="stylesheet" />
+       -->
+        <link href="{{ asset('bower_components/angular-toastr/dist/angular-toastr.css') }}" type="text/css" rel="stylesheet" />
+
+        <link href="{{ asset('bower_components/angular-google-places-autocomplete/dist/autocomplete.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/angular-material/angular-material.css') }}" type="text/css" rel="stylesheet" />
+
+        <link href="{{ asset('bower_components/angularjs-datepicker/src/css/angular-datepicker.css') }}" type="text/css" rel="stylesheet" />
+
+        <link href="{{ asset('bower_components/angularjs-datepicker/dist/angular-datepicker.css') }}" type="text/css" rel="stylesheet" />
+        <link href=" {{asset('bundles/karcher/css/angucomplete.css')}}" type="text/css" rel="stylesheet" />
+        <link href=" {{asset('bundles/karcher/css/jquery-ui.css')}}" type="text/css" rel="stylesheet" />
+
+        <link href="http://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" type="text/css" rel="stylesheet" />
+        <link href=" {{asset('bundles/karcher/css/karcher.css')}}" type="text/css" rel="stylesheet" />
+
+
+
+
+
+
+
+        <style type="text/css">
+            .pac-container {
+                z-index: 100000;
+            }
+            .table-inmodal{
+                font-size: 12px;
+            }
+            .md-datepicker-calendar-pane{
+                z-index: 1200}
+        </style>
+
+    {% endblock %}
+</head>
+
+<body class="nav-md" ng-controller='mainController'>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12 karcher-header-menu" >
+        <div class="col-md-2" style="padding-right: 0px;padding-left: 0px;width: auto">
+            <img class="karcher-header-logo"  src="{{ asset('bundles/karcher/images/logo-white.png') }}" />
+        </div>
+        <div class="col-md-9" style="padding-left: 0px">
+                <ul class="menu-karcher-ul">
+                    <li class="menu-karcher-li"><a ng-click="active('ords')"  href="#controlorders">ORDENES</a></li>
+                    <li class="menu-karcher-li"><a ng-click="active('dist')"  href="#dist_abm">DISTRIBUCION</a></li>
+                    <li class="menu-karcher-li"><a ng-click="active('maq')" href="#materiales_abm">MAQUINAS</a></li>
+                    <li class="menu-karcher-li"><a ng-click="active('usr')" href="#usuarios_abm">USUARIOS</a></li>
+                    <li class="menu-karcher-li"><a ng-click="active('report')" href="#about">REPORTES</a></li>
+                </ul>
+        </div>
+        <div class="col-md-1" style="padding-left: 0px">
+            <ul class="menu-karcher-ul">
+                <li class="menu-karcher-li"><a ng-click="active('ords')"  href="{{ path('logout') }}">SALIR</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="height: 50px">
+    <div class="col-md-12 karcher-header-second-menu" ng-if="menuActive" ng-class="{'visible':menuActive!=null}" >
+
+        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='ords'"  ng-class="{'visible':menuActive=='ords'}" >
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='nueva'}" >
+                <a href="#neworder" ng-click="subitem='nueva'">NUEVA</a></li>
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='control'}" >
+                <a  ng-click="subitem='control'" href="#controlorders">CONTROL</a></li>
+        </ul>
+
+
+        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='dist'"  ng-class="{'visible':menuActive=='dist'}" >
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='puntos'}" >
+                <a href="#dist_abm" ng-click="subitem='puntos'">PUNTOS DE DISTRIBUCION</a></li>
+        </ul>
+
+
+        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='maq'" ng-class="{'visible':menuActive=='maq'}" >
+                <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmti'}" >
+                    <a href="#materiales_typo_abm" ng-click="subitem='abmti'">Tipo Maquinas</a></li>
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmori'}" >
+                <a href="#materiales_origen_abm" ng-click="subitem='abmori'">Origen</a></li>
+
+                <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmmaq'}" >
+                    <a  ng-click="subitem='abmmaq'" href="#materiales_abm">Maquinas</a></li>
+            </ul>
+
+        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='usr'" ng-class="{'visible':menuActive=='usr'}" >
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmperfiles'}" >
+                <a href="#perfiles_abm" ng-click="subitem='abmperfiles'">Perfiles</a></li>
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmusers'}" >
+                <a  ng-click="subitem='abmusers'" href="#usuarios_abm">Usuarios</a></li>
+        </ul>
+
+
+        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='report'" ng-class="{'visible':menuActive=='report'}" >
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep1'}" >
+                <a href="#" ng-click="subitem='rep1'">REPORTE 1</a></li>
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep2'}" >
+                <a  ng-click="subitem='rep2'" href="##">REPORTE 2</a></li>
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep3'}" >
+                <a  ng-click="subitem='rep3'" href="##">REPORTE 3</a></li>
+        </ul>
+
+
+    </div>
+</div>
+<div class="body-content-karcher">
+    <div ng-view></div>
+</div>
+
+
+{% include 'KarcherBundle:Default:modals.html.twig' %}
+{% include 'KarcherBundle:Default:modals_karcher.html.twig' %}
+{% include 'KarcherBundle:Default:modals_edit.html.twig' %}
+{% block javascripts %}
+
+
+    <script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js" type="text/javascript"></script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+
+    <script src="{{ asset('bower_components/gentelella/vendors/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/fastclick/lib/fastclick.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/nprogress/nprogress.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/Chart.js/dist/Chart.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/bernii/gauge.js/dist/gauge.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/iCheck/icheck.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/skycons/skycons.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.pie.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.time.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.stack.js') }}" type="text/javascript"></script>
+    <!--<script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.resize.js') }}" type="text/javascript"></script>
+-->
+
+
+
+    <script src="{{ asset('bower_components/gentelella/production/js/flot/jquery.flot.orderBars.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/production/js/flot/date.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/production/js/flot/jquery.flot.spline.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/production/js/flot/curvedLines.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-2.0.3.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/production/js/moment/moment.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/production/js/datepicker/daterangepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/gentelella/build/js/custom.js') }}" type="text/javascript"></script>
+
+
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>-->
+    <script src="{{asset('bundles/karcher/js/jquery-ui/jquery-ui.min.js')}}"></script>
+
+    <script src="{{ asset('bower_components/angular/angular.min.js') }}" type="text/javascript"></script>
+
+
+
+    <script src="{{ asset('bower_components/angular-animate/angular-animate.min.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('bower_components/angularjs-datepicker/src/js/angular-datepicker.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('bower_components/angular-aria/angular-aria.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/angular-animate/angular-animate.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/angular-material/angular-material.js') }}" type="text/javascript"></script>
+
+
+
+    <script src="{{ asset('bower_components/angular-route/angular-route.min.js') }}" type="text/javascript"></script>
+
+
+
+    <script src="{{ asset('bower_components/angular-bootstrap/ui-bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/angular-bootstrap/ui-bootstrap-tpls.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('bower_components/angular-toastr/dist/angular-toastr.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/angular-toastr/dist/angular-toastr.tpls.js') }}" type="text/javascript"></script>
+
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&key=AIzaSyCp_sQlhdJJUuaNg7Z4_Iocyip0KU0EAy4"></script>
+
+
+
+    <!-- AIzaSyD9Mc4KpDPBMtHXgyk5XcVzXyNumvckhjQ -->
+
+    <script src="{{ asset('bower_components/angular-google-places-autocomplete/dist/autocomplete.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/angularjs-datepicker/dist/angular-datepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bower_components/angular-i18n/angular-locale_es-ar.js') }}"></script>
+    <script src="{{asset('bundles/karcher/js/directives/angucomplete.js')}}"></script>
+
+    <script src="{{asset('bundles/karcher/js/app.js')}}"></script>
+
+
+    <script src="{{asset('bundles/karcher/js/app_materiales.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_sitios.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_usuarios.js')}}"></script>
+
+    <script src="{{asset('bundles/karcher/js/app_perfil.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_tareas.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_stock_maestro.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_stock_mov.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_stock_pend.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_stock_pend_rechazado.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_stock_user.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_contratistas.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_dist.js')}}"></script>
+
+
+
+    <script src="{{asset('bundles/karcher/js/app_stock_mov_sitio.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_report.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_order.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_order_control.js')}}"></script>
+
+
+    <script src="{{asset('bundles/karcher/js/directives/ngAutocomplete.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/directives/checklist-model.js')}}"></script>
+
+
+{% endblock %}
+
+</body>
+</html>

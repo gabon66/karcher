@@ -1,0 +1,69 @@
+<div class="row">
+
+
+    <div ng-show="cargando"  class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
+        <h3>Cargando Maquinas   </h3>
+
+        <i ng-show="cargando==true" class="fa fa-cog fa-spin fa-5x fa-fw"></i>
+    </div>
+
+    <div ng-show="!cargando" class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <div class="row">
+                    <div class="col-lg-2"><h3>Maquinas <small></small></h3></div>
+                    <div class="col-lg-9">
+                        <div class="form-group ">
+                            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                            <div class="input-group col-lg-8 pull-right">
+                                <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Nombre /Numero de Serie / Numero de Parte / Descripcion">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1">    <div class="clearfix"><button  ng-click="new(null,'material_karcher_form.html','ModelNewMaterialCtrl')" class="btn-karcher-sm pull-right">NUEVA</button></div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="x_content" style="height: 600px;min-height: 600px;overflow: auto">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><a ng-click="sortBy('name')">Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                        <th><a ng-click="sortBy('serialN')"> Numero de Serie <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('serialN')"> Numero de Parte <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('descript')">Descripción <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('type')"> Tipo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('model')"> Modelo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="material in materiales | filter:filtromaterial | orderBy:propertyName:reverse">
+                        <td>{{ material.name }}</td>
+                        <td >{{ material.serial }}</td>
+                        <td >{{ material.pn }}</td>
+                        <td>{{ material.descript }}</td>
+                        <td>{{ material.type }}</td>
+                        <td>{{ material.model }}</td>
+
+
+                        <td style="text-align: right">
+                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="new(material,'material_karcher_form.html','ModelNewMaterialCtrl')" ><i class="fa fa-edit fa-2x"></i> </a>
+                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="deleteMaterial(material.id)" ><i class="fa fa-remove fa-2x"></i> </a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

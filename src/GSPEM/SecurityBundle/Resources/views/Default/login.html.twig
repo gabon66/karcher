@@ -1,0 +1,54 @@
+{% extends '::base.html.twig' %}
+
+    {% block stylesheets %}
+
+        <link href="{{ asset('bower_components/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/gentelella/vendors/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/gentelella/vendors/iCheck/skins/flat/green.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/gentelella/production/css/maps/jquery-jvectormap-2.0.3.css') }}" type="text/css" rel="stylesheet" />
+<!--        <link href="{{ asset('bower_components/gentelella/build/css/custom.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bower_components/gentelella/build/css/custom.css') }}" type="text/css" rel="stylesheet" />
+-->
+     <link href=" {{asset('bundles/karcher/css/karcher.css')}}" type="text/css" rel="stylesheet" />
+
+    {% endblock %}
+
+
+{% block body %}
+
+<body>
+<!-- Static navbar -->
+<!-- Static navbar -->
+<div class="row">
+    <div class="col-md-12 karcher-header-menu" >
+        <img class="karcher-header-logo"  src="{{ asset('bundles/karcher/images/logo-white.png') }}" /></div>
+</div>
+
+
+    <div class="container" >
+        <div class="col-lg-4">
+
+        </div>
+        <div class="jumbotron col-lg-4  login-box" >
+
+
+            {% if error %}
+                <div class="error">Error en usuario o clave</div>
+            {% endif %}
+            <h2 class="title-login">Mi Kärcher</h2>
+
+            <form class="form-group-sm form-horizontal" action="{{ path('login_check') }}" method="post">
+                <input class="form-control input-sm input-login input-karcher" placeholder="Usuario" type="text" id="username" name="_username" value="{{ last_username }}" style="margin-bottom: 10px" />
+                <input  class="form-control input-sm input-login input-karcher" placeholder="Clave" type="password" id="password" name="_password" style="margin-bottom: 20px"/>
+                <button type="submit" class="btn-karcher" style="margin-bottom: 20px;">ENTRAR</button>
+                <a href="" class="link-karcher-forgot">> Recuperar Clave</a>
+            </form>
+
+        </div>
+        <div class="col-lg-4">
+
+        </div>
+    </div>
+</body>
+{% endblock %}

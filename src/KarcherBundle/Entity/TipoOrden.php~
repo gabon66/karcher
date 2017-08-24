@@ -1,0 +1,44 @@
+<?php
+
+namespace KarcherBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TipoOrden
+ *
+ * @ORM\Table(name="tipo_orden")
+ * @ORM\Entity(repositoryClass="KarcherBundle\Repository\TipoOrdenRepository")
+ */
+class TipoOrden
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="name", type="string")
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(name="descript", type="string")
+     */
+    private $descript;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+
