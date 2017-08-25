@@ -246,6 +246,11 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
             controller  : 'newOrder'
         })
 
+        .when('/orders', {
+            templateUrl : '../bundles/karcher/pages/orders/new.html',
+            controller  : 'newOrder'
+        })
+
         .when('/controlorders', {
             templateUrl : '../bundles/karcher/pages/orders/orders.html',
             controller  : 'ordersControl'
@@ -282,12 +287,16 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
     $scope.isadmin=false;
     $scope.menuActive=null;
 
-
     var url = $location.path().split(/[\s/]+/).pop();
-    console.log(url);
+    console.log("url"+url);
 
     switch (url){
-        case 'ords':
+
+        case 'orders':
+            $scope.menuActive='ords';
+            $scope.subitem='nueva';
+            break;
+        case 'neworder':
             $scope.menuActive='ords';
             $scope.subitem='nueva';
             break;

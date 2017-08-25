@@ -3,51 +3,100 @@
 
         <h3>Orden Numero: {{newNumOrder}}</h3>
     </div>
-    <div class="col-md-12">
-        <div class="col-md-4">
-            <fieldset>
+    <div class="col-md-12 col-sm-12 col-xs-12 karcher-menu-steps">
+        <button class="glyphicon glyphicon-list-alt step-icon" ng-class="{'step-icon-active':step==0}" aria-hidden="true"></button>
+        <button class="glyphicon glyphicon-user step-icon" ng-class="{'step-icon-active':step==1}" aria-hidden="true"></button>
+        <button class="glyphicon glyphicon-barcode step-icon" ng-class="{'step-icon-active':step==2}" aria-hidden="true"></button>
+        <button class="glyphicon glyphicon-info-sign step-icon" ng-class="{'step-icon-active':step==3}"aria-hidden="true"></button>
+    </div>
 
-                <div class="form-group has-success has-feedback">
-                    <label>Fecha Ingreso</label>
-                    <input
-                            disabled
+    <div class="col-md-12" style="padding-top: 20px">
+        <!-- FIRST STEP -->
+        <div ng-show="step==0">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <fieldset class="form-horizontal">
 
-                            ng-model="date"
-                            class="form-control"
-                            >
-                </div>
+                    <div class="form-group has-success has-feedback">
+                        <label for="date" class="col-sm-3 control-label label-form">Fecha Ingreso:</label>
+                        <div class="col-sm-7">
+                            <input disabled ng-model="date" class="form-control" id="date">
+                        </div>
+                    </div>
 
-                <div class="form-group has-success has-feedback">
-                    <label>Tipo Orden:</label>
-                    <select  class="form-control" name="typematerial" id="mySelect"
-                             ng-options="type.name for type in types track by type.id"
+                    <div class="form-group has-success has-feedback">
+                        <label for="rec" class="col-sm-3 control-label label-form">Tipo Orden:</label>
+                        <div class="col-sm-7">
+                        <select  class="form-control" name="typematerial" id="mySelect"
+                                 ng-options="type.name for type in orderType track by type.id"
+                                 ng-model="ordertype"></select>
+                        </div>
+                    </div>
 
-                             ng-model="typematerial"></select>
-                </div>
-
-                <div class="form-group has-success has-feedback">
-                    <label>Recivido por:</label>
-                    <input
-                            disabled
-                            ng-model="userName"
-                            class="form-control"
-                            >
-                </div>
+                    <div class="form-group has-success has-feedback">
+                        <label for="rec" class="col-sm-3 control-label label-form">Recivido por:</label>
+                        <div class="col-sm-7">
+                            <input id="rec" disabled ng-model="userName" class="form-control">
+                        </div>
+                    </div>
 
 
-                <div class="form-group has-success has-feedback">
-                    <label>Centro de atencion:</label>
-                    <input
-                            disabled
-                            ng-model="distName"
-                            class="form-control"
-                            >
-                </div>
+                    <div class="form-group has-success has-feedback">
+                        <label for="dist" class="col-sm-3 control-label label-form">Centro de atencion:</label>
+                        <div class="col-sm-7">
+                        <input id="dist" disabled ng-model="distName" class="form-control">
+                        </div>
+                    </div>
 
-            </fieldset>
-
+                </fieldset>
+            </div>
+            <div class="col-md-2"></div>
         </div>
-        <div class="col-md-4">dddddddd</div>
-        <div class="col-md-4">aaaaaaaaaaa</div>
+
+        <!-- SECOND STEP -->
+        <div ng-show="step==1">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <fieldset class="form-horizontal">
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="cliente" class="col-sm-3 control-label label-form">Nombre Cliente:</label>
+                        <div class="col-sm-7">
+                            <input ng-model="cliente" class="form-control" id="cliente">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success has-feedback ">
+                        <label for="cont" class="col-sm-3 control-label label-form">Persona Contacto:</label>
+                        <div class="col-sm-7">
+                            <input ng-model="contacto" class="form-control" id="cont">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="tel" class="col-sm-3 control-label label-form">Telefono:</label>
+                        <div class="col-sm-7">
+                            <input  ng-model="telefono" class="form-control" id="tel">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="mail" class="col-sm-3 control-label label-form">E-Mail:</label>
+                        <div class="col-sm-7">
+                            <input  ng-model="mail" class="form-control" id="mail">
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="col-md-12 karcher-menu-steps-order" style="text-align: center">
+            <button type="button"  ng-click="backStep()" class="btn-karcher-sm" >ATRAS</button>
+            <button type="button" ng-click="nextStep()" class="btn-karcher-sm" >SIGUIENTE</button>
+        </div>
     </div>
 </div>
