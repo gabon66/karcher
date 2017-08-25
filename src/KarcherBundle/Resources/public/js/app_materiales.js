@@ -193,19 +193,14 @@ GSPEMApp.controller('ModelNewMaterialCtrl', function($filter,$scope,$http, $uibM
     $scope.item = item;
 
 
-    /*var getContratistas = function() {
-        $http.get(Routing.generate('get_contratistas')
-        ).then(function (contratistas) {
-            $scope.contratistas=contratistas.data;
-            if(item!=null){
-                $scope.contratistaselected=$filter('filter')($scope.contratistas,{"id":item.contratistaid})[0];
-            }else {
-                $scope.contratistaselected=$scope.contratistas[0];
-            }
-        });
-    };
-    getContratistas();
-*/
+
+
+    $scope.materialDescript=[];
+
+    $scope.materialDescript.push({id:1,name:"Maquina"});
+    $scope.materialDescript.push({id:3,name:"Accesorio"});
+    $scope.materialDescript.push({id:2,name:"Complemento"});
+    $scope.materialDescriptSelected=$scope.materialDescript[0];
 
 
     $scope.referencia={ref1:"",ref2:""};
@@ -217,7 +212,7 @@ GSPEMApp.controller('ModelNewMaterialCtrl', function($filter,$scope,$http, $uibM
     $scope.descript="";
     $scope.serial_n="";
     $scope.model="";
-    $scope.descript="";
+
     $scope.barra="";
     $scope.pn="";
 
@@ -239,7 +234,7 @@ GSPEMApp.controller('ModelNewMaterialCtrl', function($filter,$scope,$http, $uibM
         $scope.barra=item.barra;
         $scope.pn=item.pn;
 
-        $scope.descript=item.descript;
+        $scope.materialDescriptSelected=$filter('filter')($scope.materialDescript,{"name":item.descript})[0];
         $scope.typematerial=$filter('filter')($scope.types,{"id":item.type_id})[0];
         $scope.origenmaterial=$filter('filter')($scope.origenes,{"id":item.origen_id})[0];
         //console.log($scope.typematerial);
@@ -275,7 +270,7 @@ GSPEMApp.controller('ModelNewMaterialCtrl', function($filter,$scope,$http, $uibM
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 data: {
                     name: $scope.name,
-                    descript: $scope.descript,
+                    descript: $scope.materialDescriptSelected.name,
                     type: $scope.typeidmat,
                     origen: $scope.origenidmat,
                     barra: $scope.barra,

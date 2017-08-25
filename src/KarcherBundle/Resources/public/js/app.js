@@ -381,9 +381,10 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
 
 
     $scope.active=function (val) {
-        console.log(val);
+        console.log("activo "+val);
+
         $scope.menuActive=val;
-        if(val=='ords') $scope.subitem='control';
+        if(val=='ords') $scope.subitem='nueva';
         if(val=='maq') $scope.subitem='abmmaq';
         if(val=='usr') $scope.subitem='abmusers';
         if(val=='dist') $scope.subitem='puntos';
