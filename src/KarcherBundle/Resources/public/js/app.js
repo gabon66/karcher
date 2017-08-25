@@ -6,6 +6,49 @@ var GSPEMApp = angular.module('AppGSPEM', ["720kb.datepicker","angucomplete","ng
 /**
  * Date Utils
  */
+
+GSPEMApp.factory('focus', function($timeout, $window) {
+    return function(id) {
+        // timeout makes sure that is invoked after any other event has been triggered.
+        // e.g. click events that need to run before the focus or
+        // inputs elements that are in a disabled state but are enabled when those events
+        // are triggered.
+        $timeout(function() {
+            var element = $window.document.getElementById(id);
+            if(element)
+                element.focus();
+        });
+    };
+})
+
+GSPEMApp.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+                event.preventDefault();
+            }
+        });
+    };
+});
+
+GSPEMApp.directive('eventFocus', function(focus) {
+    return function(scope, elem, attr) {
+        elem.on(attr.eventFocus, function() {
+            focus(attr.eventFocusId);
+        });
+
+        // Removes bound events in the element itself
+        // when the scope is destroyed
+        scope.$on('$destroy', function() {
+            elem.off(attr.eventFocus);
+        });
+    };
+});
+
+
 GSPEMApp.service("dateUtils",function(){
     return {
         parseDate: function(stringDate) {

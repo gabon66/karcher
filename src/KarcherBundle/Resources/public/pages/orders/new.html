@@ -1,13 +1,14 @@
-<div class="row">
+<div class="row" ng-keydown="down($event)">
     <div class="col-md-12 col-sm-12 col-xs-12">
 
         <h3>Orden Numero: {{newNumOrder}}</h3>
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12 karcher-menu-steps">
-        <button class="glyphicon glyphicon-list-alt step-icon" ng-class="{'step-icon-active':step==0}" aria-hidden="true"></button>
-        <button class="glyphicon glyphicon-user step-icon" ng-class="{'step-icon-active':step==1}" aria-hidden="true"></button>
-        <button class="glyphicon glyphicon-barcode step-icon" ng-class="{'step-icon-active':step==2}" aria-hidden="true"></button>
-        <button class="glyphicon glyphicon-info-sign step-icon" ng-class="{'step-icon-active':step==3}"aria-hidden="true"></button>
+        <button class="glyphicon glyphicon-list-alt step-icon"  ng-click="step=0" ng-class="{'step-icon-active':step==0}" aria-hidden="true"></button>
+        <button class="glyphicon glyphicon-barcode step-icon"   ng-click="step=1"  ng-class="{'step-icon-active':step==1}" aria-hidden="true"></button>
+        <button class="glyphicon glyphicon-user step-icon"      ng-click="step=2"  ng-class="{'step-icon-active':step==2}" aria-hidden="true"></button>
+        <button class="glyphicon glyphicon-paperclip step-icon" ng-click="step=3" ng-class="{'step-icon-active':step==3}" aria-hidden="true"></button>
+        <button class="glyphicon glyphicon-info-sign step-icon" ng-click="step=4" ng-class="{'step-icon-active':step==4}"aria-hidden="true"></button>
     </div>
 
     <div class="col-md-12" style="padding-top: 20px">
@@ -62,6 +63,47 @@
                 <fieldset class="form-horizontal">
 
                     <div class="form-group has-success has-feedback">
+                        <label for="barra" class="col-sm-3 control-label label-form">Codigo de Barra:</label>
+                        <div class="col-sm-7">
+                            <input ng-model="barra" my-enter="checkBarra()" class="form-control" id="barra">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success has-feedback ">
+                        <label for="parte" class="col-sm-3 control-label label-form">Numero de Parte:</label>
+                        <div class="col-sm-7">
+                            <input ng-model="parte" class="form-control" id="parte">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="modelo" class="col-sm-3 control-label label-form">Modelo:</label>
+                        <div class="col-sm-7">
+                            <input  ng-model="modelo" class="form-control" id="modelo">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="serie" class="col-sm-3 control-label label-form">Numero de Serie:</label>
+                        <div class="col-sm-7">
+                            <input  ng-model="serie" class="form-control" id="serie">
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <!-- THIRD STEP -->
+        <div ng-show="step==2">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <fieldset class="form-horizontal">
+
+                    <div class="form-group has-success has-feedback">
                         <label for="cliente" class="col-sm-3 control-label label-form">Nombre Cliente:</label>
                         <div class="col-sm-7">
                             <input ng-model="cliente" class="form-control" id="cliente">
@@ -94,9 +136,117 @@
             </div>
             <div class="col-md-2"></div>
         </div>
+
+        <!-- FOURT STEP -->
+        <div ng-show="step==3">
+            <div class="col-md-6">
+                <fieldset class="form-horizontal">
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="acc1" class="col-sm-3 control-label label-form">Accesorio 1:</label>
+                        <div class="col-sm-7">
+                            <input ng-model="acc1" class="form-control" id="acc1">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success has-feedback ">
+                        <label for="acc2" class="col-sm-3 control-label label-form">Accesorio 2:</label>
+                        <div class="col-sm-7">
+                            <input ng-model="acc2" class="form-control" id="acc2">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="acc3" class="col-sm-3 control-label label-form">Accesorio 3:</label>
+                        <div class="col-sm-7">
+                            <input  ng-model="acc3" class="form-control" id="acc3">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="acc4" class="col-sm-3 control-label label-form">Accesorio 4:</label>
+                        <div class="col-sm-7">
+                            <input  ng-model="acc4" class="form-control" id="acc4">
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <fieldset class="form-horizontal">
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="acc5" class="col-sm-3 control-label label-form">Accesorio 5:</label>
+                        <div class="col-sm-7">
+                            <input ng-model="acc5" class="form-control" id="acc5">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success has-feedback ">
+                        <label for="acc6" class="col-sm-3 control-label label-form">Accesorio 6:</label>
+                        <div class="col-sm-7">
+                            <input ng-model="acc6" class="form-control" id="acc6">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="acc7" class="col-sm-3 control-label label-form">Accesorio 7:</label>
+                        <div class="col-sm-7">
+                            <input  ng-model="acc7" class="form-control" id="acc7">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="acc8" class="col-sm-3 control-label label-form">Accesorio 8:</label>
+                        <div class="col-sm-7">
+                            <input  ng-model="acc8" class="form-control" id="acc8">
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+        </div>
+
+        <!-- LAST STEP -->
+        <div ng-show="step==4">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <fieldset class="form-horizontal">
+
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="pri" class="col-sm-3 control-label label-form">Prioridad Cliente:</label>
+                        <div class="col-sm-7">
+                            <select  class="form-control" name="typematerial" id="pri"
+                                     ng-options="pri.name for pri in orderPriori track by pri.id"
+                                     ng-model="orderpri"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success has-feedback">
+                        <label for="obs" class="col-sm-3 control-label label-form">Observaciones:</label>
+                        <div class="col-sm-7">
+                            <textarea rows="6" id="obs"  ng-model="obs" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+
+                </fieldset>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+
+
         <div class="col-md-12 karcher-menu-steps-order" style="text-align: center">
             <button type="button"  ng-click="backStep()" class="btn-karcher-sm" >ATRAS</button>
-            <button type="button" ng-click="nextStep()" class="btn-karcher-sm" >SIGUIENTE</button>
+            <button type="button"  ng-show="step==4"  class="btn-karcher-sm" >GUARDAR</button>
+
+            <button type="button" ng-click="nextStep()"  class="btn-karcher-sm" >SIGUIENTE</button>
+
         </div>
     </div>
 </div>

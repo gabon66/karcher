@@ -321,8 +321,8 @@ ul.sub-menu li{
     font-size: 25px;
     top:0px;
 
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: white;
     color: #2b2b2b;
     border: none;
@@ -332,8 +332,8 @@ ul.sub-menu li{
 .step-icon:hover{
     font-size: 25px;
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: #333333;
     color: #FFED00;
 }
@@ -341,8 +341,8 @@ ul.sub-menu li{
 .step-icon-active{
     font-size: 25px;
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: #333333;
     color: #FFED00;
 }
@@ -350,7 +350,7 @@ ul.sub-menu li{
 .karcher-menu-steps{
     text-align: center;
     background-color: white;
-    height: 52px;
+    height: 42px;
     border-bottom: 1px solid #ededed;
     border-top: 1px solid #ededed;
 }

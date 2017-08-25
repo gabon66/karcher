@@ -3,7 +3,7 @@
  */
 
 
-GSPEMApp.controller('newOrder', function($scope,$http,$filter,$uibModal,toastr,MovPend) {
+GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,toastr,MovPend) {
 
     $scope.newNumOrder="";
     $scope.distName="";
@@ -12,24 +12,47 @@ GSPEMApp.controller('newOrder', function($scope,$http,$filter,$uibModal,toastr,M
     $scope.step=0;
 
     $scope.orderType=[];
-    $scope.orderType.push({id:1,name:'Garantía'})
-    $scope.orderType.push({id:2,name:'Reparación'})
-    $scope.orderType.push({id:3,name:'Presupuesto'})
-    $scope.orderType.push({id:4,name:'Pre-Entrega'})
-    $scope.ordertype=$scope.orderType[0];
+    $scope.orderPriori=[];
+    $scope.orderType.push({id:1,name:'Garantía'});
+    $scope.orderType.push({id:2,name:'Reparación'});
+    $scope.orderType.push({id:3,name:'Presupuesto'});
+    $scope.orderType.push({id:4,name:'Pre-Entrega'});
 
+    $scope.orderPriori.push({id:1,name:"Baja"});
+    $scope.orderPriori.push({id:2,name:"Media"});
+    $scope.orderPriori.push({id:3,name:"Alta"});
+
+    $scope.ordertype=$scope.orderType[0];
+    $scope.orderpri=$scope.orderPriori[0];
+
+
+
+    $scope.down = function(e) {
+        console.log(e.keyCode);
+    };
 
     $scope.nextStep=function () {
-        if ($scope.step<3){
+        if ($scope.step<4){
             $scope.step=$scope.step+1;
+            if ($scope.step==1){
+                focus('barra');
+            }
         }
+
     };
 
     $scope.backStep=function () {
         if ($scope.step>=1){
             $scope.step=$scope.step-1;
+            if ($scope.step==1){
+                focus('barra');
+            }
         }
     };
+
+    $scope.checkBarra=function () {
+        console.log($scope.barra);
+    }
 
     var getNewOrder = function() {
         $http.get(Routing.generate('getnextorderid')
