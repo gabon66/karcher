@@ -242,7 +242,6 @@ class DefaultController extends Controller
      * @Method({"GET"})
      * @Route("/karcher/materiales",options = { "expose" = true },name = "getmateriales")
      */
-
     public function getMaterialesAction(){
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -262,7 +261,24 @@ class DefaultController extends Controller
     }
 
 
+
     /**
+     * @Method({"GET"})
+     * @Route("/karcher/material/pn/{number}",options = { "expose" = true },name = "getmaterialesbynumber")
+     */
+    public function getMaterialByNumberAction($number)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $repo =$em->getRepository('GSPEM\GSPEMBundle\Entity\Material');
+        $material = $repo->findOneBy(array("pn_number"=>$number));
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($material,"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+
+        /**
      * @Method({"POST"})
      * @Route("/karcher/material/{id}",defaults={"id" = 0},options = { "expose" = true },name = "savematerial")
      */
@@ -291,7 +307,8 @@ class DefaultController extends Controller
         $material->setPn($request->get("pn"));
         $material->setModel($request->get("model"));
         $material->setOrigen($request->get("origen"));
-
+        $pn_number=str_replace(".","",$request->get("pn"));
+        $material->setPnNumber(preg_replace("/[^0-9,.]/", "", $pn_number));
         //$material->setReferencia($request->get("referencia"));
         //$material->setIdCustom($request->get("id_custom"));
         //$material->setUmbralmin($request->get("umbralmin"));

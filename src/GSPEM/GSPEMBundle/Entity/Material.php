@@ -457,4 +457,33 @@ class Material
     {
         return $this->pn;
     }
+    /**
+     * @var integer
+     */
+    private $pn_number;
+
+
+    /**
+     * Set pnNumber
+     *
+     * @param integer $pnNumber
+     *
+     * @return Material
+     */
+    public function setPnNumber($pnNumber)
+    {
+        $this->pn_number = $pnNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get pnNumber
+     *
+     * @return integer
+     */
+    public function getPnNumber()
+    {
+        return $this->pn_number;
+    }
 }

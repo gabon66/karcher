@@ -37,6 +37,16 @@ class Orden
     private $tipo;
 
     /**
+     * @ORM\Column(name="rec", type="integer")
+     */
+    private $rec;
+
+    /**
+     * @ORM\Column(name="client_id", type="integer")
+     */
+    private $clientId;
+
+    /**
      * @ORM\Column(name="ak", type="string")
      */
     private $ak;
@@ -54,7 +64,7 @@ class Orden
     /**
      * @ORM\Column(name="nme", type="string")
      */
-    private $phn;
+    private $nme;
 
     /**
      * @ORM\Column(name="eml", type="string")
@@ -62,9 +72,14 @@ class Orden
     private $eml;
 
     /**
-     * @ORM\Column(name="prod_id", type="string")
+     * @ORM\Column(name="maquina_barra", type="bigint")
      */
-    private $prodId;
+    private $maquinaBarra;
+
+    /**
+     * @ORM\Column(name="orden_barra", type="bigint")
+     */
+    private $ordenBarra;
 
     /**
      * @ORM\Column(name="prod_pn", type="string")
@@ -110,6 +125,16 @@ class Orden
      * @ORM\Column(name="acc6", type="string")
      */
     private $acc6;
+
+    /**
+     * @ORM\Column(name="acc8", type="string")
+     */
+    private $acc8;
+
+    /**
+     * @ORM\Column(name="obs", type="string")
+     */
+    private $obs;
 
     /**
      * @ORM\Column(name="acc7", type="string")
@@ -755,5 +780,173 @@ class Orden
     public function getFmod()
     {
         return $this->fmod;
+    }
+
+    /**
+     * Set rec
+     *
+     * @param integer $rec
+     *
+     * @return Orden
+     */
+    public function setRec($rec)
+    {
+        $this->rec = $rec;
+
+        return $this;
+    }
+
+    /**
+     * Get rec
+     *
+     * @return integer
+     */
+    public function getRec()
+    {
+        return $this->rec;
+    }
+
+    /**
+     * Set clientId
+     *
+     * @param integer $clientId
+     *
+     * @return Orden
+     */
+    public function setClientId($clientId)
+    {
+        $this->clientId = $clientId;
+
+        return $this;
+    }
+
+    /**
+     * Get clientId
+     *
+     * @return integer
+     */
+    public function getClientId()
+    {
+        return $this->clientId;
+    }
+
+    /**
+     * Set nme
+     *
+     * @param string $nme
+     *
+     * @return Orden
+     */
+    public function setNme($nme)
+    {
+        $this->nme = $nme;
+
+        return $this;
+    }
+
+    /**
+     * Get nme
+     *
+     * @return string
+     */
+    public function getNme()
+    {
+        return $this->nme;
+    }
+
+    /**
+     * Set maquinaBarra
+     *
+     * @param integer $maquinaBarra
+     *
+     * @return Orden
+     */
+    public function setMaquinaBarra($maquinaBarra)
+    {
+        $this->maquinaBarra = $maquinaBarra;
+
+        return $this;
+    }
+
+    /**
+     * Get maquinaBarra
+     *
+     * @return integer
+     */
+    public function getMaquinaBarra()
+    {
+        return $this->maquinaBarra;
+    }
+
+    /**
+     * Set ordenBarra
+     *
+     * @param integer $ordenBarra
+     *
+     * @return Orden
+     */
+    public function setOrdenBarra($ordenBarra)
+    {
+        $this->ordenBarra = $ordenBarra;
+
+        return $this;
+    }
+
+    /**
+     * Get ordenBarra
+     *
+     * @return integer
+     */
+    public function getOrdenBarra()
+    {
+        return $this->ordenBarra;
+    }
+
+    /**
+     * Set acc8
+     *
+     * @param string $acc8
+     *
+     * @return Orden
+     */
+    public function setAcc8($acc8)
+    {
+        $this->acc8 = $acc8;
+
+        return $this;
+    }
+
+    /**
+     * Get acc8
+     *
+     * @return string
+     */
+    public function getAcc8()
+    {
+        return $this->acc8;
+    }
+
+    /**
+     * Set obs
+     *
+     * @param string $obs
+     *
+     * @return Orden
+     */
+    public function setObs($obs)
+    {
+        $this->obs = $obs;
+
+        return $this;
+    }
+
+    /**
+     * Get obs
+     *
+     * @return string
+     */
+    public function getObs()
+    {
+        return $this->obs;
     }
 }

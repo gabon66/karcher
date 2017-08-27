@@ -46,4 +46,7 @@ GSPEM\GSPEMBundle\Entity\Material:
                 type: string
             pn:
                 type: string
+            pn_number:
+                type: bigint
+
     lifecycleCallbacks: {  }

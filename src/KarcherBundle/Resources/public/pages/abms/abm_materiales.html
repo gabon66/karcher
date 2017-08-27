@@ -35,7 +35,6 @@
                         <th><a ng-click="sortBy('name')">Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
                         <th><a ng-click="sortBy('pn')"> Numero de Parte <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
 
-                        <th><a ng-click="sortBy('serialN')"> Numero de Serie <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
 
                         <th><a ng-click="sortBy('descript')">Descripción <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
                         <th><a ng-click="sortBy('type')"> Grupo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
@@ -47,7 +46,6 @@
                     <tr ng-repeat="material in materiales | filter:filtromaterial | orderBy:propertyName:reverse">
                         <td>{{ material.name }}</td>
                         <td >{{ material.pn }}</td>
-                        <td >{{ material.serial }}</td>
 
                         <td>{{ material.descript }}</td>
                         <td>{{ material.type }}</td>
