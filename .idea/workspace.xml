@@ -2,28 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="171175b5-b600-4807-81d6-3bc889559dc8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/KarcherBundle/Controller/ClientesController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_clientes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/abms/abm_clientes.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/KarcherBundle/Tests/Controller/ClientesControllerTest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.tar.gz" afterPath="$PROJECT_DIR$/src.tar.gz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle.tar.gz" afterPath="$PROJECT_DIR$/src/KarcherBundle.tar.gz" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GSPEM/GSPEMBundle/Entity/Material.php" afterPath="$PROJECT_DIR$/src/GSPEM/GSPEMBundle/Entity/Material.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Entity/Client.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Entity/Client.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Entity/Distribuidor.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Entity/Distribuidor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Entity/MaterialOrigen.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Entity/MaterialOrigen.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Repository/ClientRepository.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Repository/ClientRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Controller/DefaultController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order_control.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order_control.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/new.html" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/new.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/index.html.twig" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/modals_karcher.html.twig" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/modals_karcher.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Tests/Controller/OrderControllerTest.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Tests/Controller/OrderControllerTest.php" />
     </list>
     <ignored path="GSPEM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,61 +20,37 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/DefaultController.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="270">
-                    <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="154" selection-end-column="24" />
-                    <folding>
-                      <element signature="e#44#82#0#PHP" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="OrderController.php" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="198">
-                    <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="GSPEM" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="new.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/new.html">
+      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/DefaultController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="723">
-              <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
-              <folding>
-                <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#fieldset#0;n#div#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="121">
+              <caret line="284" column="27" selection-start-line="284" selection-start-column="27" selection-end-line="284" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app_order.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js">
+      <file leaf-file-name="OrderController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="46" selection-end-column="53" />
+              <caret line="41" column="64" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app_order.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="90" column="13" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -101,7 +59,7 @@
       <file leaf-file-name="app_materiales.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_materiales.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
+            <state relative-caret-position="396">
               <caret line="22" column="25" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="25" />
               <folding />
             </state>
@@ -111,7 +69,7 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
+            <state relative-caret-position="5454">
               <caret line="303" column="40" selection-start-line="303" selection-start-column="27" selection-end-line="303" selection-end-column="40" />
               <folding />
             </state>
@@ -128,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orders.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orders.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-306">
-              <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+            <state relative-caret-position="216">
+              <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -140,10 +98,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Orden.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="76" column="25" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="app_clientes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_clientes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
+            <state relative-caret-position="288">
               <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
@@ -156,28 +124,6 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="66" selection-end-column="6" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Orden.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="198" column="25" selection-start-line="198" selection-start-column="25" selection-end-line="198" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/ClientesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="78" column="17" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="17" />
-              <folding>
-                <element signature="e#44#76#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -236,7 +182,6 @@
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/abms/abm_typo_materiales.html" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/abms/abm_materiales.html" />
         <option value="$PROJECT_DIR$/src/GSPEM/GSPEMBundle/Resources/config/doctrine/Material.orm.yml" />
-        <option value="$PROJECT_DIR$/src/KarcherBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app.js" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Entity/Client.php" />
@@ -246,10 +191,11 @@
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_clientes.js" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/new.html" />
-        <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order_control.js" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html" />
+        <option value="$PROJECT_DIR$/src/KarcherBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js" />
       </list>
     </option>
   </component>
@@ -294,6 +240,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -717,7 +664,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -963,14 +909,9 @@
       <workItem from="1503697602098" duration="89000" />
       <workItem from="1503765967327" duration="14431000" />
       <workItem from="1503931714621" duration="26000" />
-      <workItem from="1504135973364" duration="10492000" />
-    </task>
-    <task id="LOCAL-00002" summary="fixex">
-      <created>1479260993035</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1479260993035</updated>
+      <workItem from="1504135973364" duration="10527000" />
+      <workItem from="1504199523785" duration="752000" />
+      <workItem from="1504216995685" duration="2521000" />
     </task>
     <task id="LOCAL-00003" summary="fixex">
       <created>1479349225552</created>
@@ -1308,23 +1249,30 @@
       <option name="project" value="LOCAL" />
       <updated>1503858094248</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="fixes">
+      <created>1504149495936</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1504149495939</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="745416000" />
+    <option name="totallyTimeSpent" value="748724000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="18" width="1323" height="750" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2701015" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27790788" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22644377" sideWeight="0.1186573" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19148937" sideWeight="0.46604216" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980484" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32522798" sideWeight="0.8813427" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31914893" sideWeight="0.8813427" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1401,8 +1349,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js</url>
-          <line>113</line>
-          <properties />
+          <line>123</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -1595,7 +1542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="49" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1603,7 +1549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="882">
           <caret line="49" column="28" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1611,7 +1556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1615">
           <caret line="164" column="27" selection-start-line="164" selection-start-column="22" selection-end-line="164" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1619,7 +1563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1294">
           <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="228" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1627,7 +1570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1635,7 +1577,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1643,7 +1584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1651,7 +1591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1667,7 +1606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1944">
           <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1675,7 +1613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="12" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1683,7 +1620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="37" column="70" selection-start-line="37" selection-start-column="70" selection-end-line="37" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1691,14 +1627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding>
-            <marker date="1504145256950" expanded="true" signature="107:2190" ph="..." />
-            <marker date="1504145256950" expanded="false" signature="2244:4250" ph="..." />
-            <marker date="1504145256950" expanded="false" signature="4305:6274" ph="..." />
-            <marker date="1504145256950" expanded="true" signature="6333:10430" ph="..." />
-            <marker date="1504145256950" expanded="true" signature="10497:13093" ph="..." />
-            <marker date="1504145256950" expanded="true" signature="13148:13955" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1706,34 +1634,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="198" column="25" selection-start-line="198" selection-start-column="25" selection-end-line="198" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/ClientesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
+        <state relative-caret-position="1404">
           <caret line="78" column="17" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="17" />
           <folding>
-            <element signature="e#44#76#0#PHP" expanded="true" />
+            <element signature="e#44#76#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/new.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="723">
+        <state relative-caret-position="1278">
           <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
           <folding>
-            <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#fieldset#0;n#div#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#fieldset#0;n#div#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1746,27 +1665,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="154" selection-end-column="24" />
-          <folding>
-            <element signature="e#44#82#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_clientes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
+        <state relative-caret-position="288">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
@@ -1774,7 +1675,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_materiales.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
+        <state relative-caret-position="396">
           <caret line="22" column="25" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="25" />
           <folding />
         </state>
@@ -1790,27 +1691,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
+        <state relative-caret-position="5454">
           <caret line="303" column="40" selection-start-line="303" selection-start-column="27" selection-end-line="303" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="46" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+        <state relative-caret-position="216">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="41" column="64" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="76" column="25" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="284" column="27" selection-start-line="284" selection-start-column="27" selection-end-line="284" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="90" column="13" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

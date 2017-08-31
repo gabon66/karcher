@@ -264,17 +264,33 @@ class DefaultController extends Controller
 
     /**
      * @Method({"GET"})
-     * @Route("/karcher/material/pn/{number}",options = { "expose" = true },name = "getmaterialesbynumber")
+     * @Route("/karcher/material/pn/{number}/{barra}",options = { "expose" = true },name = "getmaterialesbynumber")
      */
-    public function getMaterialByNumberAction($number)
+    public function getMaterialByNumberAction($number,$barra)
     {
+        $client=null;
+        $material=null;
+
         $em = $this->getDoctrine()->getEntityManager();
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
         $repo =$em->getRepository('GSPEM\GSPEMBundle\Entity\Material');
+
+        $repoOrder =$em->getRepository('KarcherBundle\Entity\Orden');
+        $repoClient =$em->getRepository('KarcherBundle\Entity\Client');
+
+
+        $orden=$repoOrder->findOneBy(array("maquinaBarra"=>$barra));
+
+        if(!empty($orden)){
+
+            $client_id=$orden->getClientId();
+            $client=$repoClient->findOneBy(array("id"=>$client_id));
+        }
+
         $material = $repo->findOneBy(array("pn_number"=>$number));
         $serializer = new Serializer($normalizers, $encoders);
-        return new Response($serializer->serialize($material,"json"),200,array('Content-Type'=>'application/json'));
+        return new Response($serializer->serialize(array("material"=>$material,"cliente"=>$client),"json"),200,array('Content-Type'=>'application/json'));
     }
 
 

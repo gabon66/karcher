@@ -13,7 +13,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     // DATOS MAQUINA
     $scope.parte="";
     $scope.modelo="";
-    $scope.barra="16672290";
+    $scope.barra="16672290010427";
     $scope.serie="";
     $scope.maquina_id=0;
 
@@ -80,13 +80,23 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
 
     $scope.checkBarra=function () {
 
-        $http.get(Routing.generate('getmaterialesbynumber')+"/"+$scope.barra).then(function (material) {
-            if (material.data!=null){
-                console.log(material.data);
-                $scope.maquina=material.data;
-                $scope.maquina_name=material.data.name;
-                $scope.maquina_id=material.data.id
+        $scope.serie= $scope.barra.substring(8,$scope.barra.length);
+        $http.get(Routing.generate('getmaterialesbynumber')+"/"+$scope.barra.substring(0,8)+"/"+$scope.barra).then(function (response) {
+
+            if (response.data.material!=null){
+                $scope.maquina=response.data.material;
+                $scope.maquina_name=$scope.maquina.name;
+                $scope.maquina_id=$scope.maquina.id
                 $scope.parte=$scope.maquina.pn;
+            }
+            if (response.data.cliente!=null){
+
+                $scope.client_from_old_orden=response.data.cliente;
+                $scope.cliente_id=$scope.client_from_old_orden.id;
+                $scope.cliente=$scope.client_from_old_orden.name;
+                $scope.contacto=$scope.client_from_old_orden.contacto;
+                $scope.telefono=$scope.client_from_old_orden.phone;
+                $scope.mail=$scope.client_from_old_orden.mail;
 
             }
         });
