@@ -64,11 +64,13 @@
 
                     <div class="form-group has-success has-feedback">
                         <label for="barra" class="col-sm-3 control-label label-form">Codigo de Barra:</label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-4">
                             <input ng-model="barra" my-enter="checkBarra()" class="form-control" id="barra">
                         </div>
+                        <div class="col-sm-3">
+                            <label style="margin-top: 5px">{{maquina_name | limitTo : 12 : 0}}</label>
+                        </div>
                     </div>
-
                     <div class="form-group has-success has-feedback ">
                         <label for="parte" class="col-sm-3 control-label label-form">Numero de Parte:</label>
                         <div class="col-sm-7">
@@ -105,8 +107,11 @@
 
                     <div class="form-group has-success has-feedback">
                         <label for="cliente" class="col-sm-3 control-label label-form">Nombre Cliente:</label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-5">
                             <input ng-model="cliente" class="form-control" id="cliente">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button"  ng-click="findClient()" class="btn-karcher-sm" style="height: 32px!important;" >BUSCAR</button>
                         </div>
                     </div>
 
@@ -243,7 +248,7 @@
 
         <div class="col-md-12 karcher-menu-steps-order" style="text-align: center">
             <button type="button"  ng-click="backStep()" class="btn-karcher-sm" >ATRAS</button>
-            <button type="button"  ng-show="step==4"  class="btn-karcher-sm" >GUARDAR</button>
+            <button type="button"  ng-click="save()" ng-show="step==4"  class="btn-karcher-sm" >GUARDAR</button>
 
             <button type="button" ng-click="nextStep()"  class="btn-karcher-sm" >SIGUIENTE</button>
 

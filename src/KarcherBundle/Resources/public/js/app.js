@@ -191,6 +191,11 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
             templateUrl : '../bundles/karcher/pages/abms/abm_usuarios.html',
             controller  : 'abmUsuarios'
         })
+        .when('/clientes_abm', {
+            templateUrl : '../bundles/karcher/pages/abms/abm_clientes.html',
+            controller  : 'abmClientes'
+        })
+
         .when('/materiales_reportes', {
             templateUrl : '../bundles/karcher/pages/abms/reportes_materiales.html',
             controller  : 'contactController'
@@ -354,6 +359,10 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
         case 'usuarios_abm':
             $scope.menuActive='usr';
             $scope.subitem='abmusers';
+            break;
+        case 'clientes_abm':
+            $scope.menuActive='cli';
+            $scope.subitem='abmclientes';
             break;
         case 'perfiles_abm':
             $scope.menuActive='usr';

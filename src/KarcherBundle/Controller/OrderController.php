@@ -54,6 +54,26 @@ class OrderController extends Controller
 
 
     /**
+     * @Method({"GET"})
+     * @Route("/karcher/orders",options = { "expose" = true },name = "getorders")
+     */
+    public function getOrdersAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $stmt = $em->getConnection()->createQueryBuilder()
+            ->select("* ")
+            ->from("orden", "o")
+            ->execute();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($stmt->fetchAll(),"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+
+    /**
      * @Method({"POST"})
      * @Route("/karcher/order",options = { "expose" = true },name = "postneworder")
      */
@@ -76,11 +96,15 @@ class OrderController extends Controller
         $order->setPhn($request->get("phn"));
         $order->setNme($request->get("nme"));
 
+        $order->setClientId((int)$request->get("client_id"));
+
         // maquina
         $order->setMaquinaBarra($request->get("barra"));
         $order->setProdSn($request->get("serial"));
         $order->setProdMdl($request->get("modelo"));
         $order->setProdPn($request->get("pn"));
+        $order->setMaquinaId((int)$request->get("maquina_id"));
+
 
         $order->setAcc1($request->get("acc1"));
         $order->setAcc2($request->get("acc2"));
@@ -91,7 +115,19 @@ class OrderController extends Controller
         $order->setAcc7($request->get("acc7"));
         $order->setAcc8($request->get("acc8"));
 
+        $order->setEstd(0);// pendiente
+
+
+
         $order->setPrd($request->get("prd"));
+                $em->persist($order);
+        $em->flush();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($order,"json"),200,array('Content-Type'=>'application/json'));
+
 
 
     }

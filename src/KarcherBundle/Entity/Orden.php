@@ -167,6 +167,11 @@ class Orden
     private $estd;
 
     /**
+     * @ORM\Column(name="maquina_id", type="integer")
+     */
+    private $maquinaId;
+
+    /**
      * @ORM\Column(name="fmod", type="datetime")
      */
     private $fmod;
@@ -372,30 +377,6 @@ class Orden
     public function getEml()
     {
         return $this->eml;
-    }
-
-    /**
-     * Set prodId
-     *
-     * @param string $prodId
-     *
-     * @return Orden
-     */
-    public function setProdId($prodId)
-    {
-        $this->prodId = $prodId;
-
-        return $this;
-    }
-
-    /**
-     * Get prodId
-     *
-     * @return string
-     */
-    public function getProdId()
-    {
-        return $this->prodId;
     }
 
     /**
@@ -948,5 +929,29 @@ class Orden
     public function getObs()
     {
         return $this->obs;
+    }
+
+    /**
+     * Set maquinaId
+     *
+     * @param integer $maquinaId
+     *
+     * @return Orden
+     */
+    public function setMaquinaId($maquinaId)
+    {
+        $this->maquinaId = $maquinaId;
+
+        return $this;
+    }
+
+    /**
+     * Get maquinaId
+     *
+     * @return integer
+     */
+    public function getMaquinaId()
+    {
+        return $this->maquinaId;
     }
 }

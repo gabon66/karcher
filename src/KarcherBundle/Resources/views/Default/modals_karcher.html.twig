@@ -1,6 +1,121 @@
 {# app/Resources/views/base.html.twig #}
 {% verbatim %}
 
+<script type="text/ng-template" id="cli_list.html">
+    <div class="modal-header">
+         <div class="col col-md-3">
+            <h4>Clientes</h4>
+         </div>
+         <div class="col col-md-9">
+                                 <div class="form-group ">
+                            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                            <div class="input-group col-lg-12 pull-right">
+                                <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                <input type="text" ng-model="filtrocliente"class="form-control" id="exampleInputAmount" placeholder=" Nombre / Contacto / Mail / Telefono">
+                            </div>
+                        </div>
+            </div>
+
+    </div>
+    <div class="modal-body" style="max-height: 350px;overflow: visible">
+                   <table class="table" ng-if="clientes.length>0">
+                    <thead>
+                    <tr>
+                        <th><a ng-click="sortBy('name')"> Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('contacto')"> Contacto <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('mail')"> E-Mail <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th>Telefono</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="cli in clientes | filter:filtrocliente |orderBy:propertyName:reverse" ng-click="select(cli)">
+
+                        <td class="col-md-2">{{ cli.name  }} </td>
+                        <td class="col-md-2">{{ cli.contacto  }} </td>
+                        <td class="col-md-2">{{ cli.mail }} </td>
+                        <td class="col-md-2">{{ cli.phone }} </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn-karcher-sm" ng-click="cerrar()">CERRAR</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="cli_modal.html">
+    <div class="modal-header">
+        <h3>Cliente</h3>
+    </div>
+    <div class="modal-body">
+     <div class="modal-body">
+        <fieldset>
+
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="name"
+                        class="form-control"
+                        placeholder="Nombre(*)">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="contacto"
+                        class="form-control"
+                        placeholder="Contacto">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="mail"
+                        class="form-control"
+                        placeholder="E-Mail">
+            </div>
+
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="mail1"
+                        class="form-control"
+                        placeholder="E-Mail 2">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="phone"
+                        class="form-control"
+                        placeholder="Telefono ">
+            </div>
+
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="phone1"
+                        class="form-control"
+                        placeholder="Telefono 2">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="obs"
+                        class="form-control"
+                        placeholder="Observaciones">
+            </div>
+
+
+        </fieldset>
+    </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn-karcher-sm" ng-click="saveCliente()">GUARDAR</button>
+    </div>
+</script>
 
 <script type="text/ng-template" id="dist_modal.html">
     <div class="modal-header">

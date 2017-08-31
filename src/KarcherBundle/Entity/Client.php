@@ -27,6 +27,11 @@ class Client
     private $name;
 
     /**
+     * @ORM\Column(name="contacto", type="string")
+     */
+    private $contacto;
+
+    /**
      * @ORM\Column(name="mail", type="string")
      */
     private $mail;
@@ -203,5 +208,29 @@ class Client
     public function getObs()
     {
         return $this->obs;
+    }
+
+    /**
+     * Set contacto
+     *
+     * @param string $contacto
+     *
+     * @return Client
+     */
+    public function setContacto($contacto)
+    {
+        $this->contacto = $contacto;
+
+        return $this;
+    }
+
+    /**
+     * Get contacto
+     *
+     * @return string
+     */
+    public function getContacto()
+    {
+        return $this->contacto;
     }
 }

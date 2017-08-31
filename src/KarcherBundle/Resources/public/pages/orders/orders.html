@@ -1,11 +1,75 @@
 <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <h3>Control de ordenes </h3>
-    </div>
-    <div class="col-md-12">
-        <div class="col-md-4">asd</div>
-        <div class="col-md-4">dddddddd</div>
-        <div class="col-md-4">aaaaaaaaaaa</div>
+
+
+    <div ng-show="cargando"  class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
+        <h3>Control de Ordenes   </h3>
+
+        <i ng-show="cargando==true" class="fa fa-cog fa-spin fa-5x fa-fw"></i>
     </div>
 
+    <div ng-show="!cargando" class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <div class="row">
+                    <div class="col-lg-2"><h3>Ordenes <small></small></h3></div>
+                    <div class="col-lg-10">
+                        <div class="form-group ">
+                            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                            <div class="input-group col-lg-8 pull-right">
+                                <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Nombre /Numero de Serie / Numero de Parte / Descripcion">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="x_content" style="height: 600px;min-height: 600px;overflow: auto">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><a ng-click="sortBy('fing')">Fecha Inicio <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                        <th><a ng-click="sortBy('cuno')"> Cliente <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('prod_pn')">Maquina <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('prod_pn')">Modelo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('estd')"> Estado <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('prd')"> Prioridad <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('tipo')"> Tipo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="ord in orders | filter:filtromaterial | orderBy:propertyName:reverse">
+                        <td>{{ ord.fing }}</td>
+                        <td >{{ ord.cuno }}</td>
+                        <td>{{ ord.prod_pn }}</td>
+                        <td>{{ord.prod_mdl}}</td>
+                        <td ng-show="ord.estd==0">PENDIENTE</td>
+                        <td ng-show="ord.estd==1">PROCESO</td>
+                        <td ng-show="ord.estd==2">CERRADA</td>
+
+                        <td ng-show="ord.prd==1">BAJA</td>
+                        <td ng-show="ord.prd==2">MEDIA</td>
+                        <td ng-show="ord.prd==3">ALTA</td>
+
+                        <td ng-show="ord.tipo==1">Garantía</td>
+                        <td ng-show="ord.tipo==2">Reparación</td>
+                        <td ng-show="ord.tipo==3">Presupuesto</td>
+                        <td ng-show="ord.tipo==4">Pre-Entrega</td>
+
+
+                        <td style="text-align: right">
+                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="new(ord,'material_karcher_form.html','ModelNewMaterialCtrl')" ><i class="fa fa-edit fa-2x"></i> </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
 </div>

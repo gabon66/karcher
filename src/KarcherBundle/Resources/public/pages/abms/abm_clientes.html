@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3>Clientes</h3>
+                    </div>
+                    <div class="col-md-9">
+
+                        <button type="button" ng-click="new(null)" class="btn-karcher-sm pull-right" >NUEVO</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="x_content">
+
+                <table class="table" ng-if="clientes.length>0">
+                    <thead>
+                    <tr>
+                        <th><a ng-click="sortBy('name')"> Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('contacto')"> Contacto <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="cli in clientes | orderBy:propertyName:reverse">
+
+                        <td class="col-md-2">{{ cli.name  }} </td>
+                        <td class="col-md-2">{{ cli.contacto  }} </td>
+                        <td class="col-md-2">{{ cli.mail }} </td>
+                        <td class="col-md-2">{{ cli.phone }} </td>
+                        <td class="col-md-3" style="text-align: right">
+                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="new(cli)" ><i class="fa fa-edit fa-2x"></i> </a>
+                            <a  class="btn btn-sm btn-karcher-sm-table" ng-click="deleteCli(cli.id)" ><i class="fa fa-remove fa-2x"></i> </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
