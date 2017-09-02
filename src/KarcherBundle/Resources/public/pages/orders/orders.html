@@ -30,13 +30,17 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th><a ng-click="sortBy('numero')">NUMERO <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+
                         <th><a ng-click="sortBy('fing')">Fecha Inicio <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                        <th><a ng-click="sortBy('estd')"> Estado <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('tecnico_name')"> Tecnico <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
                         <th><a ng-click="sortBy('cuno')"> Cliente <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
                         <th><a ng-click="sortBy('prod_pn')">Maquina <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
-                        <th><a ng-click="sortBy('prod_pn')">Modelo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
 
-                        <th><a ng-click="sortBy('estd')"> Estado <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
                         <th><a ng-click="sortBy('prd')"> Prioridad <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
                         <th><a ng-click="sortBy('tipo')"> Tipo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
 
                         <th></th>
@@ -44,13 +48,16 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="ord in orders | filter:filtromaterial | orderBy:propertyName:reverse">
+                        <td>{{ ord.numero }}</td>
                         <td>{{ ord.fing }}</td>
-                        <td >{{ ord.cuno }}</td>
-                        <td>{{ ord.prod_pn }}</td>
-                        <td>{{ord.prod_mdl}}</td>
+
                         <td ng-show="ord.estd==0">PENDIENTE</td>
                         <td ng-show="ord.estd==1">PROCESO</td>
                         <td ng-show="ord.estd==2">CERRADA</td>
+                        <td>{{ord.tecnico_name}}</td>
+                        <td >{{ ord.cuno }}</td>
+                        <td>{{ ord.prod_pn }} - {{ord.maquina | limitTo : 12 : 0}}</td>
+
 
                         <td ng-show="ord.prd==1">BAJA</td>
                         <td ng-show="ord.prd==2">MEDIA</td>
@@ -63,7 +70,7 @@
 
 
                         <td style="text-align: right">
-                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="new(ord,'material_karcher_form.html','ModelNewMaterialCtrl')" ><i class="fa fa-edit fa-2x"></i> </a>
+                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="edit(ord)" ><i class="fa fa-edit fa-2x"></i> </a>
                         </td>
                     </tr>
                     </tbody>

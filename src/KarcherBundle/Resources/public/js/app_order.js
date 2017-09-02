@@ -38,6 +38,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     $scope.acc7="";
     $scope.acc8="";
 
+    $scope.obs="";
 
     $scope.date = $filter('date')(new Date(), 'dd-MM-yyyy hh:mm');
     $scope.step=0;
@@ -163,6 +164,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: {
                 tipo:  $scope.ordertype.id,
+                numero:$scope.newNumOrder,
                 dtr: $scope.distName,
                 distId: $scope.distId,
                 cuno: $scope.cliente,
@@ -172,11 +174,13 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
                 client_id:$scope.cliente_id,
                 tecnico: $scope.ordertec.id,
                 estado:$scope.orderest.id,
+                obs:$scope.obs,
 
                 barra: $scope.barra,
                 serial: $scope.serie,
                 pn: $scope.parte,
                 modelo: $scope.modelo,
+                maquina_id: $scope.maquina_id,
 
                 acc1: $scope.acc1,
                 acc2: $scope.acc2,
@@ -255,9 +259,6 @@ GSPEMApp.controller('ModalClientList', function($filter,$scope,$http, $uibModalI
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.cerrar=function () {
-
-    };
 
     $scope.propertyName = 'name';
     $scope.reverse = true;

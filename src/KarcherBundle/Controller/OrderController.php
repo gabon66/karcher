@@ -48,6 +48,8 @@ class OrderController extends Controller
             $orders=$repo->findBy(array("distId"=>$user->getIdDistribuidor()));
             if($orders!=null){
                 $orders_count=count($orders)+1;
+            }else{
+                $orders_count=1;
             }
             // traigo todo los datos del centro disitribucion
             $dist=$repoDist->findOneBy(array("id"=>$user->getIdDistribuidor()));
@@ -73,9 +75,11 @@ class OrderController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("*")
+            ->select("o.* , us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
             ->from("orden", "o")
             ->leftJoin("o","users","us","us.id = o.tecnico_id")
+            ->leftJoin("o","materiales","m","m.id = o.maquina_id")
+
             ->execute();
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
@@ -92,10 +96,11 @@ class OrderController extends Controller
     public function saveNewOrderAction(\Symfony\Component\HttpFoundation\Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager();
-
+        $repoClient =$em->getRepository('KarcherBundle\Entity\Client');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $order= new Orden();
         $order->setFing(new \DateTime());
+        $order->setNumero($request->get("numero"));
         $order->setTipo($request->get("tipo"));
         $order->setRec($user->getId());
         $order->setAk("AR");
@@ -123,6 +128,14 @@ class OrderController extends Controller
 
         if ($request->get("client_id")){
             $order->setClientId((int)$request->get("client_id"));
+            $client=$repoClient->findOneBy(array("id"=>(int)$request->get("client_id")));
+            // update datos del cliente
+            $client->setName($request->get("cuno"));
+            $client->setPhone($request->get("phn"));
+            $client->setMail($request->get("eml"));
+            $client->setContacto($request->get("nme"));
+
+            $em->flush();
         }else{
             // creo nuevo cliente
             $client = new Client();
@@ -153,12 +166,10 @@ class OrderController extends Controller
         $order->setAcc7($request->get("acc7"));
         $order->setAcc8($request->get("acc8"));
 
-
-
-
+        $order->setObs($request->get("obs"));
 
         $order->setPrd($request->get("prd"));
-                $em->persist($order);
+        $em->persist($order);
         $em->flush();
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
