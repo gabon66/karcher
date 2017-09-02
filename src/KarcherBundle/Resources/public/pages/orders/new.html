@@ -1,9 +1,13 @@
 <div class="row" ng-keydown="down($event)">
+
     <div class="col-md-12 col-sm-12 col-xs-12">
 
-        <h3>Orden Numero: {{newNumOrder}}</h3>
+        <h3 ng-show="!checkingOrden && ordenValid">Orden Numero: {{newNumOrder}}</h3>
+        <h3 ng-show="!checkingOrden && !ordenValid">No tiene punto de distribución asociado para cargar ordenes.</h3>
     </div>
-    <div class="col-md-12 col-sm-12 col-xs-12 karcher-menu-steps">
+
+
+    <div ng-show="!checkingOrden && ordenValid" class="col-md-12 col-sm-12 col-xs-12 karcher-menu-steps">
         <button class="glyphicon glyphicon-list-alt step-icon"  ng-click="step=0" ng-class="{'step-icon-active':step==0}" aria-hidden="true"></button>
         <button class="glyphicon glyphicon-barcode step-icon"   ng-click="step=1"  ng-class="{'step-icon-active':step==1}" aria-hidden="true"></button>
         <button class="glyphicon glyphicon-user step-icon"      ng-click="step=2"  ng-class="{'step-icon-active':step==2}" aria-hidden="true"></button>
@@ -11,7 +15,7 @@
         <button class="glyphicon glyphicon-info-sign step-icon" ng-click="step=4" ng-class="{'step-icon-active':step==4}"aria-hidden="true"></button>
     </div>
 
-    <div class="col-md-12" style="padding-top: 20px">
+    <div ng-show="!checkingOrden && ordenValid" class="col-md-12" style="padding-top: 20px">
         <!-- FIRST STEP -->
         <div ng-show="step==0">
             <div class="col-md-2">
@@ -125,7 +129,7 @@
                     <div class="form-group has-success has-feedback">
                         <label for="tel" class="col-sm-3 control-label label-form">Telefono:</label>
                         <div class="col-sm-7">
-                            <input  ng-model="telefono" class="form-control" id="tel">
+                            <input  ng-model="phone" class="form-control" id="tel">
                         </div>
                     </div>
 
@@ -232,9 +236,24 @@
                     </div>
 
                     <div class="form-group has-success has-feedback">
+                        <label for="user" class="col-sm-3 control-label label-form">Tecnico Asignado:</label>
+                        <div class="col-sm-3">
+                            <select  class="form-control" name="typematerial" id="user"
+                                     ng-change="changeTec()"
+                                     ng-options="user.name for user in orderUsersDist track by user.id"
+                                     ng-model="ordertec"></select>
+                        </div>
+                        <label for="est" class="col-sm-1 control-label label-form">Estado:</label>
+                        <div class="col-sm-3" style="width: 23%!important;">
+                            <select  class="form-control" ng-disabled="ordertec.id==0" name="typematerial" id="est"
+                                     ng-options="est.name for est in orderEstados track by est.id"
+                                     ng-model="orderest"></select>
+                        </div>
+                    </div>
+                    <div class="form-group has-success has-feedback">
                         <label for="obs" class="col-sm-3 control-label label-form">Observaciones:</label>
                         <div class="col-sm-7">
-                            <textarea rows="6" id="obs"  ng-model="obs" class="form-control"></textarea>
+                            <textarea rows="3" id="obs"  ng-model="obs" class="form-control"></textarea>
                         </div>
                     </div>
 
@@ -248,7 +267,7 @@
 
         <div class="col-md-12 karcher-menu-steps-order" style="text-align: center">
             <button type="button"  ng-click="backStep()" class="btn-karcher-sm" >ATRAS</button>
-            <button type="button"  ng-click="save()" ng-show="step==4"  class="btn-karcher-sm" >GUARDAR</button>
+            <button type="button"  ng-click="save()" ng-show="step==4"   class="btn-karcher-sm" >GUARDAR</button>
 
             <button type="button" ng-click="nextStep()"  class="btn-karcher-sm" >SIGUIENTE</button>
 

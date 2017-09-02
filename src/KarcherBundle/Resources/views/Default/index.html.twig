@@ -53,7 +53,7 @@
 <div class="row">
     <div class="col-md-12 karcher-header-menu" >
         <div class="col-md-2" style="padding-right: 0px;padding-left: 0px;width: auto">
-            <img class="karcher-header-logo"  src="{{ asset('bundles/karcher/images/logo-white.png') }}" />
+            <a href="#/"> <img class="karcher-header-logo"   src="{{ asset('bundles/karcher/images/logo-white.png') }}" /></a>
         </div>
         <div class="col-md-9" style="padding-left: 0px">
                 <ul class="menu-karcher-ul">
@@ -75,6 +75,7 @@
 </div>
 
 <div class="row" style="height: 50px">
+
     <div class="col-md-12 karcher-header-second-menu" ng-if="menuActive" ng-class="{'visible':menuActive!=null}" >
 
         <ul class="sub-menu-karcher-ul" ng-if="menuActive=='ords'"  ng-class="{'visible':menuActive=='ords'}" >

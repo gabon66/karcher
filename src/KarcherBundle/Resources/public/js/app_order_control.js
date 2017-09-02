@@ -5,6 +5,11 @@
 
 GSPEMApp.controller('ordersControl', function($scope,$http,$uibModal,toastr,MovPend) {
 
+    $scope.sortBy = function(propertyName) {
+        $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+        $scope.propertyName = propertyName;
+    };
+
     $scope.cargando=true;
     var getOrders = function() {
         $http.get(Routing.generate('getorders')

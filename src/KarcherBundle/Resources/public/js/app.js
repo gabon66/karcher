@@ -336,7 +336,9 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
     $scope.menuActive=null;
 
     var url = $location.path().split(/[\s/]+/).pop();
-    console.log("url"+url);
+    console.log("url :"+url);
+    $scope.subitem=false;
+    $scope.menuActive=false;
 
     switch (url){
 
@@ -383,10 +385,12 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
         case 'dist_abm':
             $scope.menuActive='dist';
             break;
-
+        case '':
+            $scope.menuActive=false;
+            $scope.subitem=false;
+            break;
         default:
     }
-
 
 
     $scope.active=function (val) {

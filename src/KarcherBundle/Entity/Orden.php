@@ -67,6 +67,11 @@ class Orden
     private $nme;
 
     /**
+     * @ORM\Column(name="phn", type="string")
+     */
+    private $phn;
+
+    /**
      * @ORM\Column(name="eml", type="string")
      */
     private $eml;
@@ -170,6 +175,21 @@ class Orden
      * @ORM\Column(name="maquina_id", type="integer")
      */
     private $maquinaId;
+
+    /**
+     * @ORM\Column(name="tecnico_id", type="integer")
+     */
+    private $tecnicoId;
+
+    /**
+     * @ORM\Column(name="dist_id", type="integer")
+     */
+    private $distId;
+
+    /**
+     * @ORM\Column(name="pais_id", type="integer")
+     */
+    private $paisId;
 
     /**
      * @ORM\Column(name="fmod", type="datetime")
@@ -953,5 +973,77 @@ class Orden
     public function getMaquinaId()
     {
         return $this->maquinaId;
+    }
+
+    /**
+     * Set tecnicoId
+     *
+     * @param integer $tecnicoId
+     *
+     * @return Orden
+     */
+    public function setTecnicoId($tecnicoId)
+    {
+        $this->tecnicoId = $tecnicoId;
+
+        return $this;
+    }
+
+    /**
+     * Get tecnicoId
+     *
+     * @return integer
+     */
+    public function getTecnicoId()
+    {
+        return $this->tecnicoId;
+    }
+
+    /**
+     * Set distId
+     *
+     * @param integer $distId
+     *
+     * @return Orden
+     */
+    public function setDistId($distId)
+    {
+        $this->distId = $distId;
+
+        return $this;
+    }
+
+    /**
+     * Get distId
+     *
+     * @return integer
+     */
+    public function getDistId()
+    {
+        return $this->distId;
+    }
+
+    /**
+     * Set paisId
+     *
+     * @param integer $paisId
+     *
+     * @return Orden
+     */
+    public function setPaisId($paisId)
+    {
+        $this->paisId = $paisId;
+
+        return $this;
+    }
+
+    /**
+     * Get paisId
+     *
+     * @return integer
+     */
+    public function getPaisId()
+    {
+        return $this->paisId;
     }
 }

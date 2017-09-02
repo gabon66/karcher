@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use KarcherBundle\Entity\Distribuidor;
 use KarcherBundle\Entity\MaterialOrigen;
+use KarcherBundle\Entity\Client;
 
 use GSPEM\GSPEMBundle\Entity\Material;
 use GSPEM\GSPEMBundle\Entity\StockMaestro;
@@ -36,20 +37,30 @@ class OrderController extends Controller
     public function getNextOrderAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-
+        $orders_count=0;
         $user=$this->get('security.token_storage')->getToken()->getUser();
 
         $repo =$em->getRepository('KarcherBundle\Entity\Orden');
-        $orders=$repo->findAll();
-
         $repoDist =$em->getRepository('KarcherBundle\Entity\Distribuidor');
+        $repoUser =$em->getRepository('GSPEM\GSPEMBundle\Entity\User');
 
-        $dist=$repoDist->findOneBy(array("id"=>$user->getIdDistribuidor()));
+        if ($user->getIdDistribuidor()){
+            $orders=$repo->findBy(array("distId"=>$user->getIdDistribuidor()));
+            if($orders!=null){
+                $orders_count=count($orders)+1;
+            }
+            // traigo todo los datos del centro disitribucion
+            $dist=$repoDist->findOneBy(array("id"=>$user->getIdDistribuidor()));
+
+            // traigo todos los usuarios que pertencen a esa sursal
+            $users=$repoUser->findBy(array("idDistribuidor"=>$user->getIdDistribuidor()));
+        }
+
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
-        return new Response($serializer->serialize(array("next"=>count($orders)+1,"user"=> $user,"dist"=>$dist),"json"),200,array('Content-Type'=>'application/json'));
+        return new Response($serializer->serialize(array("usersDist"=>$users,"next"=>$orders_count,"user"=> $user,"dist"=>$dist),"json"),200,array('Content-Type'=>'application/json'));
     }
 
 
@@ -62,8 +73,9 @@ class OrderController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("* ")
+            ->select("*")
             ->from("orden", "o")
+            ->leftJoin("o","users","us","us.id = o.tecnico_id")
             ->execute();
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
@@ -88,6 +100,18 @@ class OrderController extends Controller
         $order->setRec($user->getId());
         $order->setAk("AR");
         $order->setDtr($request->get("dtr"));
+        $order->setDistId($request->get("distId"));
+
+        // si se asigna un tecnico
+        if((int)$request->get("tecnico")>0)
+        {
+            // si viene con tecnico puede que venga con etado en proceso
+            $order->setTecnicoId($request->get("tecnico"));
+            $order->setEstd($request->get("estado"));
+        }else{
+            // si no, es pendiente
+            $order->setEstd(0);
+        }
 
 
         // cliente
@@ -96,7 +120,21 @@ class OrderController extends Controller
         $order->setPhn($request->get("phn"));
         $order->setNme($request->get("nme"));
 
-        $order->setClientId((int)$request->get("client_id"));
+
+        if ($request->get("client_id")){
+            $order->setClientId((int)$request->get("client_id"));
+        }else{
+            // creo nuevo cliente
+            $client = new Client();
+            $client->setName($request->get("cuno"));
+            $client->setPhone($request->get("phn"));
+            $client->setMail($request->get("eml"));
+            $client->setContacto($request->get("nme"));
+            $em->persist($client);
+            $em->flush();
+            $order->setClientId($client->getId());
+        }
+
 
         // maquina
         $order->setMaquinaBarra($request->get("barra"));
@@ -115,7 +153,7 @@ class OrderController extends Controller
         $order->setAcc7($request->get("acc7"));
         $order->setAcc8($request->get("acc8"));
 
-        $order->setEstd(0);// pendiente
+
 
 
 

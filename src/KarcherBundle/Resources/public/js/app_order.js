@@ -8,6 +8,8 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     $scope.newNumOrder="";
     $scope.distName="";
     $scope.userName="";
+    $scope.checkingOrden=true;
+    $scope.ordenValid=false;
 
 
     // DATOS MAQUINA
@@ -18,11 +20,12 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     $scope.maquina_id=0;
 
 
+
     // DATOS CLIENTES
     $scope.cliente_id=0;
     $scope.cliente="";
     $scope.contacto="";
-    $scope.telefono="";
+    $scope.phone="";
     $scope.mail="";
 
 
@@ -41,6 +44,9 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
 
     $scope.orderType=[];
     $scope.orderPriori=[];
+    $scope.orderEstados=[];
+    $scope.orderUsersDist=[];
+
     $scope.orderType.push({id:1,name:'Garantía'});
     $scope.orderType.push({id:2,name:'Reparación'});
     $scope.orderType.push({id:3,name:'Presupuesto'});
@@ -50,10 +56,16 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     $scope.orderPriori.push({id:2,name:"Media"});
     $scope.orderPriori.push({id:3,name:"Alta"});
 
+    $scope.orderEstados.push({id:0,name:"Pendiente"});
+    $scope.orderEstados.push({id:1,name:"Proceso"});
+
+    $scope.orderUsersDist.push({id:0,name:"Sin Asignar"});
+
+
     $scope.ordertype=$scope.orderType[0];
     $scope.orderpri=$scope.orderPriori[0];
-
-
+    $scope.orderest=$scope.orderEstados[0];
+    $scope.ordertec=$scope.orderUsersDist[0];
 
     $scope.down = function(e) {
         //console.log(e.keyCode);
@@ -82,7 +94,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
 
         $scope.serie= $scope.barra.substring(8,$scope.barra.length);
         $http.get(Routing.generate('getmaterialesbynumber')+"/"+$scope.barra.substring(0,8)+"/"+$scope.barra).then(function (response) {
-
+            console.log(response.data);
             if (response.data.material!=null){
                 $scope.maquina=response.data.material;
                 $scope.maquina_name=$scope.maquina.name;
@@ -95,7 +107,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
                 $scope.cliente_id=$scope.client_from_old_orden.id;
                 $scope.cliente=$scope.client_from_old_orden.name;
                 $scope.contacto=$scope.client_from_old_orden.contacto;
-                $scope.telefono=$scope.client_from_old_orden.phone;
+                $scope.phone=$scope.client_from_old_orden.phone;
                 $scope.mail=$scope.client_from_old_orden.mail;
 
             }
@@ -105,16 +117,46 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     var getNewOrder = function() {
         $http.get(Routing.generate('getnextorderid')
         ).then(function (orden) {
+            $scope.checkingOrden=false;
             console.log(orden);
-            $scope.newNumOrder=("0000"+orden.data.user.idDistribuidor).slice(-4)+("0000"+orden.data.next).slice(-4)
-            $scope.distName=orden.data.dist.name;
-            $scope.userName=orden.data.user.lastName + " "+orden.data.user.name;
+            if(orden.data.dist){
+                $scope.ordenValid=true;
+                $scope.newNumOrder=("0000"+orden.data.user.idDistribuidor).slice(-4)+("0000"+orden.data.next).slice(-4)
+                $scope.distName=orden.data.dist.name;
+                $scope.distId =orden.data.dist.id;
+                $scope.userName=orden.data.user.lastName + " "+orden.data.user.name;
+
+                //agrego los usuarios del centro de dist.
+                for (var e = 0; e < orden.data.usersDist.length; e++) {
+                    $scope.orderUsersDist.push({"id": orden.data.usersDist[e].id,
+                        "name":orden.data.usersDist[e].lastName + " "+orden.data.usersDist[e].name})
+
+                }
+
+            }else {
+                // si no tiene dist es que no pertence a ningun centro de disitribucion con lo cual no puede cargar una orden
+                $scope.ordenValid=false;
+            }
+
         })
     }
     getNewOrder();
 
 
     $scope.save=function () {
+
+        if ($scope.maquina_id==0){
+            $scope.step=1;
+            toastr.error('No se asigno ninguna maquina', 'Orden');
+            return false;
+        }
+
+        if ($scope.cliente.length==0 && $scope.telefono.length==0){
+            $scope.step=2;
+            toastr.error('Complete los datos del cliente', 'Orden');
+            return false;
+        }
+
         $http({
             url: Routing.generate('postneworder'),
             method: "POST",
@@ -122,15 +164,17 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
             data: {
                 tipo:  $scope.ordertype.id,
                 dtr: $scope.distName,
-
+                distId: $scope.distId,
                 cuno: $scope.cliente,
                 eml: $scope.mail,
                 phn: $scope.phone,
                 nme: $scope.contacto,
-                client_id:$scope.client_id,
+                client_id:$scope.cliente_id,
+                tecnico: $scope.ordertec.id,
+                estado:$scope.orderest.id,
 
                 barra: $scope.barra,
-                serial: $scope.serial_n,
+                serial: $scope.serie,
                 pn: $scope.parte,
                 modelo: $scope.modelo,
 
@@ -161,6 +205,9 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
             });
     }
 
+    $scope.changeTec=function () {
+        $scope.orderest=$scope.orderEstados[0];
+    }
 
     $scope.findClient=function () {
         var modalInstance = $uibModal.open({
