@@ -163,6 +163,10 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
             templateUrl : '../bundles/karcher/pages/home.html',
             controller  : 'mainController'
         })
+        .when('/home', {
+            templateUrl : '../bundles/karcher/pages/home.html',
+            controller  : 'mainController'
+        })
         .when('/perfil', {
             templateUrl : '../bundles/karcher/pages/perfil.html',
             controller  : 'abmPerfil'
@@ -334,7 +338,7 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
     $scope.title_my_stock="Mi Stock";
     $scope.isadmin=false;
     $scope.menuActive=null;
-
+    $scope.showMenu=true;
     var url = $location.path().split(/[\s/]+/).pop();
     console.log("url :"+url);
     $scope.subitem=false;
@@ -342,6 +346,11 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
 
     switch (url){
 
+        case 'home':
+
+            $scope.menuActive=null;
+            $scope.subitem=false;
+            break;
         case 'orders':
             $scope.menuActive='ords';
             $scope.subitem='nueva';
@@ -397,6 +406,10 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
         console.log("activo "+val);
 
         $scope.menuActive=val;
+        if(val=='home'){
+            $scope.subitem=false;
+            $scope.menuActive=null;
+        }
         if(val=='ords') $scope.subitem='nueva';
         if(val=='maq') $scope.subitem='abmmaq';
         if(val=='usr') $scope.subitem='abmusers';
