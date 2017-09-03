@@ -11,20 +11,56 @@
         <div class="x_panel">
             <div class="x_title">
                 <div class="row">
-                    <div class="col-lg-2"><h3>Ordenes <small></small></h3></div>
-                    <div class="col-lg-10">
-                        <div class="form-group ">
-                            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                            <div class="input-group col-lg-8 pull-right">
-                                <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
-                                <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Nombre /Numero de Serie / Numero de Parte / Descripcion">
-                            </div>
+
+                    <div class="col-lg-3" style="padding-left: 0px">
+                        <div class="form-group has-success has-feedback">
+                            <label>Filtro por :</label>
+                            <select  class="form-control"  name="typematerial" id="est"
+                                     ng-options="fil.name for fil in filters track by fil.id"
+                                     ng-model="filtersSelected"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3" ng-show="filtersSelected.id==0" style="padding-left: 0px">
+                        <div class="form-group has-success has-feedback">
+                        <label>Estados:</label>
+                        <select  class="form-control"  name="typematerial" id="est"
+                                 ng-change="filterBy('estado')"
+                                 ng-options="est.name for est in orderEstados track by est.id"
+                                 ng-model="orderest"></select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3"  ng-show="filtersSelected.id==2">
+                        <div class="form-group has-success has-feedback">
+                            <label>Prioridades:</label>
+                            <select  class="form-control"
+                                     ng-change="filterBy('pri')"
+                                     name="typematerial" id="pri"
+                                     ng-options="pri.name for pri in orderPriori track by pri.id"
+                                     ng-model="orderpri"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3"  ng-show="filtersSelected.id==1">
+                        <div class="form-group has-success has-feedback">
+                            <label>Tipos:</label>
+                            <select  class="form-control"
+                                     ng-change="filterBy('tipo')"
+                                     name="typematerial" id="mySelect"
+                                     ng-options="type.name for type in orderType track by type.id"
+                                     ng-model="ordertype"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group has-success has-feedback">
+                            <label>Filtro por Contenido</label>
+                             <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Numero / Fecha / Tecnico / Maquina">
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
             <div class="x_content" style="height: 600px;min-height: 600px;overflow: auto">
 
                 <table class="table">
@@ -75,7 +111,6 @@
                     </tr>
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>

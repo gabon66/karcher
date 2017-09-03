@@ -79,7 +79,7 @@ class OrderController extends Controller
             ->from("orden", "o")
             ->leftJoin("o","users","us","us.id = o.tecnico_id")
             ->leftJoin("o","materiales","m","m.id = o.maquina_id")
-
+            ->orderBy("o.numero","DESC")
             ->execute();
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
@@ -183,4 +183,39 @@ class OrderController extends Controller
 
 
 
+    /**
+     * @Method({"PUT"})
+     * @Route("/karcher/order/{id}",options = { "expose" = true },name = "putorder")
+     */
+    public function updateOrderAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repoOrden = $em->getRepository('KarcherBundle\Entity\Orden');
+
+        $orden=$repoOrden->findOneBy(array("id"=>$request->get("id")));
+
+        if ($orden){
+
+            // si se asigna un tecnico
+            if((int)$request->get("tecnico")>0)
+            {
+                $orden->setTecnicoId($request->get("tecnico"));
+                $orden->setEstd($request->get("estado"));
+            }else{
+                // pasa a pendiente sin tecnico y estado pendiente
+                $orden->setTecnicoId(0);
+                $orden->setEstd(0);
+            }
+
+            $orden->setObs($request->get("obs"));
+        }
+
+        $em->flush();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($orden,"json"),200,array('Content-Type'=>'application/json'));
     }
+
+}

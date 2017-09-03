@@ -48,6 +48,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     $scope.orderEstados=[];
     $scope.orderUsersDist=[];
 
+
     $scope.orderType.push({id:1,name:'Garantía'});
     $scope.orderType.push({id:2,name:'Reparación'});
     $scope.orderType.push({id:3,name:'Presupuesto'});
@@ -59,7 +60,6 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
 
     $scope.orderEstados.push({id:0,name:"Pendiente"});
     $scope.orderEstados.push({id:1,name:"Proceso"});
-
     $scope.orderUsersDist.push({id:0,name:"Sin Asignar"});
 
 
@@ -68,10 +68,16 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     $scope.orderest=$scope.orderEstados[0];
     $scope.ordertec=$scope.orderUsersDist[0];
 
+    
+    
+
+    
     $scope.down = function(e) {
         //console.log(e.keyCode);
     };
 
+    
+    
     $scope.nextStep=function () {
         if ($scope.step<4){
             $scope.step=$scope.step+1;
