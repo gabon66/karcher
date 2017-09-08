@@ -11,6 +11,43 @@ GSPEMApp.controller('ordersControl', function($filter,$scope,$http,$uibModal,toa
     };
 
 
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
+
+    $scope.pageChanged = function() {
+        //$log.log('Page changed to: ' + $scope.currentPage);
+    };
+
+    $scope.maxSize = 5;
+    $scope.bigTotalItems = 175;
+    $scope.bigCurrentPage = 1;
+
+    $scope.filteredTodos = []
+    $scope.currentPage = 1
+    $scope.numPerPage = 8
+    $scope.maxSize = 5;
+    $scope.rowOrders=0;
+
+    $scope.orders=[];
+    $scope.orders.push({id:"asd"});
+
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+
+    $scope.$watch('currentPage', function() {
+        console.log("test");
+
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+            , end = begin + $scope.numPerPage;
+
+        if($scope.orders_ori){
+            $scope.orders = $scope.orders_ori.slice(begin, end);
+        }
+
+    });
+
+
     $scope.filters=[];
     $scope.orderType=[];
     $scope.orderPriori=[];
@@ -57,35 +94,96 @@ GSPEMApp.controller('ordersControl', function($filter,$scope,$http,$uibModal,toa
             $scope.cargando=false;
             $scope.orders=data.data;
             $scope.orders_ori=data.data;
+            $scope.rowOrders=$scope.orders_ori.length;
             console.log($scope.orders);
+
+
+            if($scope.orders_ori){
+                $scope.orders = $scope.orders_ori.slice(begin, end);
+            }
         });
     };
     getOrders();
 
 
+    $scope.numPages = function () {
+        return Math.ceil($scope.orders.length / $scope.numPerPage);
+    };
+
+
+    $scope.$watch('filtromaterial', function() {
+
+        if ($scope.filtromaterial!=undefined){
+            console.log($scope.filtromaterial)
+
+            $scope.orders=$filter('filter')($scope.orders_ori,$scope.filtromaterial);
+            if ($scope.filtromaterial!=""){
+                $scope.rowOrders=$scope.orders.length;
+
+                var begin = ((1 - 1) * $scope.numPerPage)
+                    , end = begin + $scope.numPerPage;
+
+                if($scope.orders){
+                    $scope.orders = $scope.orders.slice(begin, end);
+                }
+            }else {
+                $scope.rowOrders=$scope.orders_ori.length;
+
+                var begin = ((1 - 1) * $scope.numPerPage)
+                    , end = begin + $scope.numPerPage;
+
+                if($scope.orders_ori){
+                    $scope.orders = $scope.orders_ori.slice(begin, end);
+                }
+            }
+        }
+
+    });
+
+
     $scope.filterBy=function (key) {
         $scope.orders=$scope.orders_ori;
+        var todos=true;
 
         if (key=='estado'){
             if ($scope.orderest.id!=9){
                 $scope.orders=$filter('filter')($scope.orders_ori,{"estd":$scope.orderest.id});
+                todos=false;
             }
         }
 
         if (key=='pri'){
             if ($scope.orderpri.id!=9){
-
                 $scope.orders=$filter('filter')($scope.orders_ori,{"prd":$scope.orderpri.id});
+                todos=false;
             }
         }
 
         if (key=='tipo'){
             if ($scope.ordertype.id!=9){
                 $scope.orders=$filter('filter')($scope.orders_ori,{"tipo":$scope.ordertype.id});
+                todos=false;
             }
         }
+        if (!todos){
+            $scope.rowOrders=$scope.orders.length;
 
+            var begin = ((1 - 1) * $scope.numPerPage)
+                , end = begin + $scope.numPerPage;
 
+            if($scope.orders){
+                $scope.orders = $scope.orders.slice(begin, end);
+            }
+        }else {
+            $scope.rowOrders=$scope.orders_ori.length;
+
+            var begin = ((1 - 1) * $scope.numPerPage)
+                , end = begin + $scope.numPerPage;
+
+            if($scope.orders_ori){
+                $scope.orders = $scope.orders_ori.slice(begin, end);
+            }
+        }
     }
 
 
@@ -110,6 +208,35 @@ GSPEMApp.controller('ordersControl', function($filter,$scope,$http,$uibModal,toa
             //$log.info('Modal dismissed at: ' + new Date());
         });
     }
+
+    $scope.showBarCode=function (order) {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'modal_barcode.html',
+            controller: 'ModalBarCode',
+            resolve: {
+                order: function () {
+                    return order;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+        }, function (item) {
+        });
+    }
+
+
+
+
+
+    function initController() {
+        // initialize to page 1
+        vm.setPage(1);
+    }
+
+
+
+
 });
 
 GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstance,toastr,item) {
@@ -198,5 +325,42 @@ GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstan
             });
     }
 
+
+});
+GSPEMApp.controller('ModalBarCode', function($filter,$scope,$http, $uibModalInstance,toastr,order) {
+
+
+    var demoCtrl = this;
+    var defaultInputs = [];
+
+    defaultInputs['code39'] = 'Hello World';
+    defaultInputs['i25'] = '010101';
+
+    demoCtrl.textField = defaultInputs['code39'];
+
+    demoCtrl.hex = '#03A9F4';
+    demoCtrl.rgb = { r: 0, g: 0, b: 0 };
+    demoCtrl.colorBarcode = getBarcodeColor;
+    demoCtrl.colorBackground = [255, 255, 255];
+    $scope.value = order;
+
+
+    $scope.cerrar=function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+    function getBarcodeColor() {
+        if(demoCtrl.showHex) {
+            return demoCtrl.hex;
+        } else {
+            return [demoCtrl.rgb.r, demoCtrl.rgb.g, demoCtrl.rgb.b];
+        }
+    }
+    $scope.print = function() {
+        var printContents = document.getElementById('printable').innerHTML;
+        var popupWin = window.open('', '_blank', 'width=300,height=100');
+        popupWin.document.open();
+        popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+        popupWin.document.close();
+    }
 
 });

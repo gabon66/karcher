@@ -5,40 +5,44 @@
 
 GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,toastr,MovPend) {
 
-    $scope.newNumOrder="";
-    $scope.distName="";
-    $scope.userName="";
-    $scope.checkingOrden=true;
-    $scope.ordenValid=false;
 
 
-    // DATOS MAQUINA
-    $scope.parte="";
-    $scope.modelo="";
-    $scope.barra="16672290010427";
-    $scope.serie="";
-    $scope.maquina_id=0;
+    var cleanAll=function () {
+        $scope.newNumOrder="";
+        $scope.distName="";
+        $scope.userName="";
+        $scope.checkingOrden=true;
+        $scope.ordenValid=false;
+
+        // DATOS MAQUINA
+        $scope.parte="";
+        $scope.modelo="";
+        $scope.barra="16672290010427";
+        $scope.serie="";
+        $scope.maquina_id=0;
 
 
+        // DATOS CLIENTES
+        $scope.cliente_id=0;
+        $scope.cliente="";
+        $scope.contacto="";
+        $scope.phone="";
+        $scope.mail="";
 
-    // DATOS CLIENTES
-    $scope.cliente_id=0;
-    $scope.cliente="";
-    $scope.contacto="";
-    $scope.phone="";
-    $scope.mail="";
 
+        $scope.acc1="";
+        $scope.acc2="";
+        $scope.acc3="";
+        $scope.acc4="";
+        $scope.acc5="";
+        $scope.acc6="";
+        $scope.acc7="";
+        $scope.acc8="";
 
-    $scope.acc1="";
-    $scope.acc2="";
-    $scope.acc3="";
-    $scope.acc4="";
-    $scope.acc5="";
-    $scope.acc6="";
-    $scope.acc7="";
-    $scope.acc8="";
+        $scope.obs="";
+    }
 
-    $scope.obs="";
+    cleanAll();
 
     $scope.date = $filter('date')(new Date(), 'dd-MM-yyyy hh:mm');
     $scope.step=0;
@@ -127,27 +131,35 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
             $scope.checkingOrden=false;
             console.log(orden);
             if(orden.data.dist){
-                $scope.ordenValid=true;
-                $scope.newNumOrder=("0000"+orden.data.user.idDistribuidor).slice(-4)+("0000"+orden.data.next).slice(-4)
-                $scope.distName=orden.data.dist.name;
-                $scope.distId =orden.data.dist.id;
-                $scope.userName=orden.data.user.lastName + " "+orden.data.user.name;
+                if (orden.data.dist.dir){
+                    $scope.ordenValid=true;
+                    $scope.countryName= orden.data.dist.dir.split(",")[orden.data.dist.dir.split(",").length-1].toUpperCase().trim();
 
-                //agrego los usuarios del centro de dist.
-                for (var e = 0; e < orden.data.usersDist.length; e++) {
-                    $scope.orderUsersDist.push({"id": orden.data.usersDist[e].id,
-                        "name":orden.data.usersDist[e].lastName + " "+orden.data.usersDist[e].name})
 
+                    $scope.newNumOrder=$scope.countryName.substring(0,2)+ ("0000"+orden.data.user.idDistribuidor).slice(-4)+("0000"+orden.data.next).slice(-4)
+                    $scope.distName=orden.data.dist.name;
+                    $scope.distId =orden.data.dist.id;
+
+                    $scope.userName=orden.data.user.lastName + " "+orden.data.user.name;
+
+                    //agrego los usuarios del centro de dist.
+                    for (var e = 0; e < orden.data.usersDist.length; e++) {
+                        $scope.orderUsersDist.push({"id": orden.data.usersDist[e].id,
+                            "name":orden.data.usersDist[e].lastName + " "+orden.data.usersDist[e].name})
+                    }
+                }else {
+                    $scope.ordenValid=false;
+                    $scope.errorMsg="No tiene una dirección valida asiganada a su punto de distribución";
                 }
-
             }else {
                 // si no tiene dist es que no pertence a ningun centro de disitribucion con lo cual no puede cargar una orden
                 $scope.ordenValid=false;
+                $scope.errorMsg="No tiene punto de distribución asociado para cargar ordenes.";
             }
-
         })
     }
     getNewOrder();
+
 
 
     $scope.save=function () {
@@ -208,7 +220,10 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
             }
         }).then(function (response) {
                 $scope.step=0;
+                $scope.showBarCode($scope.newNumOrder);
                 toastr.success('Generada con éxito', 'Orden');
+                cleanAll();
+                getNewOrder();
             },
             function (response) { // optional
                 // failed
@@ -248,6 +263,24 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
         });
     }
 
+
+    $scope.showBarCode=function (order) {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'modal_barcode.html',
+            controller: 'ModalBarCode',
+            resolve: {
+                order: function () {
+                    return order;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+        }, function (item) {
+        });
+    }
+
+
 });
 
 GSPEMApp.controller('ModalClientList', function($filter,$scope,$http, $uibModalInstance,toastr) {
@@ -275,6 +308,47 @@ GSPEMApp.controller('ModalClientList', function($filter,$scope,$http, $uibModalI
 
     $scope.select=function (cli) {
         $uibModalInstance.dismiss(cli);
+    }
+
+
+
+});
+
+
+GSPEMApp.controller('ModalBarCode', function($filter,$scope,$http, $uibModalInstance,toastr,order) {
+
+
+    var demoCtrl = this;
+    var defaultInputs = [];
+
+    defaultInputs['code39'] = 'Hello World';
+    defaultInputs['i25'] = '010101';
+
+    demoCtrl.textField = defaultInputs['code39'];
+
+    demoCtrl.hex = '#03A9F4';
+    demoCtrl.rgb = { r: 0, g: 0, b: 0 };
+    demoCtrl.colorBarcode = getBarcodeColor;
+    demoCtrl.colorBackground = [255, 255, 255];
+    $scope.value = order;
+
+
+    $scope.cerrar=function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+    function getBarcodeColor() {
+        if(demoCtrl.showHex) {
+            return demoCtrl.hex;
+        } else {
+            return [demoCtrl.rgb.r, demoCtrl.rgb.g, demoCtrl.rgb.b];
+        }
+    }
+    $scope.print = function() {
+        var printContents = document.getElementById('printable').innerHTML;
+        var popupWin = window.open('', '_blank', 'width=300,height=100');
+        popupWin.document.open();
+        popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+        popupWin.document.close();
     }
 
 });

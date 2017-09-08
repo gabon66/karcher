@@ -1,0 +1,9 @@
+.idea
+*.iml
+out
+gen
+/demo/assets/scss/.tmp
+/node_modules
+demo/assets/scss/.tmp
+*.*~
+.DS_Store
