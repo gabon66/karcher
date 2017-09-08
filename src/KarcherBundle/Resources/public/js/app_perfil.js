@@ -110,7 +110,7 @@ GSPEMApp.controller('abmPerfiles', function($scope,$http,$uibModal,toastr,MovPen
     $scope.new = function (item) {
 
         var modalInstance = $uibModal.open({
-            templateUrl: "perfil_form.html",
+            templateUrl: "perfil_form_karcher.html",
             controller: "ModelNewPerfil",
             resolve: {
                 item: function () {
