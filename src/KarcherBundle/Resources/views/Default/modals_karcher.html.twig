@@ -507,47 +507,69 @@
             <hr>
 
                        <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="perfiles_abm#home">Ordenes</a></li>
+                        <li class="active">
+                        <a data-toggle="tab" href="perfiles_abm#home">Ordenes</a></li>
                         <li><a data-toggle="tab" href="perfiles_abm#menu1">Disitribución</a></li>
                         <li><a data-toggle="tab" href="perfiles_abm#menu2">Maquinas</a></li>
                         <li><a data-toggle="tab" href="perfiles_abm#menu3">Usuarios</a></li>
                         <li><a data-toggle="tab" href="perfiles_abm#menu4">Clientes</a></li>
                         <li><a data-toggle="tab" href="perfiles_abm#menu5">Reportes</a></li>
-
                        </ul>
 
                        <div class="tab-content">
                          <div id="home" class="tab-pane fade in active">
-                           <h3><input ng-model="perfil.user.all" type="checkbox" value=""> Ordenes</h3>
+                           <h3><input ng-model="perfil.ordenes.all" type="checkbox" value=""> Ordenes</h3>
                             <div class="row">
                                 <div class="col-lg-4">
-                                <input ng-checked="perfil.user.all && perfil.user.abm"  ng-model="perfil.user.abm" type="checkbox" value=""> Nueva Orden</div>
+                                <input ng-checked="perfil.ordenes.all && perfil.ordenes.nueva"  ng-model="perfil.ordenes.nueva" type="checkbox" value=""> Nueva Orden</div>
                                 <div class="col-lg-4">
-                                <input ng-checked="perfil.user.all && perfil.user.contratistas" ng-model="perfil.user.contratistas" type="checkbox" value=""> Control</div>
+                                <input ng-checked="perfil.ordenes.all && perfil.ordenes.control" ng-model="perfil.ordenes.control" type="checkbox" value="">
+                                 Control</div>
+                                <input ng-checked="perfil.ordenes.all && perfil.ordenes.historico" ng-model="perfil.ordenes.historico" type="checkbox" value="">
+                                 Historico</div>
                             </div>
-                         </div>
+
+
                          <div id="menu1" class="tab-pane fade">
-                           <h3><input ng-model="perfil.sitios.all" type="checkbox" value=""> Distribuidores</h3>
+                           <h3><input ng-model="perfil.dist.all" type="checkbox" value=""> Distribuidores</h3>
                            <div class="row">
-                            <div class="col-lg-6"><input ng-checked="perfil.sitios.all && perfil.sitios.abm" ng-model="perfil.sitios.abm"type="checkbox" value=""> ABM Sitios</div>
+                            <div class="col-lg-6"><input ng-checked="perfil.dist.all && perfil.dist.abm" ng-model="perfil.dist.abm"type="checkbox" value=""> ABM Sitios</div>
                            </div>
                          </div>
+
                          <div id="menu2" class="tab-pane fade">
-                           <h3><input ng-model="perfil.materiales.all" type="checkbox" value=""> Maquinas</h3>
+                           <h3><input ng-model="perfil.maquinas.all" type="checkbox" value=""> Maquinas</h3>
                                 <div class="row">
-                                    <div class="col-lg-6"><input ng-checked="perfil.materiales.all && perfil.materiales.abm_tipo" ng-model="perfil.materiales.abm_tipo" type="checkbox" value=""> ABM Tipo Materiales</div>
-                                    <div class="col-lg-6"><input ng-checked="perfil.materiales.all && perfil.materiales.abm" ng-model="perfil.materiales.abm" type="checkbox" value=""> ABM Materiales</div>
+                                    <div class="col-lg-4"><input ng-checked="perfil.maquinas.all && perfil.maquinas.abm_grupo" ng-model="perfil.maquinas.abm_grupo" type="checkbox" value=""> ABM Grupos</div>
+                                    <div class="col-lg-4"><input ng-checked="perfil.maquinas.all && perfil.maquinas.abm_origen" ng-model="perfil.maquinas.abm_origen" type="checkbox" value=""> ABM Origen</div>
+                                    <div class="col-lg-4"><input ng-checked="perfil.maquinas.all && perfil.maquinas.abm" ng-model="perfil.maquinas.abm" type="checkbox" value=""> ABM Maquinas</div>
+
                                 </div>
                          </div>
 
-                              <div id="menu5" class="tab-pane fade">
-                              <h3><input type="checkbox" value="" ng-model="perfil.reportes.all">  Reportes</h3>
-                                 <div class="row">
-                                    <div class="col-lg-3"><input ng-checked="perfil.reportes.all && perfil.reportes.stock_maestro" ng-model="perfil.reportes.stock_maestro" type="checkbox" value=""> Reporte 1</div>
-                                    <div class="col-lg-3"><input ng-checked="perfil.reportes.all && perfil.reportes.stock_tec" ng-model="perfil.reportes.stock_tec" type="checkbox" value=""> Reporte 2</div>
-                                    <div class="col-lg-3"><input ng-checked="perfil.reportes.all && perfil.reportes.stock_sit" ng-model="perfil.reportes.stock_sit" type="checkbox" value=""> Reporte 3</div>
-                                    <!--<div class="col-lg-3"><input ng-checked="perfil.reportes.all && perfil.reportes.stock_cont" ng-model="perfil.reportes.stock_cont" type="checkbox" value=""> Stock por Contratista</div>-->
-                                         </div>
+                         <div id="menu3" class="tab-pane fade">
+                           <h3><input ng-model="perfil.users.all" type="checkbox" value=""> Usuarios</h3>
+                                <div class="row">
+                                    <div class="col-lg-6"><input ng-checked="perfil.users.all && perfil.users.abm_perfiles" ng-model="perfil.users.abm_perfiles" type="checkbox" value=""> ABM Perfiles</div>
+                                    <div class="col-lg-6"><input ng-checked="perfil.users.all && perfil.users.abm" ng-model="perfil.users.abm" type="checkbox" value=""> ABM Usarios</div>
+                                </div>
+                         </div>
+
+                         <div id="menu4" class="tab-pane fade">
+                           <h3><input ng-model="perfil.clients.all" type="checkbox" value=""> Clientes</h3>
+                                <div class="row">
+                                    <div class="col-lg-6"><input ng-checked="perfil.clients.all && perfil.clients.abm" ng-model="perfil.clients.abm" type="checkbox" value=""> ABM Usarios</div>
+                                </div>
+                         </div>
+
+                          <div id="menu5" class="tab-pane fade">
+                          <h3><input type="checkbox" value="" ng-model="perfil.reportes.all">  Reportes</h3>
+                             <div class="row">
+                <!--                <div class="col-lg-3"><input ng-checked="perfil.reportes.all && perfil.reportes.stock_maestro" ng-model="perfil.reportes.stock_maestro" type="checkbox" value=""> Reporte 1</div>
+                                <div class="col-lg-3"><input ng-checked="perfil.reportes.all && perfil.reportes.stock_tec" ng-model="perfil.reportes.stock_tec" type="checkbox" value=""> Reporte 2</div>
+                                <div class="col-lg-3"><input ng-checked="perfil.reportes.all && perfil.reportes.stock_sit" ng-model="perfil.reportes.stock_sit" type="checkbox" value=""> Reporte 3</div>-->
+                         </div>
+                       </div>
                        </div>
             </div>
 

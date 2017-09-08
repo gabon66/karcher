@@ -83,6 +83,9 @@
                 <a href="#neworder" ng-click="subitem='nueva'">NUEVA</a></li>
             <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='control'}" >
                 <a  ng-click="subitem='control'" href="#controlorders">CONTROL</a></li>
+
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='historic'}" >
+                <a  ng-click="subitem='historic'" href="#historicorders">HISTORICO</a></li>
         </ul>
 
 
@@ -240,7 +243,7 @@
     <script src="{{asset('bundles/karcher/js/app_report.js')}}"></script>
     <script src="{{asset('bundles/karcher/js/app_order.js')}}"></script>
     <script src="{{asset('bundles/karcher/js/app_order_control.js')}}"></script>
-
+    <script src="{{asset('bundles/karcher/js/app_order_historico.js')}}"></script>
 
     <script src="{{asset('bundles/karcher/js/directives/ngAutocomplete.js')}}"></script>
     <script src="{{asset('bundles/karcher/js/directives/checklist-model.js')}}"></script>

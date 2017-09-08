@@ -375,6 +375,10 @@ ul.sub-menu li{
     border-color:#ededed ;
 }
 
+.pagination>li>a:hover {
+    color: #FFED00;
+}
+
 .pagination>li.active>a {
     border-color:#333333 ;
     background-color: #333333;

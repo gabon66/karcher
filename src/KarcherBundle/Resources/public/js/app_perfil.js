@@ -165,18 +165,24 @@ GSPEMApp.controller('ModelNewPerfil', function($filter,$scope,$http, $uibModalIn
 
     $scope.id=0;
 
-    $scope.user={all:true,abm:true, perfiles:true,contratistas:true};
-    $scope.sitios={all:true,abm:true};
-    $scope.materiales={all:true,abm_tipo:true,abm:true};
-    $scope.oper={all:true,stock:true,stock_to_tec:true,stock_tec_to_tec:true};
-    $scope.opertec={all:true,stock:true,stoc_pend:true,stoc_tec:true,stoc_sit:true};
+    $scope.users={all:true,abm:true, perfiles:true};
+    $scope.maquinas={all:true,abm_grupo:true,abm_origen:true,abm:true};
+    $scope.dist={all:true,abm:true};
+    $scope.clients={all:true,abm:true};
+    $scope.ordenes={all:true,nueva:true,control:true,historico:true};
+
+
     $scope.reportes={all:true,stock_maestro:true,stock_tec:true,stock_sit:true,stock_cont:true,stock_mov:true,stock_mov_by_mat:true,stock_alertas:true,compras:true};
 
     
     
-    
-    $scope.perfil={user:$scope.user,sitios:$scope.sitios,
-        materiales:$scope.materiales,oper:$scope.oper,opertec:$scope.opertec,reportes:$scope.reportes};
+    $scope.perfil={users:$scope.user,
+        maquinas:$scope.maquinas,
+        dist:$scope.dist,
+        clients:$scope.clients,
+        ordenes:$scope.ordenes,
+        reportes:$scope.reportes
+    };
 
 
     if(item!=null){

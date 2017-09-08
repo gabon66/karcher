@@ -1,0 +1,62 @@
+<div class="row">
+
+
+    <div ng-show="cargando"  class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
+        <h3>Control de Ordenes   </h3>
+
+        <i ng-show="cargando==true" class="fa fa-cog fa-spin fa-5x fa-fw"></i>
+    </div>
+
+    <div ng-show="!cargando" class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <div class="row">
+
+                    <div class="col-lg-4" style="padding-left: 0px">
+                        <div class="form-group has-success has-feedback">
+                            <label>Filtro por Contenido</label>
+                             <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Nombre / N° Parte / Descripción">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="x_content" style="height: 600px;min-height: 600px;overflow: auto">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><a ng-click="sortBy('name')">Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                        <th><a ng-click="sortBy('pn')"> Numero de Parte <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+
+                        <th><a ng-click="sortBy('descript')">Descripción <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('type')"> Grupo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="material in materiales">
+                        <td>{{ material.name }}</td>
+                        <td >{{ material.pn }}</td>
+
+                        <td>{{ material.descript }}</td>
+                        <td>{{ material.type }}</td>
+
+
+
+                        <td style="text-align: right">
+                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="showOrders(material,'material_karcher_form.html','ModelNewMaterialCtrl')" ><i class="fa fa-list fa-2x"></i> </a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <ul uib-pagination  total-items="rowMateriales" previous-text="Anterior" next-text="Siguiente"  items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

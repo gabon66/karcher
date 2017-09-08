@@ -308,7 +308,10 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
             controller  : 'ordersControl'
         })
 
-
+        .when('/historicorders', {
+            templateUrl : '../bundles/karcher/pages/orders/historico.html',
+            controller  : 'ordersHistorico'
+        })
 
 
         
@@ -355,6 +358,11 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
             $scope.menuActive='ords';
             $scope.subitem='nueva';
             break;
+        case 'historicorders':
+            $scope.menuActive='ords';
+            $scope.subitem='historic';
+            break;
+
         case 'neworder':
             $scope.menuActive='ords';
             $scope.subitem='nueva';
