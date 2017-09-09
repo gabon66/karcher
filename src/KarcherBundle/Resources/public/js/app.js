@@ -314,7 +314,19 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
         })
 
 
-        
+        .when('/report_orders_pend', {
+            templateUrl : '../bundles/karcher/pages/reports/report_orders_pend.html',
+            controller  : 'reportOrders'
+        })
+        .when('/report_orders_proc', {
+            templateUrl : '../bundles/karcher/pages/reports/report_orders_proc.html',
+            controller  : 'reportOrders'
+        })
+        .when('/report_orders_closed', {
+            templateUrl : '../bundles/karcher/pages/reports/report_orders_closed.html',
+            controller  : 'reportOrders'
+        })
+
         .otherwise({
             redirectTo: '/'
         });
@@ -399,9 +411,27 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
             $scope.menuActive='maq';
             $scope.subitem='abmti';
             break;
+
+        case 'report_orders_closed':
+            $scope.menuActive='report';
+            $scope.subitem='rep3';
+            break;
+        case 'report_orders_pend':
+            $scope.menuActive='report';
+            $scope.subitem='rep2';
+            break;
+        case 'report_orders_proc':
+            $scope.menuActive='report';
+            $scope.subitem='rep3';
+            break;
+
+
+
         case 'dist_abm':
             $scope.menuActive='dist';
             break;
+
+
         case '':
             $scope.menuActive=false;
             $scope.subitem=false;

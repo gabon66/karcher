@@ -90,6 +90,29 @@ class OrderController extends Controller
 
 
     /**
+     * @Method({"GET"})
+     * @Route("/karcher/ordersbymaq/{material}",options = { "expose" = true },name = "getordersbymaq")
+     */
+    public function getOrdersByMatAction($material)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $stmt = $em->getConnection()->createQueryBuilder()
+            ->select("o.* , us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
+            ->from("orden", "o")
+            ->leftJoin("o","users","us","us.id = o.tecnico_id")
+            ->leftJoin("o","materiales","m","m.id = o.maquina_id")
+            ->where("o.maquina_id=".$material)
+            ->orderBy("o.numero","DESC")
+            ->execute();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($stmt->fetchAll(),"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+    /**
      * @Method({"POST"})
      * @Route("/karcher/order",options = { "expose" = true },name = "postneworder")
      */

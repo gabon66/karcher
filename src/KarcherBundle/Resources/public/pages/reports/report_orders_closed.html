@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        <div class="x_panel">
+            <div class="x_title">
+
+                <div class="row">
+                    <button type="button" ng-click="exportar('ordenes_cerradas')" class="btn-karcher-sm pull-right" >EXPORTAR</button>
+                </div>
+            </div>
+        </div>
+        <div class="x_content" style="height:  60% ;overflow: auto" id="exportable">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th><a ng-click="sortBy('numero')">NUMERO <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+
+                    <th><a ng-click="sortBy('fing')">Fecha Inicio <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                    <th><a ng-click="sortBy('tecnico_name')"> Tecnico <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                    <th><a ng-click="sortBy('cuno')"> Cliente <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                    <th><a ng-click="sortBy('prod_pn')">Maquina <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                    <th><a ng-click="sortBy('prd')"> Prioridad <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                    <th><a ng-click="sortBy('tipo')"> Tipo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="ord in orders_closed">
+                    <td>{{ ord.numero }}</td>
+                    <td>{{ ord.fing }}</td>
+
+                    <td>{{ord.tecnico_name}}</td>
+                    <td >{{ ord.cuno }}</td>
+                    <td>{{ ord.prod_pn }} - {{ord.maquina | limitTo : 12 : 0}}</td>
+
+
+                    <td ng-show="ord.prd==1">BAJA</td>
+                    <td ng-show="ord.prd==2">MEDIA</td>
+                    <td ng-show="ord.prd==3">ALTA</td>
+
+                    <td ng-show="ord.tipo==1">Garantía</td>
+                    <td ng-show="ord.tipo==2">Reparación</td>
+                    <td ng-show="ord.tipo==3">Presupuesto</td>
+                    <td ng-show="ord.tipo==4">Pre-Entrega</td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

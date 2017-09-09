@@ -114,13 +114,14 @@ GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,t
 
 
 
-    $scope.showBarCode=function (order) {
+    $scope.showOrders=function (maquina) {
         var modalInstance = $uibModal.open({
-            templateUrl: 'modal_barcode.html',
-            controller: 'ModalBarCode',
+            templateUrl: 'modal_orders.html',
+            controller: 'ModalOrders',
+            size:"lg",
             resolve: {
-                order: function () {
-                    return order;
+                maquina: function () {
+                    return maquina;
                 }
             }
         });
@@ -144,128 +145,51 @@ GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,t
 
 });
 
-GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstance,toastr,item) {
-    $scope.orden=item;
-    console.log($scope.orden);
-    $scope.orderUsersDist=[];
-    $scope.orderUsersDist.push({id:0,name:"Sin Asignar"});
-    $scope.orderEstados=[];
-    $scope.orderEstados.push({id:0,name:"Pendiente"});
-    $scope.orderEstados.push({id:1,name:"Proceso"});
-    $scope.orderEstados.push({id:2,name:"Cerrada"});
+GSPEMApp.controller('ModalOrders', function($filter,$scope,$http, $uibModalInstance,toastr,maquina) {
+    $scope.maquina=maquina;
+    $scope.orders=0;
 
-    if ($scope.orden.estd!=null && $scope.orden.estd!=0 ){
-        $scope.orderest=$scope.orderEstados[$scope.orden.estd];
-    }else {
-        $scope.orderest=$scope.orderEstados[0];
-    }
+    $scope.currentPage = 1
+    $scope.numPerPage = 6
+    $scope.maxSize = 5;
+    $scope.rowOrders=0;
+
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+    $scope.$watch('currentPage', function() {
+        console.log("test");
+
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+            , end = begin + $scope.numPerPage;
+
+        if($scope.orders_ori){
+            $scope.orders = $scope.orders_ori.slice(begin, end);
+        }
+
+    });
+
+    $scope.cargando=true;
+    var getOrders = function() {
+        $http.get(Routing.generate('getordersbymaq')+"/"+$scope.maquina.id
+        ).then(function (data) {
+            $scope.cargando=false;
+            $scope.orders=data.data;
+            $scope.orders_ori=data.data;
+            $scope.rowOrders=$scope.orders_ori.length;
+            console.log($scope.orders);
 
 
-
-
+            if($scope.orders_ori){
+                $scope.orders = $scope.orders_ori.slice(begin, end);
+            }
+            //console.log($scope.orders);
+        });
+    };
+    getOrders();
 
     $scope.cerrar=function () {
         $uibModalInstance.dismiss('cancel');
     };
 
-
-
-    $scope.changeTec=function () {
-        if ($scope.ordertec.id==0){
-            $scope.orderest=$scope.orderEstados[0];
-        }
-    }
-
-    var getDataUtil = function() {
-        $http.get(Routing.generate('getnextorderid')
-        ).then(function (orden) {
-            if(orden.data.dist){
-
-                //agrego los usuarios del centro de dist.
-                for (var e = 0; e < orden.data.usersDist.length; e++) {
-                    $scope.orderUsersDist.push({"id": orden.data.usersDist[e].id,
-                        "name":orden.data.usersDist[e].lastName + " "+orden.data.usersDist[e].name})
-
-                }
-                if ($scope.orden.tecnico_id!=null){
-                    $scope.ordertec=$filter('filter')($scope.orderUsersDist,{"id":$scope.orden.tecnico_id})[0];
-                }else {
-                    $scope.ordertec=$scope.orderUsersDist[0];
-                }
-
-
-            }else {
-                // si no tiene dist es que no pertence a ningun centro de disitribucion con lo cual no puede cargar una orden
-                $scope.ordenValid=false;
-            }
-
-        })
-    }
-    getDataUtil();
-
-
-    $scope.save=function () {
-        $http({
-            url: Routing.generate('putorder')+"/"+$scope.orden.id,
-            method: "PUT",
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            data: {
-                tecnico: $scope.ordertec.id,
-                estado:$scope.orderest.id,
-                obs:$scope.orden.obs,
-            },
-            transformRequest: function (obj) {
-                var str = [];
-                for (var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                return str.join("&");
-            }
-        }).then(function (response) {
-                $scope.step=0;
-                toastr.success('Actializada con éxito', 'Orden');
-                $uibModalInstance.dismiss('cancel');
-            },
-            function (response) { // optional
-                // failed
-            });
-    }
-
-
-});
-GSPEMApp.controller('ModalBarCode', function($filter,$scope,$http, $uibModalInstance,toastr,order) {
-
-
-    var demoCtrl = this;
-    var defaultInputs = [];
-
-    defaultInputs['code39'] = 'Hello World';
-    defaultInputs['i25'] = '010101';
-
-    demoCtrl.textField = defaultInputs['code39'];
-
-    demoCtrl.hex = '#03A9F4';
-    demoCtrl.rgb = { r: 0, g: 0, b: 0 };
-    demoCtrl.colorBarcode = getBarcodeColor;
-    demoCtrl.colorBackground = [255, 255, 255];
-    $scope.value = order;
-
-
-    $scope.cerrar=function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-    function getBarcodeColor() {
-        if(demoCtrl.showHex) {
-            return demoCtrl.hex;
-        } else {
-            return [demoCtrl.rgb.r, demoCtrl.rgb.g, demoCtrl.rgb.b];
-        }
-    }
-    $scope.print = function() {
-        var printContents = document.getElementById('printable').innerHTML;
-        var popupWin = window.open('', '_blank', 'width=300,height=100');
-        popupWin.document.open();
-        popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
-        popupWin.document.close();
-    }
 
 });

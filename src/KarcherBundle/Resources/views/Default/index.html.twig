@@ -62,8 +62,7 @@
                     <li class="menu-karcher-li"><a ng-click="active('maq')" href="#materiales_abm">MAQUINAS</a></li>
                     <li class="menu-karcher-li"><a ng-click="active('usr')" href="#usuarios_abm">USUARIOS</a></li>
                     <li class="menu-karcher-li"><a ng-click="active('cli')" href="#clientes_abm">CLIENTES</a></li>
-
-                    <li class="menu-karcher-li"><a ng-click="active('report')" href="#about">REPORTES</a></li>
+                    <li class="menu-karcher-li"><a ng-click="active('report')" href="#report_orders_pend">REPORTES</a></li>
                 </ul>
         </div>
         <div class="col-md-1" style="padding-left: 0px">
@@ -120,11 +119,11 @@
 
         <ul class="sub-menu-karcher-ul" ng-if="menuActive=='report'" ng-class="{'visible':menuActive=='report'}" >
             <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep1'}" >
-                <a href="#" ng-click="subitem='rep1'">REPORTE 1</a></li>
+                <a href="#report_orders_pend" ng-click="subitem='rep1'">ORDENES PENDIENTES</a></li>
             <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep2'}" >
-                <a  ng-click="subitem='rep2'" href="##">REPORTE 2</a></li>
+                <a  ng-click="subitem='rep2'" href="#report_orders_proc">ORDENES EN PROCESO</a></li>
             <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep3'}" >
-                <a  ng-click="subitem='rep3'" href="##">REPORTE 3</a></li>
+                <a  ng-click="subitem='rep3'" href="#report_orders_closed">ORDENES CERRADAS</a></li>
         </ul>
 
 
