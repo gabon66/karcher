@@ -1,5 +1,7 @@
 <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
+
+    <label ng-if="orders_pend.length==0">No tiene ordenes pendientes.</label>
+    <div ng-if="orders_pend.length>0" class="col-md-12 col-sm-12 col-xs-12">
 
             <div class="x_panel">
                 <div class="x_title">
