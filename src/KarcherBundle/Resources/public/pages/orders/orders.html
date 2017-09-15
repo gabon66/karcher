@@ -3,7 +3,6 @@
 
     <div ng-show="cargando"  class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
         <h3>Control de Ordenes   </h3>
-
         <i ng-show="cargando==true" class="fa fa-cog fa-spin fa-5x fa-fw"></i>
     </div>
 
@@ -55,7 +54,7 @@
                     <div class="col-lg-6">
                         <div class="form-group has-success has-feedback">
                             <label>Filtro por Contenido</label>
-                             <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Numero / Fecha / Tecnico / Maquina">
+                             <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Barra Orden / Numero / Fecha / Tecnico / Maquina">
                         </div>
                     </div>
 
@@ -94,7 +93,7 @@
                         <td ng-show="ord.estd==1">PROCESO</td>
                         <td ng-show="ord.estd==2">CERRADA</td>
                         <td>{{ord.tecnico_name}}</td>
-                        <td >{{ ord.cuno }}</td>
+                        <td>{{ ord.cuno }}</td>
                         <td>{{ ord.prod_pn }} - {{ord.maquina | limitTo : 12 : 0}}</td>
 
 

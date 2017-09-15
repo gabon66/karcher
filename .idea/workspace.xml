@@ -5,46 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="171175b5-b600-4807-81d6-3bc889559dc8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/KarcherBundle.tar.gz" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/index_resposs.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/images/logo-white.png" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/images/logo-white.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Entity/Client.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Entity/Client.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/css/karcher.css" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/css/karcher.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order_control.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order_control.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order_historico.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order_historico.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/.gitignore" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/LICENSE" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/README.md" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/config.rb" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/config.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/app/demo.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/app/demo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/app/ng-barcode.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/app/ng-barcode.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/css/main.css" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/css/main.css.map" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/css/main.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_functions.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_functions.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_mixins.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_mixins.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_placeholders.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_placeholders.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_typography.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_typography.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_variables.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_modules/_variables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_base.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_base.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_input-range.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_input-range.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_list.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_list.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_ng-barcode.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_ng-barcode.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_section.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_section.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_switch.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_switch.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_text-field.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/_partials/_text-field.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/main.scss" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/assets/scss/main.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/index.html" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/demo/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/dist/ng-barcode.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/dist/ng-barcode.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/dist/ng-barcode.min.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/dist/ng-barcode.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/gulpfile.js" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/package.json" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/ng-barcode-master/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/historico.html" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/historico.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/index.html.twig" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/modals_karcher.html.twig" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/modals_karcher.html.twig" />
     </list>
     <ignored path="GSPEM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,8 +63,8 @@
       <file leaf-file-name="historico.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/historico.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="52" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+            <state relative-caret-position="90">
+              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -143,8 +106,8 @@
       <file leaf-file-name="new.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/new.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="124" column="53" selection-start-line="124" selection-start-column="45" selection-end-line="124" selection-end-column="53" />
+            <state relative-caret-position="270">
+              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -153,8 +116,8 @@
       <file leaf-file-name="orders.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="91" column="41" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
+            <state relative-caret-position="180">
+              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -232,11 +195,11 @@
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/web/bower_components/gentelella/vendors/bootstrap/dist/css_new/bootstrap.css" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php" />
-        <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/historico.html" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Controller/OrderController.php" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order_historico.js" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/views/Default/modals_karcher.html.twig" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order_control.js" />
+        <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/historico.html" />
         <option value="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html" />
       </list>
     </option>
@@ -871,14 +834,7 @@
       <workItem from="1504921686611" duration="4981000" />
       <workItem from="1504972831862" duration="11737000" />
       <workItem from="1505136404037" duration="88000" />
-      <workItem from="1505426631261" duration="6980000" />
-    </task>
-    <task id="LOCAL-00014" summary="change somes fields">
-      <created>1486440028106</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1486440028106</updated>
+      <workItem from="1505426631261" duration="7435000" />
     </task>
     <task id="LOCAL-00015" summary="fixes">
       <created>1491153171993</created>
@@ -1216,11 +1172,18 @@
       <option name="project" value="LOCAL" />
       <updated>1504926494106</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="fixes">
+      <created>1505434000196</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1505434000196</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="818493000" />
+    <option name="totallyTimeSpent" value="818948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="18" width="1323" height="750" extended-state="6" />
@@ -1232,7 +1195,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19148937" sideWeight="0.46604216" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980484" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3069909" sideWeight="0.8813427" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.331307" sideWeight="0.8813427" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1651,14 +1614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/new.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="124" column="53" selection-start-line="124" selection-start-column="45" selection-end-line="124" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/js/app_order.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
@@ -1704,10 +1659,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/historico.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="52" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+        <state relative-caret-position="90">
+          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
@@ -1716,8 +1679,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/orders/orders.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="91" column="41" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
+        <state relative-caret-position="180">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>
