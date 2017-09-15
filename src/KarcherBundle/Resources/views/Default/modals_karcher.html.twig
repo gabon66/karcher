@@ -584,55 +584,42 @@
 </script>
 <script type="text/ng-template" id="modal_orders.html">
     <div class="modal-header">
-        <h3>Ordenes para maquina: {{maquina.name}}</h3>
+        <h3>Orden : {{order.numero}}</h3>
     </div>
     <div class="modal-body">
+        <div class="row">
+                 <div class="col-md-4">
+                    <label>Fecha Ingreso: {{order.fing}}</label><br>
+                    <label>Fecha Cierre: {{order.fclose}}</label><br>
+                    <label>Ingresada por: {{order.tecnico_rec}}</label><br>
+                    <label>Tecnico Asignado: {{order.tecnico_name}}</label><br>
+                    <label>Tipo Orden: {{ordertype}}</label><br>
+                    <label>Centro de Atencion: {{order.dist_name}}</label><br>
+                    <label>Prioridad: {{orderpri}}</label><br>
+                    <label>Observaciones: {{order.obs}}</label>
+                 </div>
+                 <div class="col-md-4">
+                    <label>Cliente: {{order.cuno}}</label><br>
+                    <label>Contacto: {{order.nme}}</label><br>
+                    <label>Email: {{order.eml}}</label><br>
+                    <label>Telefono: {{order.phn}}</label><br>
+                 </div>
+                 <div class="col-md-4">
+                    <label>Maquina: {{order.maquina}}</label>
+                    <label>Modelo: {{order.prod_mdl}}</label>
+                    <label>Serie: {{order.prod_sn}}</label><br>
+                    <label>Accesorio 1: {{order.acc1}}</label><br>
+                    <label>Accesorio 2: {{order.acc2}}</label><br>
+                    <label>Accesorio 3: {{order.acc3}}</label><br>
+                    <label>Accesorio 4: {{order.acc4}}</label><br>
+                    <label>Accesorio 5: {{order.acc5}}</label><br>
+                    <label>Accesorio 6: {{order.acc6}}</label><br>
+                    <label>Accesorio 7: {{order.acc7}}</label><br>
+                    <label>Accesorio 8: {{order.acc8}}</label>
+                 </div>
 
-                <label ng-show="orders.length==0">No tiene ordenes para esta maquina</label>
-                <table class="table" ng-show="orders.length>0">
-                    <thead>
-                    <tr>
-                        <th><a ng-click="sortBy('numero')">NUMERO <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+        </div>
 
-                        <th><a ng-click="sortBy('fing')">Fecha Inicio <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
-                        <th><a ng-click="sortBy('estd')"> Estado <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
-                        <th><a ng-click="sortBy('tecnico_name')"> Tecnico <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
-
-                        <th><a ng-click="sortBy('cuno')"> Cliente <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
-
-                        <th><a ng-click="sortBy('prd')"> Prioridad <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
-
-                        <th><a ng-click="sortBy('tipo')"> Tipo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="ord in orders | orderBy:propertyName:reverse">
-                        <td>{{ ord.numero }}</td>
-                        <td>{{ ord.fing }}</td>
-
-                        <td ng-show="ord.estd==0">PENDIENTE</td>
-                        <td ng-show="ord.estd==1">PROCESO</td>
-                        <td ng-show="ord.estd==2">CERRADA</td>
-                        <td>{{ord.tecnico_name}}</td>
-                        <td >{{ ord.cuno }}</td>
-
-
-                        <td ng-show="ord.prd==1">BAJA</td>
-                        <td ng-show="ord.prd==2">MEDIA</td>
-                        <td ng-show="ord.prd==3">ALTA</td>
-
-                        <td ng-show="ord.tipo==1">Garantía</td>
-                        <td ng-show="ord.tipo==2">Reparación</td>
-                        <td ng-show="ord.tipo==3">Presupuesto</td>
-                        <td ng-show="ord.tipo==4">Pre-Entrega</td>
-
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="row" ng-show="orders.length>0">
-                    <ul uib-pagination  total-items="rowOrders" previous-text="Anterior" next-text="Siguiente"  items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
-                </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn-karcher-sm pull-left " ng-click="cerrar()">Cerrar</button>

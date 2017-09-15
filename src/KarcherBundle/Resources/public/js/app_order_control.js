@@ -234,7 +234,22 @@ GSPEMApp.controller('ordersControl', function($filter,$scope,$http,$uibModal,toa
         vm.setPage(1);
     }
 
+    $scope.showOrder=function (order) {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'modal_orders.html',
+            controller: 'ModalOrders',
+            size:"lg",
+            resolve: {
+                order: function () {
+                    return order;
+                }
+            }
+        });
 
+        modalInstance.result.then(function (selectedItem) {
+        }, function (item) {
+        });
+    }
 
 
 });
@@ -362,5 +377,42 @@ GSPEMApp.controller('ModalBarCode', function($filter,$scope,$http, $uibModalInst
         popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
         popupWin.document.close();
     }
+
+});
+
+GSPEMApp.controller('ModalOrders', function($filter,$scope,$http, $uibModalInstance,toastr,order) {
+
+    $scope.order=order;
+
+    $scope.orderType=[];
+    $scope.orderPriori=[];
+    $scope.orderEstados=[];
+    $scope.orderUsersDist=[];
+
+
+    $scope.orderType.push({id:1,name:'Garantía'});
+    $scope.orderType.push({id:2,name:'Reparación'});
+    $scope.orderType.push({id:3,name:'Presupuesto'});
+    $scope.orderType.push({id:4,name:'Pre-Entrega'});
+
+    $scope.orderPriori.push({id:1,name:"Baja"});
+    $scope.orderPriori.push({id:2,name:"Media"});
+    $scope.orderPriori.push({id:3,name:"Alta"});
+
+    $scope.orderEstados.push({id:0,name:"Pendiente"});
+    $scope.orderEstados.push({id:1,name:"Proceso"});
+    $scope.orderUsersDist.push({id:0,name:"Sin Asignar"});
+
+
+    $scope.ordertype=$filter('filter')($scope.orderType,{"id":$scope.order.tipo})[0].name;
+    $scope.orderpri=$filter('filter')($scope.orderPriori,{"id":$scope.order.prd})[0].name;
+    $scope.orderest=$scope.orderEstados[0];
+    $scope.ordertec=$scope.orderUsersDist[0];
+
+
+    $scope.cerrar=function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
 
 });

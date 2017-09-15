@@ -27,29 +27,30 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th><a ng-click="sortBy('name')">Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                        <th><a ng-click="sortBy('fing')">Fecha Ingreso<i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                        <th><a ng-click="sortBy('fclose')">Fecha Cierre<i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+
+                        <th><a ng-click="sortBy('maquina')">Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
                         <th><a ng-click="sortBy('pn')"> Numero de Parte <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('maquina_barra')"> Codigo de Barra Maquina <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
 
-
-                        <th><a ng-click="sortBy('descript')">Descripción <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
-                        <th><a ng-click="sortBy('type')"> Grupo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('numero')"> Numero de Orden <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('pn')"> Cliente <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="material in materiales">
-                        <td>{{ material.name }}</td>
-                        <td >{{ material.pn }}</td>
-
-                        <td>{{ material.descript }}</td>
-                        <td>{{ material.type }}</td>
-
-
-
+                    <tr ng-repeat="order in orders">
+                        <td>{{ order.fing }}</td>
+                        <td>{{ order.fclose }}</td>
+                        <td>{{ order.maquina }}</td>
+                        <td>{{ order.prod_pn }}</td>
+                        <td>{{ order.maquina_barra }}</td>
+                        <td>{{ order.numero }}</td>
+                        <td>{{ order.cuno }}</td>
                         <td style="text-align: right">
-                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="showOrders(material)" ><i class="fa fa-list fa-2x"></i> </a>
+                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="showOrder(order)" ><i class="fa fa-search-plus fa-2x"></i> </a>
                         </td>
-
                     </tr>
                     </tbody>
                 </table>

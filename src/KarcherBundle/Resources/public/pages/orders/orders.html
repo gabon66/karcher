@@ -70,6 +70,8 @@
                         <th><a ng-click="sortBy('numero')">NUMERO <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
 
                         <th><a ng-click="sortBy('fing')">Fecha Inicio <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                        <th><a ng-click="sortBy('fclose')">Fecha Fin <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+
                         <th><a ng-click="sortBy('estd')"> Estado <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
                         <th><a ng-click="sortBy('tecnico_name')"> Tecnico <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
 
@@ -87,7 +89,7 @@
                     <tr ng-repeat="ord in orders | orderBy:propertyName:reverse">
                         <td>{{ ord.numero }}</td>
                         <td>{{ ord.fing }}</td>
-
+                        <td>{{ ord.fclose }}</td>
                         <td ng-show="ord.estd==0">PENDIENTE</td>
                         <td ng-show="ord.estd==1">PROCESO</td>
                         <td ng-show="ord.estd==2">CERRADA</td>
@@ -109,6 +111,8 @@
                         <td style="text-align: right">
                             <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="edit(ord)" ><i class="fa fa-edit fa-2x"></i> </a>
                             <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="showBarCode(ord.numero)" ><i class="fa fa-barcode fa-2x" aria-hidden="true"></i>
+                                <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="showOrder(ord)" ><i class="fa fa-search-plus fa-2x"></i> </a>
+
                             </a>
 
                         </td>

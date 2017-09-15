@@ -46,87 +46,62 @@
 
 <body class="nav-md" ng-controller='mainController'>
 
-<div class="row">
+<!-- Static navbar -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#home" class="navbar-brand" ng-click="active('home')">
+            <span></span>
+            </a>
+
+            <!--<a class="navbar-brand" href="#">Project name</a>-->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav menu-karcher-ul ">
+                <li class=""><a href="#">ORDENES</a></li>
+                <li class=""><a href="#">DISTRIBUCION</a></li>
+                <li class=""><a href="#">MAQUINAS</a></li>
+                <li class=""><a href="#">USUARIOS</a></li>
+                <li class=""><a href="#">CLIENTES</a></li>
+                <li class=""><a href="#">REPORTES</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class=""><a href="../navbar-fixed-top/">SALIR</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+<!--<div class="row">
     <div class="col-md-12 karcher-header-menu" >
         <div class="col-md-2" style="padding-right: 0px;padding-left: 0px;width: auto">
-            <a href="#home" ng-click="active('home')">
-                <img class="karcher-header-logo"   src="{{ asset('bundles/karcher/images/logo-white.png') }}" /></a>
+            <a href="#home" ng-click="active('home')"> <img class="karcher-header-logo"   src="{{ asset('bundles/karcher/images/logo-white.png') }}" /></a>
         </div>
         <div class="col-md-8" style="padding-left: 0px">
-                <ul class="menu-karcher-ul">
-                    <li class="menu-karcher-li"><a ng-click="active('ords')"  href="#orders">ORDENES</a></li>
-                    <li class="menu-karcher-li"><a ng-click="active('dist')"  href="#dist_abm">DISTRIBUCION</a></li>
-                    <li class="menu-karcher-li"><a ng-click="active('maq')" href="#materiales_abm">MAQUINAS</a></li>
-                    <li class="menu-karcher-li"><a ng-click="active('usr')" href="#usuarios_abm">USUARIOS</a></li>
-                    <li class="menu-karcher-li"><a ng-click="active('cli')" href="#clientes_abm">CLIENTES</a></li>
-                    <li class="menu-karcher-li"><a ng-click="active('report')" href="#report_orders_pend">REPORTES</a></li>
-                </ul>
+            <ul class="menu-karcher-ul">
+                <li class="menu-karcher-li"><a ng-click="active('ords')"  href="#orders">ORDENES</a></li>
+                <li class="menu-karcher-li"><a ng-click="active('dist')"  href="#dist_abm">DISTRIBUCION</a></li>
+                <li class="menu-karcher-li"><a ng-click="active('maq')" href="#materiales_abm">MAQUINAS</a></li>
+                <li class="menu-karcher-li"><a ng-click="active('usr')" href="#usuarios_abm">USUARIOS</a></li>
+                <li class="menu-karcher-li"><a ng-click="active('cli')" href="#clientes_abm">CLIENTES</a></li>
+                <li class="menu-karcher-li"><a ng-click="active('report')" href="#report_orders_pend">REPORTES</a></li>
+            </ul>
         </div>
         <div class="col-md-2" style="padding-left: 0px;text-align: right">
-            <ul class="menu-karcher-ul pull-rigth" style="padding-right: 0px">
-                <li class="menu-karcher-li" style="float: right">
-                    <a ng-click="active('ords')"  href="{{ path('logout') }}">SALIR</a></li>
+            <ul class="menu-karcher-ul pull-rigth">
+                <li class="menu-karcher-li" style="float: right"><a ng-click="active('ords')"  href="{{ path('logout') }}">SALIR</a></li>
             </ul>
         </div>
     </div>
-</div>
+</div>-->
 
-<div class="row" style="height: 50px" ng-if="menuActive">
-
-    <div class="col-md-12 karcher-header-second-menu"  ng-class="{'visible':menuActive!=null}" >
-
-        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='ords'"  ng-class="{'visible':menuActive=='ords'}" >
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='nueva'}" >
-                <a href="#neworder" ng-click="subitem='nueva'">NUEVA</a></li>
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='control'}" >
-                <a  ng-click="subitem='control'" href="#controlorders">CONTROL</a></li>
-
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='historic'}" >
-                <a  ng-click="subitem='historic'" href="#historicorders">HISTORICO</a></li>
-        </ul>
-
-
-        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='dist'"  ng-class="{'visible':menuActive=='dist'}" >
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='puntos'}" >
-                <a href="#dist_abm" ng-click="subitem='puntos'">PUNTOS DE DISTRIBUCION</a></li>
-        </ul>
-
-
-        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='maq'" ng-class="{'visible':menuActive=='maq'}" >
-                <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmti'}" >
-                    <a href="#materiales_typo_abm" ng-click="subitem='abmti'">GRUPOS MAQUINAS</a></li>
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmori'}" >
-                <a href="#materiales_origen_abm" ng-click="subitem='abmori'">Origen</a></li>
-
-                <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmmaq'}" >
-                    <a  ng-click="subitem='abmmaq'" href="#materiales_abm">Maquinas</a></li>
-            </ul>
-
-        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='usr'" ng-class="{'visible':menuActive=='usr'}" >
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmperfiles'}" >
-                <a href="#perfiles_abm" ng-click="subitem='abmperfiles'">Perfiles</a></li>
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmusers'}" >
-                <a  ng-click="subitem='abmusers'" href="#usuarios_abm">Usuarios</a></li>
-        </ul>
-
-        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='cli'" ng-class="{'visible':menuActive=='cli'}" >
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='abmclientes'}" >
-                <a  ng-click="subitem='abmclientes'" href="#clientes_abm">ABM de Clientes</a></li>
-        </ul>
-
-
-        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='report'" ng-class="{'visible':menuActive=='report'}" >
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep1'}" >
-                <a href="#report_orders_pend" ng-click="subitem='rep1'">ORDENES PENDIENTES</a></li>
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep2'}" >
-                <a  ng-click="subitem='rep2'" href="#report_orders_proc">ORDENES EN PROCESO</a></li>
-            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep3'}" >
-                <a  ng-click="subitem='rep3'" href="#report_orders_closed">ORDENES CERRADAS</a></li>
-        </ul>
-
-
-    </div>
-</div>
 <div class="body-content-karcher">
     <div ng-view></div>
 </div>

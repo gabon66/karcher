@@ -196,6 +196,10 @@ class Orden
      */
     private $fmod;
 
+    /**
+     * @ORM\Column(name="fclose", type="datetime")
+     */
+    private $fclose;
 
     /**
      * Get id
@@ -1045,5 +1049,29 @@ class Orden
     public function getPaisId()
     {
         return $this->paisId;
+    }
+
+    /**
+     * Set fclose
+     *
+     * @param \DateTime $fclose
+     *
+     * @return Orden
+     */
+    public function setFclose($fclose)
+    {
+        $this->fclose = $fclose;
+
+        return $this;
+    }
+
+    /**
+     * Get fclose
+     *
+     * @return \DateTime
+     */
+    public function getFclose()
+    {
+        return $this->fclose;
     }
 }

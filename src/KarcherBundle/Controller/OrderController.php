@@ -75,9 +75,12 @@ class OrderController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("o.* , us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
+            ->select("o.* ,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
             ->from("orden", "o")
             ->leftJoin("o","users","us","us.id = o.tecnico_id")
+            ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
+            ->leftJoin("o","distribuidor","dist","dist.id = o.dist_id")
+
             ->leftJoin("o","materiales","m","m.id = o.maquina_id")
             ->orderBy("o.numero","DESC")
             ->execute();
@@ -98,9 +101,10 @@ class OrderController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("o.* , us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
+            ->select("o.* ,us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec, us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
             ->from("orden", "o")
             ->leftJoin("o","users","us","us.id = o.tecnico_id")
+            ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
             ->leftJoin("o","materiales","m","m.id = o.maquina_id")
             ->where("o.maquina_id=".$material)
             ->orderBy("o.numero","DESC")
@@ -224,12 +228,16 @@ class OrderController extends Controller
             {
                 $orden->setTecnicoId($request->get("tecnico"));
                 $orden->setEstd($request->get("estado"));
+
+                if($request->get("estado")==2){
+                    $orden->setFclose(new \DateTime());
+                }
             }else{
                 // pasa a pendiente sin tecnico y estado pendiente
                 $orden->setTecnicoId(0);
                 $orden->setEstd(0);
             }
-
+            $orden->setFmod(new \DateTime());
             $orden->setObs($request->get("obs"));
         }
 

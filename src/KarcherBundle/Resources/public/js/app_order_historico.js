@@ -27,7 +27,7 @@ GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,t
     $scope.currentPage = 1
     $scope.numPerPage = 8
     $scope.maxSize = 5;
-    $scope.rowMateriales=0;
+    $scope.rowOrders=0;
 
     $scope.orders=[];
     $scope.orders.push({id:"asd"});
@@ -41,8 +41,8 @@ GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,t
         var begin = (($scope.currentPage - 1) * $scope.numPerPage)
             , end = begin + $scope.numPerPage;
 
-        if($scope.materiales_ori){
-            $scope.materiales = $scope.materiales_ori.slice(begin, end);
+        if($scope.orders_ori){
+            $scope.orders = $scope.orders_ori.slice(begin, end);
         }
 
     });
@@ -59,20 +59,22 @@ GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,t
     $scope.cargando=true;
 
 
-    var getMateriales = function() {
-        $http.get(Routing.generate('getmateriales')
-        ).then(function (materiales) {
-            $scope.materiales=materiales.data;
-            $scope.materiales_ori=materiales.data;
+    var getOrders = function() {
+        $http.get(Routing.generate('getorders')
+        ).then(function (data) {
             $scope.cargando=false;
-            $scope.rowMateriales=$scope.materiales_ori.length;
-            if($scope.materiales_ori){
-                $scope.materiales = $scope.materiales_ori.slice(begin, end);
-            }
+            $scope.orders=data.data;
+            $scope.orders_ori=data.data;
+            $scope.rowOrders=$scope.orders_ori.length;
+            console.log($scope.orders);
 
+
+            if($scope.orders_ori){
+                $scope.orders = $scope.orders_ori.slice(begin, end);
+            }
         });
     };
-    getMateriales();
+    getOrders();
 
 
 
@@ -85,24 +87,24 @@ GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,t
 
         if ($scope.filtromaterial!=undefined){
 
-            $scope.materiales=$filter('filter')($scope.materiales_ori,$scope.filtromaterial);
+            $scope.orders=$filter('filter')($scope.orders_ori,$scope.filtromaterial);
             if ($scope.filtromaterial!=""){
-                $scope.rowMateriales=$scope.materiales.length;
+                $scope.rowOrders=$scope.orders.length;
 
                 var begin = ((1 - 1) * $scope.numPerPage)
                     , end = begin + $scope.numPerPage;
 
-                if($scope.materiales){
-                    $scope.materiales = $scope.materiales.slice(begin, end);
+                if($scope.orders){
+                    $scope.orders = $scope.orders.slice(begin, end);
                 }
             }else {
-                $scope.rowMateriales=$scope.materiales_ori.length;
+                $scope.rowOrders=$scope.orders_ori.length;
 
                 var begin = ((1 - 1) * $scope.numPerPage)
                     , end = begin + $scope.numPerPage;
 
-                if($scope.materiales_ori){
-                    $scope.materiales = $scope.materiales_ori.slice(begin, end);
+                if($scope.orders_ori){
+                    $scope.orders = $scope.orders_ori.slice(begin, end);
                 }
             }
         }
@@ -114,14 +116,14 @@ GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,t
 
 
 
-    $scope.showOrders=function (maquina) {
+    $scope.showOrder=function (order) {
         var modalInstance = $uibModal.open({
             templateUrl: 'modal_orders.html',
             controller: 'ModalOrders',
             size:"lg",
             resolve: {
-                maquina: function () {
-                    return maquina;
+                order: function () {
+                    return order;
                 }
             }
         });
@@ -145,47 +147,35 @@ GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,t
 
 });
 
-GSPEMApp.controller('ModalOrders', function($filter,$scope,$http, $uibModalInstance,toastr,maquina) {
-    $scope.maquina=maquina;
-    $scope.orders=0;
+GSPEMApp.controller('ModalOrders', function($filter,$scope,$http, $uibModalInstance,toastr,order) {
 
-    $scope.currentPage = 1
-    $scope.numPerPage = 6
-    $scope.maxSize = 5;
-    $scope.rowOrders=0;
+    $scope.order=order;
 
-    var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-        , end = begin + $scope.numPerPage;
-    $scope.$watch('currentPage', function() {
-        console.log("test");
-
-        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-            , end = begin + $scope.numPerPage;
-
-        if($scope.orders_ori){
-            $scope.orders = $scope.orders_ori.slice(begin, end);
-        }
-
-    });
-
-    $scope.cargando=true;
-    var getOrders = function() {
-        $http.get(Routing.generate('getordersbymaq')+"/"+$scope.maquina.id
-        ).then(function (data) {
-            $scope.cargando=false;
-            $scope.orders=data.data;
-            $scope.orders_ori=data.data;
-            $scope.rowOrders=$scope.orders_ori.length;
-            console.log($scope.orders);
+    $scope.orderType=[];
+    $scope.orderPriori=[];
+    $scope.orderEstados=[];
+    $scope.orderUsersDist=[];
 
 
-            if($scope.orders_ori){
-                $scope.orders = $scope.orders_ori.slice(begin, end);
-            }
-            //console.log($scope.orders);
-        });
-    };
-    getOrders();
+    $scope.orderType.push({id:1,name:'Garantía'});
+    $scope.orderType.push({id:2,name:'Reparación'});
+    $scope.orderType.push({id:3,name:'Presupuesto'});
+    $scope.orderType.push({id:4,name:'Pre-Entrega'});
+
+    $scope.orderPriori.push({id:1,name:"Baja"});
+    $scope.orderPriori.push({id:2,name:"Media"});
+    $scope.orderPriori.push({id:3,name:"Alta"});
+
+    $scope.orderEstados.push({id:0,name:"Pendiente"});
+    $scope.orderEstados.push({id:1,name:"Proceso"});
+    $scope.orderUsersDist.push({id:0,name:"Sin Asignar"});
+
+
+    $scope.ordertype=$filter('filter')($scope.orderType,{"id":$scope.order.tipo})[0].name;
+    $scope.orderpri=$filter('filter')($scope.orderPriori,{"id":$scope.order.prd})[0].name;
+    $scope.orderest=$scope.orderEstados[0];
+    $scope.ordertec=$scope.orderUsersDist[0];
+
 
     $scope.cerrar=function () {
         $uibModalInstance.dismiss('cancel');
