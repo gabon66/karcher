@@ -327,6 +327,12 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
             controller  : 'reportOrders'
         })
 
+        .when('/push', {
+            templateUrl : '../bundles/karcher/pages/abms/abm_push.html',
+            controller  : 'abmPush'
+        })
+
+
         .otherwise({
             redirectTo: '/'
         });
@@ -345,7 +351,7 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
 
 });
 
-GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
+GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$uibModal) {
 
     $scope.parseInt = parseInt;
     $scope.showperfiledit=false;
@@ -425,7 +431,10 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
             $scope.subitem='rep3';
             break;
 
-
+        case 'push':
+            $scope.menuActive='push';
+            $scope.subitem='push';
+            break;
 
         case 'dist_abm':
             $scope.menuActive='dist';
@@ -454,84 +463,41 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http) {
         if(val=='dist') $scope.subitem='puntos';
     }
 
-    var getStockMaestro = function() {
-        $http.get(Routing.generate('get_stock')
+
+    var getMyMessages = function() {
+        $http.get(Routing.generate('getmimensajes')
         ).then(function (resp) {
-            $scope.stockMaestro=resp.data;
-
-            for (var a = 0; a < $scope.stockMaestro.length; a++) {
-                $scope.stockMaestro[a].referencia=angular.fromJson($scope.stockMaestro[a].referencia);
-            }
-            $scope.cargando=false;
-
+            $scope.mensajes=resp.data;
+            console.log($scope.mensajes);
         });
     };
+    getMyMessages();
 
-
-
-
-    var getStock = function() {
-        $http.get(Routing.generate('get_stock')
-        ).then(function (resp) {
-
-            $scope.cargando=false;
-            $scope.stock=[];
-            $scope.stock_temp=resp.data;
-            for (var a = 0; a < $scope.stock_temp.length; a++) {
-                if(parseInt($scope.stock_temp[a].stock) < parseInt($scope.stock_temp[a].umbralmin)){
-                    $scope.stock.push($scope.stock_temp[a]);
+    $scope.showMensaje=function (men) {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'modal_mensaje.html',
+            controller: 'ModelMessage',
+            resolve: {
+                men: function () {
+                    return men;
                 }
             }
-            for (var a = 0; a < $scope.stock.length; a++) {
-                $scope.stock[a].referencia=angular.fromJson($scope.stock[a].referencia);
-            }
-            console.log($scope.stock);
         });
-    };
 
-
-    var getMyStock = function() {
-        $http.get(Routing.generate('get_stock_user')
-        ).then(function (stock) {
-            $scope.stock=stock.data;
-            $scope.cargando=false;
-            for (var a = 0; a < $scope.stock.length; a++) {
-                $scope.stock[a].referencia=angular.fromJson($scope.stock[a].referencia);
-            }
+        modalInstance.result.then(function (selectedItem) {
+        }, function (item) {
         });
+    }
+
+});
+
+
+GSPEMApp.controller('ModelMessage', function($filter,$scope,$http, $uibModalInstance, men,toastr) {
+    $scope.men=men;
+
+    $scope.cerrar=function () {
+        $uibModalInstance.dismiss('cancel');
     };
-
-
-    var getPerfil = function() {
-        $http.get(Routing.generate('get_profile')
-        ).then(function (resp) {
-
-            if(resp.data.user.level==1){
-                $scope.isadmin=true;
-            }
-            $scope.access=angular.fromJson(resp.data.profile.access);
-            //if($scope.access.oper.all){
-                // valido que tenga acceso al stock maestro para ver las alertas
-                if($scope.isadmin){
-                    //getStock();
-                    //getStockMaestro();
-                    $scope.title_my_stock="Stock Maestro";
-                }else {
-                    //getMyStock();
-                    $scope.title_my_stock="Mi Stock";
-                }
-                $scope.showperfiledit=true;
-
-            //}else {
-            //    $scope.cargando=false;
-            //}
-
-
-        });
-    };
-   // getPerfil();
-
-
 });
 
 GSPEMApp.controller('aboutController', function($scope) {

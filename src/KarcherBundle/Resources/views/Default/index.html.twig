@@ -59,6 +59,7 @@
                     <li class="menu-karcher-li"><a ng-click="active('maq')" href="#materiales_abm">MAQUINAS</a></li>
                     <li class="menu-karcher-li"><a ng-click="active('usr')" href="#usuarios_abm">USUARIOS</a></li>
                     <li class="menu-karcher-li"><a ng-click="active('cli')" href="#clientes_abm">CLIENTES</a></li>
+                    <li class="menu-karcher-li"><a ng-click="active('push')" href="#push">PUSH</a></li>
                     <li class="menu-karcher-li"><a ng-click="active('report')" href="#report_orders_pend">REPORTES</a></li>
                 </ul>
         </div>
@@ -114,7 +115,10 @@
                 <a  ng-click="subitem='abmclientes'" href="#clientes_abm">ABM de Clientes</a></li>
         </ul>
 
-
+        <ul class="sub-menu-karcher-ul" ng-if="menuActive=='push'" ng-class="{'visible':menuActive=='push'}" >
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='push'}" >
+                <a  ng-click="subitem='push'" href="#push">PUSH Y NOVEDADES</a></li>
+        </ul>
         <ul class="sub-menu-karcher-ul" ng-if="menuActive=='report'" ng-class="{'visible':menuActive=='report'}" >
             <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep1'}" >
                 <a href="#report_orders_pend" ng-click="subitem='rep1'">ORDENES PENDIENTES</a></li>
@@ -223,6 +227,7 @@
 
 
     <script src="{{asset('bundles/karcher/js/app_perfil.js')}}"></script>
+    <script src="{{asset('bundles/karcher/js/app_push.js')}}"></script>
     <script src="{{asset('bundles/karcher/js/app_tareas.js')}}"></script>
     <script src="{{asset('bundles/karcher/js/app_stock_maestro.js')}}"></script>
     <script src="{{asset('bundles/karcher/js/app_stock_mov.js')}}"></script>

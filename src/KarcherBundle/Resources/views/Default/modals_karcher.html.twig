@@ -625,4 +625,38 @@
         <button type="button" class="btn-karcher-sm pull-left " ng-click="cerrar()">Cerrar</button>
     </div>
 </script>
+
+<script type="text/ng-template" id="modal_mensaje.html">
+    <div class="modal-header">
+        <h3>Mensaje de  : {{men.origen }}</h3>
+        <h4>Fecha : {{men.date | date }}</h4>
+
+    </div>
+    <div class="modal-body">
+            <fieldset class="form-horizontal">
+
+
+            <div class="form-group has-success has-feedback">
+                <label for="acc8" class="col-sm-3 control-label label-form">Asunto</label>
+                <div class="col-sm-9">
+                    <input  ng-model="men.asunto" disabled class="form-control" id="acc8">
+                </div>
+            </div>
+            <div class="form-group has-success has-feedback">
+                <label for="obs" class="col-sm-3 control-label label-form">Mensaje:</label>
+                <div class="col-sm-9">
+                    <textarea rows="3" id="obs"  ng-model="men.mensaje" disabled class="form-control"></textarea>
+                </div>
+            </div>
+
+        </fieldset>
+</div>
+<div class="modal-footer">
+        <button type="button" class="btn-karcher-sm pull-left " ng-click="cerrar()">Cerrar</button>
+    </div>
+
+    </script>
+
+
+
 {% endverbatim %}

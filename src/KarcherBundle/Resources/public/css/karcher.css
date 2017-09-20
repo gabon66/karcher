@@ -22,6 +22,10 @@
     border-bottom: 3px solid #ededed
 }
 
+.karcher-box-border{
+    border: 3px solid #ededed;
+    height: 255px;
+}
 
 
 .karcher-header-logo{
@@ -403,4 +407,8 @@ ul.sub-menu li{
     margin-left: 45px;
     margin-right: 1.5em;
     background: url("../images/logo-white.png") no-repeat 0 50%;
+}
+.h2-title{
+    font-size: 16px;
+    font-weight: bold;
 }

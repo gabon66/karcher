@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-4 karcher-box-border">
+        <fieldset class="form-horizontal">
+
+            <div class="form-group has-success has-feedback">
+                <label for="acc8" class="col-sm-3 control-label label-form"></label>
+                <div class="col-sm-7">
+                    <h2 class="h2-title">Nuevo Mensaje</h2>
+                </div>
+            </div>
+
+            <div class="form-group has-success has-feedback">
+                <label for="acc8" class="col-sm-3 control-label label-form">Asunto</label>
+                <div class="col-sm-9">
+                    <input  ng-model="asunto" class="form-control" id="acc8">
+                </div>
+            </div>
+            <div class="form-group has-success has-feedback">
+                <label for="obs" class="col-sm-3 control-label label-form">Mensaje:</label>
+                <div class="col-sm-9">
+                    <textarea rows="3" id="obs"  ng-model="mensaje" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group has-success has-feedback">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                    <button type="button"  ng-click="sendMensaje()" class="btn-karcher-sm" >Enviar</button>
+                </div>
+
+
+
+            </div>
+
+        </fieldset>
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-8 karcher-box-border" style="border-left: 0px;padding-left: 0px;padding-right: 0px;overflow: auto">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Fecha </th>
+                <th>Origen</th>
+                <th>Asunto</th>
+                <th>Mensaje</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="men in mensajes">
+
+                <td class="col-md-4">{{ men.date | date   }} </td>
+                <td class="col-md-2">{{ men.origen  }} </td>
+                <td class="col-md-3">{{ men.asunto }} </td>
+                <td class="col-md-4">{{ men.mensaje | limitTo: 20}} </td>
+                <td>
+                    <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="showMensaje(men)" ><i class="fa fa-search-plus fa-2x"></i> </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
