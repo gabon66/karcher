@@ -18,6 +18,9 @@
                              <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Barra Maquina / Barra Orden /Nombre / N° Parte / Descripción">
                         </div>
                     </div>
+                    <div class="col-lg-6" style="text-align: right">
+                        <button  type="button" ng-click="exportar('historico')" class="btn-karcher-sm pull-right"  style="margin-top: 15px">EXPORTAR</button>
+                    </div>
 
                 </div>
             </div>
@@ -59,5 +62,37 @@
                 </div>
             </div>
         </div>
+
+        <div class="x_content" style="display:none" id="exportable">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th><a ng-click="sortBy('fing')">Fecha Ingreso<i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                    <th><a ng-click="sortBy('fclose')">Fecha Cierre<i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+
+                    <th><a ng-click="sortBy('maquina')">Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                    <th><a ng-click="sortBy('pn')"> Numero de Parte <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                    <th><a ng-click="sortBy('maquina_barra')"> Codigo de Barra Maquina <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                    <th><a ng-click="sortBy('numero')"> Numero de Orden <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                    <th><a ng-click="sortBy('pn')"> Cliente <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="order in orders_ori">
+                    <td>{{ order.fing }}</td>
+                    <td>{{ order.fclose }}</td>
+                    <td>{{ order.maquina }}</td>
+                    <td>{{ order.prod_pn }}</td>
+                    <td>{{ order.maquina_barra }}</td>
+                    <td>{{ order.numero }}</td>
+                    <td>{{ order.cuno }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     </div>
 </div>

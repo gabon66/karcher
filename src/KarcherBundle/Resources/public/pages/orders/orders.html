@@ -51,11 +51,15 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="form-group has-success has-feedback">
                             <label>Filtro por Contenido</label>
                              <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Barra Orden / Numero / Fecha / Tecnico / Maquina">
                         </div>
+                    </div>
+
+                    <div class="col-lg-1" style="text-align: right">
+                        <button  type="button" ng-click="exportar('control_ordenes')" class="btn-karcher-sm pull-right"  style="margin-top: 15px">EXPORTAR</button>
                     </div>
 
                 </div>
@@ -111,9 +115,7 @@
                             <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="edit(ord)" ><i class="fa fa-edit fa-2x"></i> </a>
                             <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="showBarCode(ord.numero)" ><i class="fa fa-barcode fa-2x" aria-hidden="true"></i>
                                 <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="showOrder(ord)" ><i class="fa fa-search-plus fa-2x"></i> </a>
-
                             </a>
-
                         </td>
                     </tr>
                     </tbody>
@@ -122,6 +124,57 @@
                     <ul uib-pagination  total-items="rowOrders" previous-text="Anterior" next-text="Siguiente"  items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
                 </div>
             </div>
+
+            <div class="x_content" style="display:none" id="exportable">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><a ng-click="sortBy('numero')">NUMERO <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+
+                        <th><a ng-click="sortBy('fing')">Fecha Inicio <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                        <th><a ng-click="sortBy('fclose')">Fecha Fin <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+
+                        <th><a ng-click="sortBy('estd')"> Estado <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('tecnico_name')"> Tecnico <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('cuno')"> Cliente <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('prod_pn')">Maquina <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('prd')"> Prioridad <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('tipo')"> Tipo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="ord in orders_ori | orderBy:propertyName:reverse">
+                        <td>{{ ord.numero }}</td>
+                        <td>{{ ord.fing }}</td>
+                        <td>{{ ord.fclose }}</td>
+                        <td ng-if="ord.estd==0">PENDIENTE</td>
+                        <td ng-if="ord.estd==1">PROCESO</td>
+                        <td ng-if="ord.estd==2">CERRADA</td>
+                        <td>{{ord.tecnico_name}}</td>
+                        <td>{{ ord.cuno }}</td>
+                        <td>{{ ord.prod_pn }} - {{ord.maquina | limitTo : 12 : 0}}</td>
+
+
+                        <td ng-if="ord.prd==1">BAJA</td>
+                        <td ng-if="ord.prd==2">MEDIA</td>
+                        <td ng-if="ord.prd==3">ALTA</td>
+
+                        <td ng-if="ord.tipo==1">Garantía</td>
+                        <td ng-if="ord.tipo==2">Reparación</td>
+                        <td ng-if="ord.tipo==3">Presupuesto</td>
+                        <td ng-if="ord.tipo==4">Pre-Entrega</td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>

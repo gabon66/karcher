@@ -77,6 +77,14 @@ GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,t
     getOrders();
 
 
+    $scope.exportar=function (name) {
+        debugger
+        var blob = new Blob([document.getElementById('exportable').innerHTML], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+        });
+        saveAs(blob, "Reporte_"+name+".xls");
+    };
+
 
     $scope.numPages = function () {
         return Math.ceil($scope.orders.length / $scope.numPerPage);

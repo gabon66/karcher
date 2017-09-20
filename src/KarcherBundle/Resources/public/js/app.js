@@ -353,6 +353,39 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
 
 GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$uibModal) {
 
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
+
+    $scope.pageChanged = function() {
+        //$log.log('Page changed to: ' + $scope.currentPage);
+    };
+
+    $scope.maxSize = 5;
+    $scope.bigTotalItems = 175;
+    $scope.bigCurrentPage = 1;
+
+    $scope.filteredTodos = []
+    $scope.currentPage = 1
+    $scope.numPerPage = 6
+    $scope.maxSize = 5;
+    $scope.rowMessages=0;
+
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+
+    $scope.$watch('currentPage', function() {
+        console.log("test");
+
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+            , end = begin + $scope.numPerPage;
+
+        if($scope.mensajes_ori){
+            $scope.mensajes = $scope.mensajes_ori.slice(begin, end);
+        }
+
+    });
+
     $scope.parseInt = parseInt;
     $scope.showperfiledit=false;
     $scope.cargando=true;
@@ -368,7 +401,6 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$u
     switch (url){
 
         case 'home':
-
             $scope.menuActive=null;
             $scope.subitem=false;
             break;
@@ -439,8 +471,6 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$u
         case 'dist_abm':
             $scope.menuActive='dist';
             break;
-
-
         case '':
             $scope.menuActive=false;
             $scope.subitem=false;
@@ -467,8 +497,15 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$u
     var getMyMessages = function() {
         $http.get(Routing.generate('getmimensajes')
         ).then(function (resp) {
-            $scope.mensajes=resp.data;
-            console.log($scope.mensajes);
+            $scope.mensajes_ori=resp.data;
+
+
+            $scope.rowMessages=$scope.mensajes_ori.length;
+
+            if(resp.data){
+                $scope.mensajes = resp.data.slice(begin, end);
+            }
+
         });
     };
     getMyMessages();
