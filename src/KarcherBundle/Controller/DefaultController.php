@@ -66,9 +66,8 @@ class DefaultController extends Controller
 
 
         $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("dist.id as id ,p.name as pais ,p.id as pais_id,dist.tel as tel , dist.contacto as contacto, dist.email as email , dist.web as web, dist.name as name , dist.descript as descript , dist.dir as dir , dist.coords as coords ,CONCAT(us.last_name ,' ' ,us.first_name ) as admin,us.mail as mail , us.phone as phone,us.disabled as disabled,us.level as level")
+            ->select("dist.id as id ,p.name as pais ,p.id as pais_id,dist.tel as tel , dist.contacto as contacto, dist.email as email , dist.web as web, dist.name as name , dist.descript as descript , dist.dir as dir , dist.coords as coords")
             ->from("KARCHER.distribuidor", "dist")
-            ->leftJoin("dist", "KARCHER.users", "us", "us.id_distribuidor = dist.id ")
             ->leftJoin("dist","paises","p","dist.pais=p.id")
             ->orderBy("name")
             ->execute();
@@ -79,7 +78,6 @@ class DefaultController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
 
         return new Response($serializer->serialize($stmt->fetchAll(),"json"),200,array('Content-Type'=>'application/json'));
-
     }
 
     /**

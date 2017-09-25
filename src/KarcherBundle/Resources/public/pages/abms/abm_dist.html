@@ -37,10 +37,13 @@
                     <tr ng-repeat="dist in distribuidores | orderBy:propertyName:reverse">
 
                         <td>{{ dist.name | limitTo :12:0  }} </td>
-                        <td ng-if="dist.admin!=null">
+                        <!--<td ng-if="dist.admin!=null">
                             <a  class="link-karcher-forgot" ng-click="showAdmin(dist)">> {{ dist.admin | limitTo :20:0 }} </a>
                         </td>
                         <td ng-if="!dist.admin!=null">
+                            {{ dist.contacto | limitTo :20:0  }}
+                        </td>-->
+                        <td>
                             {{ dist.contacto | limitTo :20:0  }}
                         </td>
                         <td>{{ dist.tel  | limitTo :20:0 }} </td>
