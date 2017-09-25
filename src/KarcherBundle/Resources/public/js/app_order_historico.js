@@ -5,6 +5,9 @@
 
 GSPEMApp.controller('ordersHistorico', function($filter,$scope,$http,$uibModal,toastr,MovPend) {
 
+    $scope.propertyName='fing';
+    $scope.reverse=true;
+
     $scope.sortBy = function(propertyName) {
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;

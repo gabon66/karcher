@@ -40,22 +40,25 @@ GSPEMApp.controller('abmClientes', function($rootScope,$filter,$scope,$http,$uib
 
     $scope.deleteCli= function (id) {
         //console.log("delete");
-        $http({
-            url: Routing.generate('deleteclient')+"/"+id,
-            method: "DELETE",
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            transformRequest: function (obj) {
-                var str = [];
-                for (var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                return str.join("&");
-            }
-        }).then(function (response) {
-                getClients();
-            },
-            function (response) { // optional
-                // failed
-            });
+        var result = confirm("Desea eliminar este registro?");
+        if (result) {
+            $http({
+                url: Routing.generate('deleteclient') + "/" + id,
+                method: "DELETE",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function (obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                }
+            }).then(function (response) {
+                    getClients();
+                },
+                function (response) { // optional
+                    // failed
+                });
+        }
     };
 
 });

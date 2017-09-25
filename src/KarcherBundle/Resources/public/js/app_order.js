@@ -8,6 +8,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
 
 
     var cleanAll=function () {
+        $scope.orderUsersDist=[];
         $scope.newNumOrder="";
         $scope.distName="";
         $scope.userName="";
@@ -57,6 +58,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     $scope.orderType.push({id:2,name:'Reparación'});
     $scope.orderType.push({id:3,name:'Presupuesto'});
     $scope.orderType.push({id:4,name:'Pre-Entrega'});
+    $scope.orderType.push({id:5,name:'Prospecto'});
 
     $scope.orderPriori.push({id:1,name:"Baja"});
     $scope.orderPriori.push({id:2,name:"Media"});
@@ -109,6 +111,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
             if (response.data.material!=null){
                 $scope.maquina=response.data.material;
                 $scope.maquina_name=$scope.maquina.name;
+                $scope.modelo=$scope.maquina.name;
                 $scope.maquina_id=$scope.maquina.id
                 $scope.parte=$scope.maquina.pn;
             }
@@ -141,12 +144,31 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
                     $scope.distId =orden.data.dist.id;
 
                     $scope.userName=orden.data.user.lastName + " "+orden.data.user.name;
-
+                    $scope.userName_id=orden.data.user.id;
+                    $scope.user_level=orden.data.user.level;
                     //agrego los usuarios del centro de dist.
-                    for (var e = 0; e < orden.data.usersDist.length; e++) {
-                        $scope.orderUsersDist.push({"id": orden.data.usersDist[e].id,
-                            "name":orden.data.usersDist[e].lastName + " "+orden.data.usersDist[e].name})
+                    if (orden.data.usersDist){
+                        for (var e = 0; e < orden.data.usersDist.length; e++) {
+                            $scope.orderUsersDist.push({"id": orden.data.usersDist[e].id,
+                                "name":orden.data.usersDist[e].lastName + " "+orden.data.usersDist[e].name})
+                        }
+                    }else {
+                        // sin usuarios , es 1 solo user por dist , puede ser 1 tecnico o 1 persona trabajndo
+                        $scope.orderUsersDist.push({"id": 1,
+                            "name":"Autoasignar"})
                     }
+
+                    // validaciones para vendedor:
+                    if($scope.user_level==6){
+                        //asigno prospecto
+                        $scope.ordertype=$scope.orderType[4];
+                        $scope.orderUsersDist=[];
+                        $scope.orderUsersDist.push({"id":$scope.userName_id,
+                            "name":$scope.userName})
+                        $scope.ordertec=$scope.orderUsersDist[0];
+                    }
+
+
                 }else {
                     $scope.ordenValid=false;
                     $scope.errorMsg="No tiene una dirección valida asiganada a su punto de distribución";
@@ -174,6 +196,11 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
             $scope.step=2;
             toastr.error('Complete los datos del cliente', 'Orden');
             return false;
+        }
+
+
+        if($scope.ordertec.name=='Autoasignar'){
+            $scope.ordertec.id=$scope.userName_id;
         }
 
         $http({

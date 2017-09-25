@@ -52,10 +52,7 @@
         <h3>Cliente</h3>
     </div>
     <div class="modal-body">
-     <div class="modal-body">
         <fieldset>
-
-
             <div class="form-group has-success has-feedback">
                 <input
                         ng-model="name"
@@ -107,68 +104,15 @@
                         placeholder="Observaciones">
             </div>
 
-
         </fieldset>
     </div>
 
-    </div>
     <div class="modal-footer">
         <button class="btn-karcher-sm" ng-click="saveCliente()">GUARDAR</button>
     </div>
 </script>
 
-<script type="text/ng-template" id="dist_modal.html">
-    <div class="modal-header">
-        <h3>Distribuidor</h3>
-    </div>
-    <div class="modal-body">
-     <div class="modal-body">
-        <fieldset>
 
-
-            <div class="form-group has-success has-feedback">
-                <input
-                        ng-model="name"
-                        class="form-control"
-                        placeholder="Nombre(*)">
-            </div>
-
-            <div class="form-group has-success has-feedback">
-                <input
-                        ng-model="descript"
-                        class="form-control"
-                        placeholder="Descripción">
-            </div>
-
-            <div class="form-group has-success has-feedback">
-                <input
-                        ng-model="email"
-                        class="form-control"
-                        placeholder="Email">
-            </div>
-
-                        <div class="form-group has-success has-feedback">
-                <input
-                        ng-model="web"
-                        class="form-control"
-                        placeholder="Web">
-            </div>
-
-            <div class="form-group has-success has-feedback">
-            <button ng-show="id!=0" ng-click="editing=true" class="btn-karcher-sm">Editar</button>
-            <label ng-show="!editing" >{{ direccion_str  }}</label>
-            <input ng-show="editing" type="text" ng-model="direccion" placeholder="Ingrese direccion aqui (*)" class="form-control" g-places-autocomplete ng-model="myScopeVar" />
-              <!--  <input type="text"  id="Autocomplete" placeholder="Ingrese direccion aqui " class="form-control" ng-autocomplete="result1" ng-change="placeChanged()" on-place-changed="placeChanged(place)" details="details1" options="options1"/>-->
-            </div>
-
-        </fieldset>
-    </div>
-
-    </div>
-    <div class="modal-footer">
-        <button class="btn-karcher-sm" ng-click="saveDist()">GUARDAR</button>
-    </div>
-</script>
 
 <script type="text/ng-template" id="newUserKarcher.html">
     <div class="modal-header">
@@ -658,5 +602,114 @@
     </script>
 
 
+<script type="text/ng-template" id="pais_form.html">
+    <div class="modal-header">
+        <h3>Pais</h3>
+    </div>
+    <div class="modal-body">
+        <fieldset>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="name"
+                        disabled
+                        class="form-control"
+                        placeholder="Nombre">
+            </div>
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="descript"
+                        class="form-control"
+                        placeholder="Descripción">
+            </div>
+
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn-karcher-sm pull-right" ng-click="savePais()">Guardar</button>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="dist_modal.html">
+    <div class="modal-header">
+        <h3>Distribuidor  </h3>
+    </div>
+    <div class="modal-body">
+            <fieldset>
+            <div class="col-md-6" style="padding-left: 0px">
+
+                        <div class="form-group has-success has-feedback">
+                            <input
+                                ng-model="name"
+                                class="form-control"
+                                placeholder="Nombre(*)">
+                        </div>
+
+
+                        <div class="form-group has-success has-feedback">
+                            <input
+                                ng-model="contacto"
+                                class="form-control"
+                                placeholder="Contacto">
+                        </div>
+
+                        <div class="form-group has-success has-feedback">
+                            <input
+                                ng-model="email"
+                                class="form-control"
+                                placeholder="Email">
+                        </div>
+
+                        <div class="form-group has-success has-feedback">
+                            <button ng-show="id!=0" ng-click="editing=true" class="btn-karcher-sm">Editar</button>
+                            <label ng-show="!editing" >{{ direccion_str  }}</label>
+                            <input ng-show="editing" type="text" ng-model="direccion" placeholder="Ingrese direccion aqui (*)" class="form-control" g-places-autocomplete ng-model="myScopeVar" />
+                              <!--  <input type="text"  id="Autocomplete" placeholder="Ingrese direccion aqui " class="form-control" ng-autocomplete="result1" ng-change="placeChanged()" on-place-changed="placeChanged(place)" details="details1" options="options1"/>-->
+                        </div>
+                        <span ng-show="alertDist" style="color: red">No tiene direccion google map cargada</span>
+
+            </div>
+
+            <div class="col-md-6" style="padding-left: 0px;padding-right: 0px" >
+                        <div class="form-group has-success has-feedback">
+                        <input
+                                ng-model="descript"
+                                class="form-control"
+                                placeholder="Descripción">
+                        </div>
+
+
+                        <div class="form-group has-success has-feedback">
+                            <input
+                                    ng-model="tel"
+                                    class="form-control"
+                                    placeholder="Telefono">
+                        </div>
+
+
+                         <div class="form-group has-success has-feedback">
+                            <input
+                                ng-model="web"
+                                class="form-control"
+                                placeholder="Web">
+                        </div>
+
+
+                        <div class="form-group has-success has-feedback">
+                                <input
+                                ng-model="obs"
+                                class="form-control"
+                                placeholder="Observaciones">
+                        </div>
+
+            </div>
+
+</fieldset>
+    </div>
+    <div class="modal-footer">
+                <button class="btn-karcher-sm" ng-click="saveDist()">GUARDAR</button>
+    </div>
+</script>
 
 {% endverbatim %}

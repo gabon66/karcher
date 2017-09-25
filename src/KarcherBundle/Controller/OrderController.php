@@ -54,8 +54,16 @@ class OrderController extends Controller
             // traigo todo los datos del centro disitribucion
             $dist=$repoDist->findOneBy(array("id"=>$user->getIdDistribuidor()));
 
-            // traigo todos los usuarios que pertencen a esa sursal
-            $users=$repoUser->findBy(array("idDistribuidor"=>$user->getIdDistribuidor()));
+            // traigo todos los usuarios que pertencen a esa sucursal --
+            // si soy a
+            if($user->getLevel()==5){
+                // es tecnico asi que solo puede su propio user
+                $users=null;
+            }else{
+                // es administrador al menos , entoces ve todos los tecs
+                $users=$repoUser->findBy(array("idDistribuidor"=>$user->getIdDistribuidor()));
+            }
+
         }
 
 
@@ -80,8 +88,33 @@ class OrderController extends Controller
             ->leftJoin("o","users","us","us.id = o.tecnico_id")
             ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
             ->leftJoin("o","distribuidor","dist","dist.id = o.dist_id")
-
             ->leftJoin("o","materiales","m","m.id = o.maquina_id")
+            ->where("o.tipo!=5") // fuera las prospecto
+            ->orderBy("o.numero","DESC")
+            ->execute();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($stmt->fetchAll(),"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+    /**
+     * @Method({"GET"})
+     * @Route("/karcher/ordersprosc",options = { "expose" = true },name = "getordersprosc")
+     */
+    public function getOrdersProscAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $stmt = $em->getConnection()->createQueryBuilder()
+            ->select("o.* ,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
+            ->from("orden", "o")
+            ->leftJoin("o","users","us","us.id = o.tecnico_id")
+            ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
+            ->leftJoin("o","distribuidor","dist","dist.id = o.dist_id")
+            ->leftJoin("o","materiales","m","m.id = o.maquina_id")
+            ->where("o.tipo=5") // todas las prospecto
             ->orderBy("o.numero","DESC")
             ->execute();
 

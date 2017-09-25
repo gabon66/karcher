@@ -25,6 +25,17 @@ GSPEMApp.controller('reportOrders', function($scope,$http,$filter,$uibModal,toas
     };
     getOrders();
 
+    var getOrdersProsc = function() {
+        $http.get(Routing.generate('getordersprosc')
+        ).then(function (data) {
+            $scope.cargando=false;
+            $scope.orders_prosp=data.data;
+
+        });
+    };
+    getOrdersProsc();
+
+
 
     $scope.exportar=function (name) {
 

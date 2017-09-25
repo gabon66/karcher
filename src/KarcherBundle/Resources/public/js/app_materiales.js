@@ -89,27 +89,30 @@ GSPEMApp.controller('abmMaterial', function($scope,$http,$uibModal,toastr,origen
 
     $scope.deleteMaterial= function (id) {
         //console.log("delete");
-        $http({
-            url: Routing.generate('delete_materiales'),
-            method: "POST",
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            data: {
-                id: id
-            },
-            transformRequest: function (obj) {
-                var str = [];
-                for (var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                return str.join("&");
-            }
-        }).then(function (response) {
-                getMateriales();
+        var result = confirm("Desea eliminar este registro?");
+        if (result) {
+            $http({
+                url: Routing.generate('delete_materiales'),
+                method: "POST",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: {
+                    id: id
+                },
+                transformRequest: function (obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                }
+            }).then(function (response) {
+                    getMateriales();
 
 
-            },
-            function (response) { // optional
-                // failed
-            });
+                },
+                function (response) { // optional
+                    // failed
+                });
+        }
     };
 
     $scope.deleteTipoMaterial= function (id) {
@@ -373,7 +376,6 @@ GSPEMApp.controller('ModalNewOrigenCtrl', function($filter,$scope,$http, $uibMod
     };
 
     $scope.saveOrigen= function () {
-    console.log("asdasd");
         if($scope.name.length==0 ||  $scope.descript.length==0 ){
             toastr.warning('Complete todos los campos', 'Atención');
         } else {

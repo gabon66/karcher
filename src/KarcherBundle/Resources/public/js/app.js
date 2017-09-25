@@ -327,6 +327,20 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
             controller  : 'reportOrders'
         })
 
+        .when('/paises_abm', {
+            templateUrl : '../bundles/karcher/pages/abms/abm_paises.html',
+            controller  : 'paisesController'
+        })
+
+
+
+        .when('/report_orders_prospectos', {
+            templateUrl : '../bundles/karcher/pages/reports/report_orders_prospecto.html',
+            controller  : 'reportOrders'
+        })
+
+
+
         .when('/push', {
             templateUrl : '../bundles/karcher/pages/abms/abm_push.html',
             controller  : 'abmPush'
@@ -461,6 +475,10 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$u
         case 'report_orders_proc':
             $scope.menuActive='report';
             $scope.subitem='rep3';
+            break;
+        case 'report_orders_procspecto':
+            $scope.menuActive='report';
+            $scope.subitem='rep4';
             break;
 
         case 'push':

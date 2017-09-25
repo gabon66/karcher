@@ -5,6 +5,9 @@
 
 GSPEMApp.controller('ordersControl', function($filter,$scope,$http,$uibModal,toastr,MovPend) {
 
+
+    $scope.propertyName='fing';
+    $scope.reverse=true;
     $scope.sortBy = function(propertyName) {
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;
@@ -300,18 +303,28 @@ GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstan
             if(orden.data.dist){
 
                 //agrego los usuarios del centro de dist.
-                for (var e = 0; e < orden.data.usersDist.length; e++) {
-                    $scope.orderUsersDist.push({"id": orden.data.usersDist[e].id,
-                        "name":orden.data.usersDist[e].lastName + " "+orden.data.usersDist[e].name})
+                if (orden.data.usersDist){
+                    for (var e = 0; e < orden.data.usersDist.length; e++) {
+                        $scope.orderUsersDist.push({"id": orden.data.usersDist[e].id,
+                            "name":orden.data.usersDist[e].lastName + " "+orden.data.usersDist[e].name})
 
+                    }
+
+                    if ($scope.orden.tecnico_id!=null){
+                        $scope.ordertec=$filter('filter')($scope.orderUsersDist,{"id":$scope.orden.tecnico_id})[0];
+                    }else {
+                        $scope.ordertec=$scope.orderUsersDist[0];
+                    }
+                } else {
+                    // sin usuarios , es 1 solo user por dist , puede ser 1 tecnico o 1 persona trabajndo
+                    $scope.orderUsersDist.push({"id": 1,
+                        "name":"Autoasignada"})
+                    if ($scope.orden.tecnico_id!=null){
+                        $scope.ordertec=$scope.orderUsersDist[1];
+                    }else {
+                        $scope.ordertec=$scope.orderUsersDist[0];
+                    }
                 }
-                if ($scope.orden.tecnico_id!=null){
-                    $scope.ordertec=$filter('filter')($scope.orderUsersDist,{"id":$scope.orden.tecnico_id})[0];
-                }else {
-                    $scope.ordertec=$scope.orderUsersDist[0];
-                }
-
-
             }else {
                 // si no tiene dist es que no pertence a ningun centro de disitribucion con lo cual no puede cargar una orden
                 $scope.ordenValid=false;

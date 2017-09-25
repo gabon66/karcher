@@ -77,27 +77,35 @@ GSPEMApp.controller('abmUsuarios', function($scope,$http,$uibModal,toastr,MovPen
     };
     getUsuarios();
 
-    $scope.deleteUser = function (id) {
-        $http({
-            url: Routing.generate('delete_usuario'),
-            method: "POST",
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            data: {
-                id:id,
-            },
-            transformRequest: function (obj) {
-                var str = [];
-                for (var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                return str.join("&");
+
+        $scope.deleteUser = function (id) {
+            var result = confirm("Desea eliminar un usuario?");
+            if (result) {
+            $http({
+                url: Routing.generate('delete_usuario'),
+                method: "POST",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: {
+                    id:id,
+                },
+                transformRequest: function (obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                }
+            }).then(function (response) {
+                    getUsuarios();
+                },
+                function (response) { // optional
+                    // failed
+                });
             }
-        }).then(function (response) {
-                getUsuarios();
-            },
-            function (response) { // optional
-                // failed
-            });
-    };
+        };
+
+
+
+
 
     $scope.chaneStateUser=function (id,state) {
         var stateUser=1;
@@ -176,8 +184,11 @@ GSPEMApp.controller('ModalNewUserCtrl', function($filter,$scope,$http, $uibModal
     $scope.levels.push(
         {id:1,name:"Administrador General"},
         {id:2,name:"Administrador Regional"},
-        {id:3,name:"Administrador en Disitribuidora"},
-        {id:4,name:"Técnico"});
+        {id:3,name:"Administrador Nacional"},
+        {id:4,name:"Administrador en Disitribuidora"},
+        {id:5,name:"Técnico"},
+        {id:6,name:"Vendedor"});
+
     $scope.levelselected=$scope.levels[0];
     //$scope.contratistaselected=$scope.contratistas[0];
 

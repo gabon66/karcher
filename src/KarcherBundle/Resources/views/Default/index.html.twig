@@ -28,8 +28,6 @@
         <link href="//code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" type="text/css" rel="stylesheet" />
         <link href=" {{asset('bundles/karcher/css/karcher.css')}}" type="text/css" rel="stylesheet" />
 
-|
-
         <style type="text/css">
             .pac-container {
                 z-index: 100000;
@@ -88,6 +86,10 @@
 
 
         <ul class="sub-menu-karcher-ul" ng-if="menuActive=='dist'"  ng-class="{'visible':menuActive=='dist'}" >
+
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='paises'}" >
+                <a href="#paises_abm" ng-click="subitem='paises'">PAISES</a></li>
+
             <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='puntos'}" >
                 <a href="#dist_abm" ng-click="subitem='puntos'">PUNTOS DE DISTRIBUCION</a></li>
         </ul>
@@ -126,6 +128,8 @@
                 <a  ng-click="subitem='rep2'" href="#report_orders_proc">ORDENES EN PROCESO</a></li>
             <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep3'}" >
                 <a  ng-click="subitem='rep3'" href="#report_orders_closed">ORDENES CERRADAS</a></li>
+            <li class="sub-menu-karcher-li" ng-class="{'sub-menu-karcher-li-active':subitem=='rep4'}" >
+                <a  ng-click="subitem='rep4'" href="#report_orders_prospectos">PROSPECTOS</a></li>
         </ul>
 
 

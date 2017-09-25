@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <div class="row">
+                        <button type="button" ng-click="new(null,'pais_form.html','ModalPaisCtrl')" class="btn-karcher-sm pull-right" >NUEVO</button>
+                </div>
+
+            </div>
+            <div class="x_content">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="pais in paises">
+
+                        <td>{{ pais.name }}</td>
+                        <td>{{ pais.obs }}</td>
+
+                        <td style="text-align: right">
+                            <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="new(pais,'pais_form.html','ModalPaisCtrl')" ><i class="fa fa-edit fa-2x"></i> </a>
+              <!--              <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="delete(pais.id)" ><i class="fa fa-remove fa-2x"></i> </a>-->
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

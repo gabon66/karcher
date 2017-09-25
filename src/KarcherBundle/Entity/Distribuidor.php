@@ -54,6 +54,30 @@ class Distribuidor
      */
     private $web;
 
+
+    /**
+     * @ORM\Column(name="tel", type="string")
+     */
+    private $tel;
+
+
+    /**
+     * @ORM\Column(name="obs", type="string")
+     */
+    private $obs;
+
+
+    /**
+     * @ORM\Column(name="contacto", type="string")
+     */
+    private $contacto;
+
+    /**
+     * @ORM\Column(name="pais", type="integer")
+     */
+    private $pais;
+
+
     /**
      * Get id
      *
@@ -206,5 +230,101 @@ class Distribuidor
     public function getWeb()
     {
         return $this->web;
+    }
+
+    /**
+     * Set tel
+     *
+     * @param string $tel
+     *
+     * @return Distribuidor
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * Get tel
+     *
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * Set obs
+     *
+     * @param string $obs
+     *
+     * @return Distribuidor
+     */
+    public function setObs($obs)
+    {
+        $this->obs = $obs;
+
+        return $this;
+    }
+
+    /**
+     * Get obs
+     *
+     * @return string
+     */
+    public function getObs()
+    {
+        return $this->obs;
+    }
+
+    /**
+     * Set contacto
+     *
+     * @param string $contacto
+     *
+     * @return Distribuidor
+     */
+    public function setContacto($contacto)
+    {
+        $this->contacto = $contacto;
+
+        return $this;
+    }
+
+    /**
+     * Get contacto
+     *
+     * @return string
+     */
+    public function getContacto()
+    {
+        return $this->contacto;
+    }
+
+    /**
+     * Set pais
+     *
+     * @param integer $pais
+     *
+     * @return Distribuidor
+     */
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+
+        return $this;
+    }
+
+    /**
+     * Get pais
+     *
+     * @return integer
+     */
+    public function getPais()
+    {
+        return $this->pais;
     }
 }

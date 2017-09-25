@@ -4,6 +4,7 @@ namespace KarcherBundle\Controller;
 
 use KarcherBundle\Entity\Distribuidor;
 use KarcherBundle\Entity\MaterialOrigen;
+use KarcherBundle\Entity\Pais;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -65,9 +66,11 @@ class DefaultController extends Controller
 
 
         $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("dist.id as id ,dist.email as email , dist.web as web, dist.name as name , dist.descript as descript , dist.dir as dir , dist.coords as coords ,CONCAT(us.last_name ,' ' ,us.first_name ) as admin,us.mail as mail , us.phone as phone,us.disabled as disabled,us.level as level")
+            ->select("dist.id as id ,p.name as pais ,p.id as pais_id,dist.tel as tel , dist.contacto as contacto, dist.email as email , dist.web as web, dist.name as name , dist.descript as descript , dist.dir as dir , dist.coords as coords ,CONCAT(us.last_name ,' ' ,us.first_name ) as admin,us.mail as mail , us.phone as phone,us.disabled as disabled,us.level as level")
             ->from("KARCHER.distribuidor", "dist")
             ->leftJoin("dist", "KARCHER.users", "us", "us.id_distribuidor = dist.id ")
+            ->leftJoin("dist","paises","p","dist.pais=p.id")
+            ->orderBy("name")
             ->execute();
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
@@ -103,6 +106,9 @@ class DefaultController extends Controller
         $dist->setCoords($request->get("coords"));
         $dist->setEmail($request->get("email"));
         $dist->setWeb($request->get("web"));
+        $dist->setTel($request->get("tel"));
+        $dist->setContacto($request->get("contacto"));
+        $dist->setPais($request->get("pais"));
 
 
         if ($id==0){
@@ -358,6 +364,59 @@ class DefaultController extends Controller
         return new Response($serializer->serialize(array("process"=>true),"json"),200,array('Content-Type'=>'application/json'));
     }*/
 
+
+    /**
+     * @Method({"GET"})
+     * @Route("/karcher/paises",options = { "expose" = true },name = "getpaises")
+     */
+
+    public function getPaisesAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $repo =$em->getRepository('KarcherBundle\Entity\Pais');
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        return new Response($serializer->serialize($repo->findAll(),"json"),200,array('Content-Type'=>'application/json'));
+
+    }
+    /**
+     * @Method({"POST","DELETE"})
+     * @Route("/karcher/pais/{id}",defaults={"id" = 0},options = { "expose" = true },name = "updatepais")
+     */
+    public function savePaisAction(\Symfony\Component\HttpFoundation\Request $request){
+        $em = $this->getDoctrine()->getEntityManager();
+
+        if($request->get("id")>0){
+            $repo =$em->getRepository('KarcherBundle\Entity\Pais');
+            $pais = $repo->findOneBy(array("id"=>$request->get("id")));
+        }else{
+            $pais = new Pais();
+        }
+
+        if($request->getMethod()=="DELETE"){
+                $em->remove($pais);
+        }else{
+            $pais->setName($request->get("name"));
+            $pais->setObs($request->get("descript"));
+
+            if(!$request->get("id")){
+                $em->persist($pais);
+            }
+        }
+
+        $em->flush();
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($pais,"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+
+
     /**
      * @Method({"GET"})
      * @Route("/karcher/materiales/origen",options = { "expose" = true },name = "getmaterialesorigen")
@@ -379,11 +438,12 @@ class DefaultController extends Controller
 
 
     /**
-     * @Method({"POST"})
+     * @Method({"POST","DELETE"})
      * @Route("/karcher/origen/{id}",defaults={"id" = 0},options = { "expose" = true },name = "savematerialorigen")
      */
     public function saveMaterialesOrigenAction(\Symfony\Component\HttpFoundation\Request $request){
         $em = $this->getDoctrine()->getEntityManager();
+
 
         if($request->get("id")>0){
             $repo =$em->getRepository('KARCHERBundle\Entity\MaterialOrigen');
@@ -391,12 +451,17 @@ class DefaultController extends Controller
         }else{
             $material_ori = new MaterialOrigen();
         }
-        $material_ori->setName($request->get("name"));
 
-        $material_ori->setDescript($request->get("descript"));
+        if($request->getMethod()=="DELETE"){
+            $em->remove($material_ori);
+        }else{
+            $material_ori->setName($request->get("name"));
 
-        if(!$request->get("id")){
-            $em->persist($material_ori);
+            $material_ori->setDescript($request->get("descript"));
+
+            if(!$request->get("id")){
+                $em->persist($material_ori);
+            }
         }
 
         $em->flush();
