@@ -14,6 +14,9 @@
 
                 <div class="row">
                     <button type="button" ng-click="new(null,'newUserKarcher.html','ModalNewUserCtrl')" class="btn-karcher-sm pull-right" style="margin-top: 15px" >NUEVO</button>
+                    <button type="button" ng-click="exportar('Usuarios')" class="btn-karcher-sm pull-right"  style="margin-top: 15px;margin-right: 5px">EXPORTAR</button>
+
+
                 </div>
             </div>
             <div class="x_content">
@@ -70,6 +73,46 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div style="display:none" id="exportable">
+        <table class="table" >
+
+            <thead>
+            <tr>
+
+                <th><a ng-click="sortBy(['lastName','name'])">  Apellido / Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                <!--<th><a ng-click="sortBy('username')"> Username <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                -->
+                <th><a ng-click="sortBy('mail')"> Mail <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                <th><a ng-click="sortBy('contratista')"> Distribuidor <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                <th>Rol</th>
+                <th>Perfil</th>
+                <th>Estado</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr  ng-repeat="user in users_ori">
+                <td>{{ user.lastName}} -  {{ user.name}} - </td>
+                <!--<td>{{ user.username}}</td>-->
+
+                <td>{{ user.mail}}</td>
+                <td>{{ user.distribuidor }}</td>
+
+                <td ng-if="user.level==1">Administrador General</td>
+                <td ng-if="user.level==2">Administrador Regional</td>
+                <td ng-if="user.level==3">Administrador Nacional</td>
+                <td ng-if="user.level==6">Vendedor</td>
+                <td ng-if="user.level==4">Administrador Distribuidora</td>
+                <td ng-if="user.level==5">Técnico</td>
+                <td> {{user.profilename}}</td>
+
+                <td ng-if="user.disabled==false">Activo</td>
+                <td ng-if="user.disabled==true">Inactivo</td>
+
+            </tr>
+            </tbody>
+        </table>
+
     </div>
 </div>
 

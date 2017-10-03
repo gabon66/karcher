@@ -375,6 +375,16 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$u
         //$log.log('Page changed to: ' + $scope.currentPage);
     };
 
+
+    $scope.exportar=function (name) {
+        debugger
+        var blob = new Blob([document.getElementById('exportable').innerHTML], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+        });
+        saveAs(blob, "Reporte_"+name+".xls");
+    };
+
+
     $scope.maxSize = 5;
     $scope.bigTotalItems = 175;
     $scope.bigCurrentPage = 1;

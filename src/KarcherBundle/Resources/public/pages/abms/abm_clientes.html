@@ -13,6 +13,9 @@
 
                 <div class="row">
                     <button type="button" ng-click="new(null)" class="btn-karcher-sm pull-right" style="margin-top: 15px">NUEVO</button>
+                    <button type="button" ng-click="exportar('Clientes')" class="btn-karcher-sm pull-right"  style="margin-top: 15px;margin-right: 5px">EXPORTAR</button>
+
+
                 </div>
 
              </div>
@@ -50,9 +53,34 @@
                 <div class="row">
                     <ul uib-pagination  total-items="rowClients" previous-text="Anterior" next-text="Siguiente"  items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
                 </div>
-
             </div>
+
         </div>
+        <div style="display:none" id="exportable">
+            <table class="table" ng-if="clientes_ori.length>0">
+                <thead>
+                <tr>
+                    <th><a ng-click="sortBy('name')"> Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                    <th><a ng-click="sortBy('contacto')"> Contacto <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                    <th>Email</th>
+                    <th>Telefono</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="cli in clientes | orderBy:propertyName:reverse">
+
+                    <td class="col-md-2">{{ cli.name  }} </td>
+                    <td class="col-md-2">{{ cli.contacto  }} </td>
+                    <td class="col-md-2">{{ cli.mail }} </td>
+                    <td class="col-md-2">{{ cli.phone }} </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 

@@ -12,7 +12,9 @@
                 </div>
 
                 <div class="row">
-                        <button type="button" ng-click="new(null)" class="btn-karcher-sm pull-right"  style="margin-top: 15px">NUEVO</button>
+                    <button type="button" ng-click="new(null)" class="btn-karcher-sm pull-right"  style="margin-top: 15px">NUEVO</button>
+
+                    <button type="button" ng-click="exportar('Distribuidores')" class="btn-karcher-sm pull-right"  style="margin-top: 15px;margin-right: 5px">EXPORTAR</button>
                 </div>
 
             </div>
@@ -63,6 +65,37 @@
                 </div>
 
             </div>
+
+            <div style="display:none" id="exportable">
+                <table class="table" ng-if="distribuidores.length>0">
+                    <thead>
+                    <tr>
+                        <th><a ng-click="sortBy('name')"> Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th>Administrador/Contacto</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th>Pais</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="dist in distribuidores_ori | orderBy:propertyName:reverse">
+
+                        <td>{{ dist.name   }} </td>
+                        <td>
+                            {{ dist.contacto   }}
+                        </td>
+                        <td>{{ dist.tel   }} </td>
+                        <td>{{ dist.email  }} </td>
+                        <td>{{ dist.dir }} </td>
+                        <td>{{ dist.pais }} </td>
+
+                    </tr>
+                    </tbody>
+                    </table>
+            </div>
+
         </div>
     </div>
 </div>

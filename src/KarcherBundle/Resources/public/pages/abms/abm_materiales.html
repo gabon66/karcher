@@ -10,21 +10,34 @@
     <div ng-show="!cargando" class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <div class="row">
 
-                    <div class="col-lg-10" style="text-align: left;padding-left: 0px">
-                        <div class="form-group ">
-                            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                            <div class="input-group col-lg-8 ">
-                                <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
-                                <input type="text" ng-model="filtro"class="form-control" id="exampleInputAmount" placeholder=" Nombre /Numero de Serie / Numero de Parte / Descripcion">
-                            </div>
+                <!--<div class="col-lg-8" style="text-align: left;padding-left: 0px">
+                    <div class="form-group ">
+                        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                        <div class="input-group col-lg-8 ">
+                            <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                            <input type="text" ng-model="filtro"class="form-control" id="exampleInputAmount" placeholder=" Nombre /Numero de Serie / Numero de Parte / Descripcion">
                         </div>
                     </div>
-                    <div class="col-lg-2">    <div class="clearfix"><button  ng-click="new(null,'material_karcher_form.html','ModelNewMaterialCtrl')" class="btn-karcher-sm pull-right">NUEVA</button></div>
+                </div>
+                <div class="row">
+                    <button  ng-click="new(null,'material_karcher_form.html','ModelNewMaterialCtrl')" class="btn-karcher-sm pull-right" style="margin-top: 15px">NUEVA</button>
+                    <button type="button" ng-click="exportar('Maquinas')" class="btn-karcher-sm pull-right"  style="margin-top: 15px;margin-right: 5px">EXPORTAR</button>
+                </div>-->
+
+                <div class="col-lg-6" style="padding-left: 0px">
+                    <div class="form-group ">
+                        <div class="form-group has-success has-feedback">
+                            <label>Filtro por Contenido</label>
+                            <input type="text" ng-model="filtro"class="form-control" id="exampleInputAmount" placeholder="Nombre /Numero de Serie / Numero de Parte / Descripcion">
+                        </div>
                     </div>
                 </div>
 
+                <div class="row">
+                    <button type="button" ng-click="new(null,'material_karcher_form.html','ModelNewMaterialCtrl')" class="btn-karcher-sm pull-right" style="margin-top: 15px">NUEVO</button>
+                    <button type="button" ng-click="exportar('Maquinas')" class="btn-karcher-sm pull-right"  style="margin-top: 15px;margin-right: 5px">EXPORTAR</button>
+                </div>
 
             </div>
             <div class="x_content">
@@ -67,6 +80,32 @@
 
             </div>
         </div>
+        <div style="display:none" id="exportable">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th><a ng-click="sortBy('name')">Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a> </th>
+                    <th><a ng-click="sortBy('pn')"> Numero de Parte <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+
+                    <th><a ng-click="sortBy('descript')">Descripción <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                    <th><a ng-click="sortBy('type')"> Grupo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                    <th><a ng-click="sortBy('model')"> Modelo <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="material in materiales_ori">
+                    <td>{{ material.name }}</td>
+                    <td >{{ material.pn }}</td>
+
+                    <td>{{ material.descript }}</td>
+                    <td>{{ material.type }}</td>
+                    <td>{{ material.model }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 
