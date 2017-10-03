@@ -79,6 +79,11 @@ GSPEM\GSPEMBundle\Entity\User:
         idDistribuidor:
             column: id_distribuidor
             type: integer
+        idPais:
+            column: id_pais
+            type: integer
+
+
     lifecycleCallbacks:
         preUpdate: [ updatedTimestamps ]
 

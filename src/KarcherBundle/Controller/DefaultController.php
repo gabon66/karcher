@@ -150,7 +150,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("u.id as id,u.level as  level , u.bosses as bosses ,dis.id as disid , dis.name as distribuidor ,p.name as profilename  ,p.id as profileid ,u.mail as mail ,u.disabled as disabled ,u.username as username ,u.first_name as name ,u.phone as phone, u.last_name as lastName ")
+            ->select("u.id as id,u.id_pais as pais,u.level as  level , u.bosses as bosses ,dis.id as disid , dis.name as distribuidor ,p.name as profilename  ,p.id as profileid ,u.mail as mail ,u.disabled as disabled ,u.username as username ,u.first_name as name ,u.phone as phone, u.last_name as lastName ")
             ->from("users", "u")
             ->leftJoin("u", "perfiles", "p", "u.view_type = p.id")
             ->leftJoin("u", "distribuidor", "dis", "u.id_distribuidor = dis.id")
@@ -206,6 +206,9 @@ class DefaultController extends Controller
         $user->setPhone($request->get("phone"));
         $user->setMail($request->get("mail"));
         $user->setView($request->get("view"));
+
+        $user->setIdPais($request->get("pais"));
+
 
         if(!$request->get("id")){
             $em->persist($user);

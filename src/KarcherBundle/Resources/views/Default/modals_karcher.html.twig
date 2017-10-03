@@ -47,6 +47,53 @@
     </div>
 </script>
 
+<script type="text/ng-template" id="dist_list.html">
+    <div class="modal-header">
+         <div class="col col-md-3">
+            <h4>Disitribuidores</h4>
+         </div>
+         <div class="col col-md-9">
+                                 <div class="form-group ">
+                            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                            <div class="input-group col-lg-12 pull-right">
+                                <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                <input type="text" ng-model="filtrocliente"class="form-control" id="exampleInputAmount" placeholder=" Nombre / Contacto / Mail / Telefono">
+                            </div>
+                        </div>
+            </div>
+
+    </div>
+    <div class="modal-body" style="max-height: 350px;overflow: visible">
+                   <table class="table" ng-if="distribuidores.length>0">
+                    <thead>
+                    <tr>
+                        <th><a ng-click="sortBy('name')"> Nombre <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+
+                        <th><a ng-click="sortBy('contacto')"> Contacto <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th><a ng-click="sortBy('mail')"> E-Mail <i class="fa fa-sort" aria-hidden="true"></i> </a></th>
+                        <th>Telefono</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="dist in distribuidores | filter:filtrocliente |orderBy:propertyName:reverse" ng-click="select(dist)">
+
+                        <td class="col-md-2">{{ dist.name  }} </td>
+                        <td class="col-md-2">{{ dist.contacto  }} </td>
+                        <td class="col-md-2">{{ dist.mail }} </td>
+                        <td class="col-md-2">{{ dist.phone }} </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn-karcher-sm" ng-click="cerrar()">CERRAR</button>
+    </div>
+</script>
+
+
 <script type="text/ng-template" id="cli_modal.html">
     <div class="modal-header">
         <h3>Cliente</h3>
@@ -123,33 +170,36 @@
     <fieldset>
 
 
-<div class="form-inline">
-    <div class="form-group">
-     <label>Nombre(*)</label>
-     <input
-             ng-model="nombre"
-             class="form-control"
-             placeholder="Nombre">
-    </div>
-
-    <div class="form-group">
-     <label>Apellido</label>
-     <input
-             ng-model="apellido"
-             class="form-control"
-             placeholder="Apellido">
-    </div>
-</div>
-<hr>
-            <div class="form-inline">
+<div class="form">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+             <label>Nombre(*)</label>
+             <input
+                     ng-model="nombre"
+                     class="form-control"
+                     placeholder="Nombre">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+            <label>Apellido</label>
+            <input
+                 ng-model="apellido"
+                 class="form-control"
+                 placeholder="Apellido">
+            </div>
+        </div>
+        <div class="col-lg-6">
                 <div class="form-group">
-                <label>E-Mail(*)</label>
-                <input
-                        ng-model="mail"
-                        class="form-control"
-                        placeholder="eMail">
-               </div>
-
+            <label>E-Mail(*)</label>
+            <input
+                    ng-model="mail"
+                    class="form-control"
+                    placeholder="eMail">
+           </div>
+        </div>
+        <div class="col-lg-6">
                <div class="form-group">
                 <label>Telefono</label>
                 <input
@@ -157,13 +207,14 @@
                         class="form-control"
                         placeholder="Telefono">
                </div>
-            </div>
+        </div>
+    </div>
+</div>
 
-<hr>
 
     <div class="row">
-        <div class="col-lg-5">
-            <div class="form-group has-success has-feedback">
+        <div class="col-lg-6">
+            <div class="form-group">
 
              <label>Usuario(*)</label>
              <input
@@ -172,8 +223,8 @@
                      placeholder="Usuario">
             </div>
         </div>
-        <div class="col-lg-7">
-            <div class="form-group has-success has-feedback">
+        <div class="col-lg-6">
+            <div class="form-group">
              <label>Clave(*)</label>
              <div class="form-inline">
                <a ng-click="editPass()" class="btn btn-sm  btn-karcher-sm-table"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
@@ -193,7 +244,7 @@
 
 <hr>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                             <div class="form-group has-success has-feedback">
 
                                 <label>Perfil :</label>
@@ -205,42 +256,51 @@
 
                             </div>
 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
 
                         <div class="form-group has-success has-feedback">
 
                             <label>Rol :</label>
 
-                            <select  class="form-control" ng-change="reloadBosses()" name="typematerial" id="mySelect"
+                            <select  class="form-control" ng-change="checkRol()" name="typematerial" id="mySelect"
                              ng-options="level.name for level in levels track by level.id"
 
                              ng-model="levelselected"></select>
 
                         </div>
 
-</div>
-                <div class="col-lg-4">
-
-
+                </div>
+                <div class="col-lg-6">
                        <div class="form-group has-success has-feedback">
 
-                       <label>Punto de Distribución :</label>
-
-
+                       <label>Pais :</label>
 
                                 <select  class="form-control" style="padding-right: 0px !important;" name="typematerial" id="mySelect"
-                                 ng-options="dist.name for dist in dists track by dist.id"
-
-                                 ng-model="distsselected"></select>
+                                 ng-options="pais.name for pais in paises track by pais.id"
+                                 ng-change="filterDist()"
+                                 ng-disabled="!paisesenabled"
+                                 ng-model="paisselected"></select>
                         <!--<select   ng-change=bosseschane()  class="form-control"  name="ngvalueselect" ng-model="bosseselected"  data-ng-change="fixIE()" multiple>
                             <option ng-repeat="bosse in bosses" ng-value="bosse.id"><span>{{bosse.name + " " +  bosse.lastName}}</span></option>
                         </select>-->
+                        </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                       <div class="form-group has-success has-feedback">
+
+                       <label>Seleccione punto de distrubución :</label>
+                               <select  class="form-control" style="padding-right: 0px !important;" name="typematerial" id="mySelect"
+                                 ng-options="dist.name for dist in dists track by dist.id"
+                                 ng-disabled="!distenabled"
+                                 ng-model="distsselected"></select>
 
                         </div>
-</div>
+
+                </div>
+
             </div>
-
-
 
         </fieldset>
 

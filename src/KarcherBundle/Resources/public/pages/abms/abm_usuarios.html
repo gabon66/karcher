@@ -3,8 +3,17 @@
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
+
+
+                <div class="col-lg-6" style="padding-left: 0px">
+                    <div class="form-group has-success has-feedback">
+                        <label>Filtro por Contenido</label>
+                        <input type="text" ng-model="filtro"class="form-control" id="exampleInputAmount" placeholder=" Nombre  Apellido / Email">
+                    </div>
+                </div>
+
                 <div class="row">
-                        <button type="button" ng-click="new(null,'newUserKarcher.html','ModalNewUserCtrl')" class="btn-karcher-sm pull-right" >NUEVO</button>
+                    <button type="button" ng-click="new(null,'newUserKarcher.html','ModalNewUserCtrl')" class="btn-karcher-sm pull-right" style="margin-top: 15px" >NUEVO</button>
                 </div>
             </div>
             <div class="x_content">
@@ -39,9 +48,9 @@
                         <td ng-if="user.level==1">Administrador General</td>
                         <td ng-if="user.level==2">Administrador Regional</td>
                         <td ng-if="user.level==3">Administrador Nacional</td>
+                        <td ng-if="user.level==6">Vendedor</td>
                         <td ng-if="user.level==4">Administrador Distribuidora</td>
                         <td ng-if="user.level==5">Técnico</td>
-                        <td ng-if="user.level==6">Vendedor</td>
                         <td> {{user.profilename}}</td>
 
                         <td ng-if="user.disabled==false"><i class="fa fa-thumbs-up" style="color: green" aria-hidden="true"></i></td>
@@ -56,7 +65,9 @@
                     </tr>
                     </tbody>
                 </table>
-
+                <div class="row">
+                    <ul uib-pagination  total-items="rowUsers" previous-text="Anterior" next-text="Siguiente"  items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
+                </div>
             </div>
         </div>
     </div>

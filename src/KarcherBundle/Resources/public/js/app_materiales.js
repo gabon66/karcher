@@ -18,7 +18,7 @@ GSPEMApp.factory('origenService', function($http) {
     };
 });
 
-GSPEMApp.controller('abmMaterial', function($scope,$http,$uibModal,toastr,origenService,typesService, $rootScope,MovPend) {
+GSPEMApp.controller('abmMaterial', function($scope,$filter,$http,$uibModal,toastr,origenService,typesService, $rootScope,MovPend) {
     $scope.animationsEnabled = false;
     $scope.cargando=true;
     var getTypes=function () {
@@ -47,15 +47,82 @@ GSPEMApp.controller('abmMaterial', function($scope,$http,$uibModal,toastr,origen
     };
 
 
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
+
+    $scope.pageChanged = function() {
+        //$log.log('Page changed to: ' + $scope.currentPage);
+    };
+
+    $scope.maxSize = 5;
+    $scope.bigTotalItems = 175;
+    $scope.bigCurrentPage = 1;
+
+    $scope.filteredTodos = []
+    $scope.currentPage = 1
+    $scope.numPerPage = 10
+    $scope.maxSize = 5;
+    $scope.rowMaquinas=0;
+
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+
+    $scope.$watch('currentPage', function() {
+
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+            , end = begin + $scope.numPerPage;
+
+        if($scope.materiales_ori){
+            $scope.materiales = $scope.materiales_ori.slice(begin, end);
+        }
+    });
+
+
     var getMateriales = function() {
         $http.get(Routing.generate('getmateriales')
         ).then(function (materiales) {
+            $scope.materiales_ori=materiales.data;
+
             $scope.materiales=materiales.data;
             $scope.cargando=false;
 
+            $scope.rowMaquinas=$scope.materiales_ori.length;
+            console.log($scope.orders);
+            if($scope.materiales_ori){
+                $scope.materiales = $scope.materiales_ori.slice(begin, end);
+            }
 
         });
     };
+
+    $scope.$watch('filtro', function() {
+
+        if ($scope.filtro!=undefined){
+
+            $scope.materiales=$filter('filter')($scope.materiales_ori,$scope.filtro);
+            if ($scope.filtrodist!=""){
+                $scope.rowMaquinas=$scope.materiales.length;
+
+                var begin = ((1 - 1) * $scope.numPerPage)
+                    , end = begin + $scope.numPerPage;
+
+                if($scope.materiales){
+                    $scope.materiales = $scope.materiales.slice(begin, end);
+                }
+            }else {
+                $scope.rowMaquinas=$scope.materiales_ori.length;
+
+                var begin = ((1 - 1) * $scope.numPerPage)
+                    , end = begin + $scope.numPerPage;
+
+                if($scope.materiales_ori){
+                    $scope.materiales = $scope.materiales_ori.slice(begin, end);
+                }
+            }
+        }
+    });
+
     getTypes();
     getOrigenes();
     getMateriales();

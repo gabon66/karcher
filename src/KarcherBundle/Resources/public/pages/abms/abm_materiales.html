@@ -17,7 +17,7 @@
                             <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                             <div class="input-group col-lg-8 ">
                                 <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
-                                <input type="text" ng-model="filtromaterial"class="form-control" id="exampleInputAmount" placeholder=" Nombre /Numero de Serie / Numero de Parte / Descripcion">
+                                <input type="text" ng-model="filtro"class="form-control" id="exampleInputAmount" placeholder=" Nombre /Numero de Serie / Numero de Parte / Descripcion">
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
 
 
             </div>
-            <div class="x_content" style="height: 600px;min-height: 600px;overflow: auto">
+            <div class="x_content">
 
                 <table class="table">
                     <thead>
@@ -43,7 +43,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="material in materiales | filter:filtromaterial | orderBy:propertyName:reverse">
+                    <tr ng-repeat="material in materiales  | orderBy:propertyName:reverse">
                         <td>{{ material.name }}</td>
                         <td >{{ material.pn }}</td>
 
@@ -60,6 +60,10 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <div class="row">
+                    <ul uib-pagination  total-items="rowMaquinas" previous-text="Anterior" next-text="Siguiente"  items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()"></ul>
+                </div>
 
             </div>
         </div>

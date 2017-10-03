@@ -6,14 +6,82 @@ GSPEMApp.controller('abmClientes', function($rootScope,$filter,$scope,$http,$uib
 
     $scope.cargando=true;
 
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
+
+    $scope.pageChanged = function() {
+        //$log.log('Page changed to: ' + $scope.currentPage);
+    };
+
+    $scope.maxSize = 5;
+    $scope.bigTotalItems = 175;
+    $scope.bigCurrentPage = 1;
+
+    $scope.filteredTodos = []
+    $scope.currentPage = 1
+    $scope.numPerPage = 10
+    $scope.maxSize = 5;
+    $scope.rowClients=0;
+
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+
+    $scope.$watch('currentPage', function() {
+
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+            , end = begin + $scope.numPerPage;
+
+        if($scope.clientes_ori){
+            $scope.clientes = $scope.clientes_ori.slice(begin, end);
+        }
+    });
+
+
     var getClients = function() {
         $http.get(Routing.generate('getclientes')
         ).then(function (clientes) {
-            $scope.clientes=clientes.data;
 
+            $scope.clientes=clientes.data;
+            $scope.clientes_ori=clientes.data;
+            $scope.rowClients=$scope.clientes_ori.length;
+            console.log($scope.orders);
+            if($scope.clientes_ori){
+                $scope.clientes = $scope.clientes_ori.slice(begin, end);
+            }
         });
     };
     getClients();
+
+
+
+    $scope.$watch('filtro', function() {
+
+        if ($scope.filtro!=undefined){
+
+            $scope.clientes=$filter('filter')($scope.clientes_ori,$scope.filtro);
+            if ($scope.filtrodist!=""){
+                $scope.rowClients=$scope.clientes.length;
+
+                var begin = ((1 - 1) * $scope.numPerPage)
+                    , end = begin + $scope.numPerPage;
+
+                if($scope.clientes){
+                    $scope.clientes = $scope.clientes.slice(begin, end);
+                }
+            }else {
+                $scope.rowClients=$scope.clientes_ori.length;
+
+                var begin = ((1 - 1) * $scope.numPerPage)
+                    , end = begin + $scope.numPerPage;
+
+                if($scope.clientes_ori){
+                    $scope.clientes = $scope.clientes_ori.slice(begin, end);
+                }
+            }
+        }
+    });
+
 
 
     $scope.new = function (item) {

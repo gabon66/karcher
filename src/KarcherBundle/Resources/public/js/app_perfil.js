@@ -40,6 +40,19 @@ GSPEMApp.controller('abmPerfil', function($filter,$scope,$http,$uibModal,toastr,
     };
     gerPerfiles();
 
+
+    var getPaises = function() {
+        $http.get(Routing.generate('getpaises')
+        ).then(function (dist) {
+            debugger
+            $scope.paises=dist.data;
+            console.log(dist.data);
+            $scope.paisselected=$scope.paises[0];
+        });
+    };
+    getPaises;
+
+
     $scope.getActive= function(val1,val2){
         if(val1==val2)
             return "btn btn-default active"
@@ -106,6 +119,8 @@ GSPEMApp.controller('abmPerfiles', function($scope,$http,$uibModal,toastr,MovPen
         });
     };
     gerPerfiles();
+
+
 
     $scope.new = function (item) {
 
