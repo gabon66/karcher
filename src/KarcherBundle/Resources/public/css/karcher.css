@@ -342,6 +342,27 @@ ul.sub-menu li{
     color: #FFED00;
 }
 
+
+.help-icon{
+    font-size: 25px;
+    top:0px;
+
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    color: #2b2b2b;
+    border: none;
+    border-left: 1px solid #ededed;
+    border-right: 1px solid #ededed;
+}
+.help-icon:hover{
+    font-size: 25px;
+    border: none;
+    width: 40px;
+    height: 40px;
+    color: #FFED00;
+}
+
 .step-icon-active{
     font-size: 25px;
     border: none;
