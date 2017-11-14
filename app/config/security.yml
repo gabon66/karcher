@@ -39,7 +39,10 @@ security:
                     path:   /logout
             anonymous: ~
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/*, roles:  IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/home*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/movil/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER }
+
+

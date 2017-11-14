@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new GSPEM\GSPEMBundle\GSPEMGSPEMBundle(),
             new GSPEM\SecurityBundle\GSPEMSecurityBundle(),
             new KarcherBundle\KarcherBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

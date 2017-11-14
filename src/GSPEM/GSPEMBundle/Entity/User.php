@@ -939,4 +939,62 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return $this->idPais;
     }
+    /**
+     * @var string
+     */
+    private $token_push;
+
+    /**
+     * @var string
+     */
+    private $token_login;
+
+
+    /**
+     * Set tokenPush
+     *
+     * @param string $tokenPush
+     *
+     * @return User
+     */
+    public function setTokenPush($tokenPush)
+    {
+        $this->token_push = $tokenPush;
+
+        return $this;
+    }
+
+    /**
+     * Get tokenPush
+     *
+     * @return string
+     */
+    public function getTokenPush()
+    {
+        return $this->token_push;
+    }
+
+    /**
+     * Set tokenLogin
+     *
+     * @param string $tokenLogin
+     *
+     * @return User
+     */
+    public function setTokenLogin($tokenLogin)
+    {
+        $this->token_login = $tokenLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get tokenLogin
+     *
+     * @return string
+     */
+    public function getTokenLogin()
+    {
+        return $this->token_login;
+    }
 }

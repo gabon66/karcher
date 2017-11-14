@@ -29,6 +29,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class DefaultController extends Controller
 {
+
     /**
      * @Route("/")
      */
@@ -79,6 +80,9 @@ class DefaultController extends Controller
 
         return new Response($serializer->serialize($stmt->fetchAll(),"json"),200,array('Content-Type'=>'application/json'));
     }
+
+
+
 
     /**
      * @Method({"POST"})

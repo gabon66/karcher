@@ -344,10 +344,9 @@ ul.sub-menu li{
 
 
 .help-icon{
-    font-size: 25px;
+    font-size: 20px;
     top:0px;
 
-    width: 40px;
     height: 40px;
     background-color: white;
     color: #2b2b2b;
@@ -356,9 +355,9 @@ ul.sub-menu li{
     border-right: 1px solid #ededed;
 }
 .help-icon:hover{
-    font-size: 25px;
+    font-size: 20px;
     border: none;
-    width: 40px;
+
     height: 40px;
     color: #FFED00;
 }

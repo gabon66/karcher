@@ -67,9 +67,8 @@ GSPEM\GSPEMBundle\Entity\User:
             column: view_type
             length: 5
             nullable: true
-        token:
+        token_push:
             type: string
-            length: 100
         contratista:
             type: integer
         level:
@@ -82,6 +81,8 @@ GSPEM\GSPEMBundle\Entity\User:
         idPais:
             column: id_pais
             type: integer
+        token_login:
+            type: string
 
 
     lifecycleCallbacks:
