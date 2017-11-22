@@ -76,6 +76,8 @@ class ClientesController extends Controller
         $client->setMail($request->get("mail"));
         $client->setObs($request->get("obs"));
         $client->setPhone1($request->get("phone1"));
+        $client->setPhone1Car($request->get("phonecar"));
+        $client->setPhone2Car($request->get("phone1car"));
         $client->setContacto($request->get("contacto"));
 
 

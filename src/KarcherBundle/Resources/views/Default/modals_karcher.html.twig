@@ -35,7 +35,7 @@
                         <td class="col-md-2">{{ cli.name  }} </td>
                         <td class="col-md-2">{{ cli.contacto  }} </td>
                         <td class="col-md-2">{{ cli.mail }} </td>
-                        <td class="col-md-2">{{ cli.phone }} </td>
+                        <td class="col-md-2">{{ cli.phone1Car }} {{ cli.phone }} </td>
                     </tr>
                     </tbody>
                 </table>
@@ -130,18 +130,45 @@
             </div>
 
             <div class="form-group has-success has-feedback">
-                <input
-                        ng-model="phone"
-                        class="form-control"
-                        placeholder="Telefono ">
+            <div class="row">
+                <div class="col-md-3" style="padding-left: 0px!important;">
+                            <input
+                            ng-model="phonecar"
+                            class="form-control"
+                            placeholder="011">
+                </div>
+
+                <div class="col-md-9" style="padding-right: 8px!important;">
+                             <input
+                            ng-model="phone"
+                            class="form-control"
+                            placeholder="44445555">
+                </div>
+
+
+            </div>
             </div>
 
 
             <div class="form-group has-success has-feedback">
-                <input
-                        ng-model="phone1"
-                        class="form-control"
-                        placeholder="Telefono 2">
+            <div class="row">
+                <div class="col-md-3" style="padding-left: 0px!important;">
+                            <input
+                            ng-model="phone1car"
+                            class="form-control"
+                            placeholder="011">
+                </div>
+
+                <div class="col-md-9" style="padding-right: 8px!important;">
+                             <input
+                            ng-model="phone1"
+                            class="form-control"
+                            placeholder="1544445555">
+                </div>
+
+
+            </div>
+
             </div>
 
             <div class="form-group has-success has-feedback">

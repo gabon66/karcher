@@ -28,6 +28,11 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
         $scope.cliente="";
         $scope.contacto="";
         $scope.phone="";
+        $scope.phone1="";
+        $scope.phone_car="";
+        $scope.phone1_car="";
+
+
         $scope.mail="";
 
 
@@ -56,7 +61,7 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
 
     $scope.orderType.push({id:1,name:'Garantía'});
     $scope.orderType.push({id:2,name:'Reparación'});
-    $scope.orderType.push({id:3,name:'Presupuesto'});
+    //$scope.orderType.push({id:3,name:'Presupuesto'});
     $scope.orderType.push({id:4,name:'Pre-Entrega'});
     $scope.orderType.push({id:5,name:'Prospecto'});
 
@@ -66,6 +71,11 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
 
     $scope.orderEstados.push({id:0,name:"Pendiente"});
     $scope.orderEstados.push({id:1,name:"Proceso"});
+    //$scope.orderEstados.push({id:2,name:"Cerrada"}); // cer
+    $scope.orderEstados.push({id:3,name:"Presupuesto"});
+    $scope.orderEstados.push({id:4,name:"Aprobada"});
+
+
     $scope.orderUsersDist.push({id:0,name:"Sin Asignar"});
 
 
@@ -74,8 +84,6 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     $scope.orderest=$scope.orderEstados[0];
     $scope.ordertec=$scope.orderUsersDist[0];
 
-    
-    
 
     
     $scope.down = function(e) {
@@ -122,6 +130,10 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
                 $scope.cliente=$scope.client_from_old_orden.name;
                 $scope.contacto=$scope.client_from_old_orden.contacto;
                 $scope.phone=$scope.client_from_old_orden.phone;
+
+                $scope.phone_car=$scope.client_from_old_orden.phone1Car;
+                $scope.phone1_car=$scope.client_from_old_orden.phone2Car;
+                $scope.phone1=$scope.client_from_old_orden.phone1;
                 $scope.mail=$scope.client_from_old_orden.mail;
 
             }
@@ -215,6 +227,10 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
                 cuno: $scope.cliente,
                 eml: $scope.mail,
                 phn: $scope.phone,
+                phn1: $scope.phone1,
+                phncar: $scope.phone_car,
+                phn1car: $scope.phone1_car,
+
                 nme: $scope.contacto,
                 client_id:$scope.cliente_id,
                 tecnico: $scope.ordertec.id,

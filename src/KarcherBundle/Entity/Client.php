@@ -52,6 +52,16 @@ class Client
     private $phone1;
 
     /**
+     * @ORM\Column(name="phone_car", type="string")
+     */
+    private $phone1Car;
+
+    /**
+     * @ORM\Column(name="phone1_car", type="string")
+     */
+    private $phone2Car;
+
+    /**
      * @ORM\Column(name="obs", type="string")
      */
     private $obs;
@@ -232,5 +242,53 @@ class Client
     public function getContacto()
     {
         return $this->contacto;
+    }
+
+    /**
+     * Set phone1Car
+     *
+     * @param integer $phone1Car
+     *
+     * @return Client
+     */
+    public function setPhone1Car($phone1Car)
+    {
+        $this->phone1Car = $phone1Car;
+
+        return $this;
+    }
+
+    /**
+     * Get phone1Car
+     *
+     * @return integer
+     */
+    public function getPhone1Car()
+    {
+        return $this->phone1Car;
+    }
+
+    /**
+     * Set phone2Car
+     *
+     * @param integer $phone2Car
+     *
+     * @return Client
+     */
+    public function setPhone2Car($phone2Car)
+    {
+        $this->phone2Car = $phone2Car;
+
+        return $this;
+    }
+
+    /**
+     * Get phone2Car
+     *
+     * @return integer
+     */
+    public function getPhone2Car()
+    {
+        return $this->phone2Car;
     }
 }

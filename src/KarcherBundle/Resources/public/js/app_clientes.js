@@ -139,6 +139,9 @@ GSPEMApp.controller('ModalNewCli', function($filter,$scope,$http, $uibModalInsta
     $scope.mail1="";
     $scope.phone="";
     $scope.phone1="";
+    $scope.phonecar="";
+    $scope.phone1car="";
+
     $scope.contacto="";
     $scope.id=0;
 
@@ -151,6 +154,9 @@ GSPEMApp.controller('ModalNewCli', function($filter,$scope,$http, $uibModalInsta
         $scope.phone=item.phone;
         $scope.contacto=item.contacto;
         $scope.phone1=item.phone1;
+        $scope.phonecar=item.phone1Car;
+        $scope.phone1car=item.phone2Car;
+
         $scope.id=item.id;
         $scope.editing=false;
     }
@@ -177,6 +183,8 @@ GSPEMApp.controller('ModalNewCli', function($filter,$scope,$http, $uibModalInsta
                 mail1: $scope.mail1,
                 phone: $scope.phone,
                 phone1: $scope.phone1,
+                phonecar: $scope.phonecar,
+                phone1car: $scope.phone1car,
                 contacto: $scope.contacto,
                 obs: $scope.obs,
                 id:$scope.id

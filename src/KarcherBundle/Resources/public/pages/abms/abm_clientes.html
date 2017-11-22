@@ -32,6 +32,7 @@
 
                         <th>Email</th>
                         <th>Telefono</th>
+                        <th>Celular</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -41,7 +42,9 @@
                         <td class="col-md-2">{{ cli.name  }} </td>
                         <td class="col-md-2">{{ cli.contacto  }} </td>
                         <td class="col-md-2">{{ cli.mail }} </td>
-                        <td class="col-md-2">{{ cli.phone }} </td>
+                        <td class="col-md-2">{{cli.phone1Car}}  {{ cli.phone }} </td>
+                        <td class="col-md-2">{{cli.phone2Car}}  {{ cli.phone1 }} </td>
+
                         <td class="col-md-3" style="text-align: right">
                             <a  class="btn btn-sm  btn-karcher-sm-table" ng-click="new(cli)" ><i class="fa fa-edit fa-2x"></i> </a>
                             <a  class="btn btn-sm btn-karcher-sm-table" ng-click="deleteCli(cli.id)" ><i class="fa fa-remove fa-2x"></i> </a>

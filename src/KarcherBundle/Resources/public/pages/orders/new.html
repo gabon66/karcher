@@ -127,18 +127,23 @@
 
                     <div class="form-group has-success has-feedback">
                         <label for="tel" class="col-sm-3 control-label label-form">Telefono:</label>
-                        <div class="col-sm-7">
-                            <input  ng-model="phone"   class="form-control" id="tel">
+
+                        <div class="col-sm-2">
+                            <input  ng-model="phone_car" placeholder="011"    class="form-control" id="tel">
+                        </div>
+                        <div class="col-sm-5" style="padding-right: 20px!important;">
+                            <input  ng-model="phone"   placeholder="55554444"  class="form-control">
                         </div>
                     </div>
+
 
                     <div class="form-group has-success has-feedback">
                         <label for="tel1" class="col-sm-3 control-label label-form">Celular:</label>
                         <div class="col-sm-2">
-                            <input  ng-model=""   class="form-control" id="tel1">
+                            <input  ng-model="phone1_car" placeholder="011"   class="form-control" id="tel1">
                         </div>
-                        <div class="col-sm-5">
-                            <input  ng-model="phone1"   ui-mask="+15" ui-mask-placeholder="" ui-mask-placeholder-char="_"  class="form-control" id="tel2">
+                        <div class="col-sm-5" style="padding-right: 20px!important;">
+                            <input  ng-model="phone1"   placeholder="1599994444"  class="form-control" id="tel2">
                         </div>
                     </div>
 

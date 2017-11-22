@@ -79,7 +79,11 @@ GSPEMApp.controller('ordersControl', function($filter,$scope,$http,$uibModal,toa
     $scope.orderEstados.push({id:9,name:"Todos"});
     $scope.orderEstados.push({id:0,name:"Pendiente"});
     $scope.orderEstados.push({id:1,name:"Proceso"});
+    $scope.orderEstados.push({id:3,name:"Presupuesto"});
+    $scope.orderEstados.push({id:4,name:"Aprobada"});
     $scope.orderEstados.push({id:2,name:"Cerrada"});
+
+
 
     $scope.orderUsersDist.push({id:0,name:"Sin Asignar"});
 
@@ -273,7 +277,11 @@ GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstan
     $scope.orderEstados=[];
     $scope.orderEstados.push({id:0,name:"Pendiente"});
     $scope.orderEstados.push({id:1,name:"Proceso"});
+    $scope.orderEstados.push({id:3,name:"Presupuesto"});
+    $scope.orderEstados.push({id:4,name:"Aprobada"});
     $scope.orderEstados.push({id:2,name:"Cerrada"});
+
+
 
     if ($scope.orden.estd!=null && $scope.orden.estd!=0 ){
         $scope.orderest=$scope.orderEstados[$scope.orden.estd];

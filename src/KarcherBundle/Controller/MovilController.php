@@ -235,7 +235,6 @@ class MovilController extends Controller
             $order->setEstd(0);
         }
 
-
         // cliente
         $order->setCuno($request->get("cuno"));
         $order->setEml($request->get("eml"));

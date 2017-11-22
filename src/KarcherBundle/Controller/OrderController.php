@@ -192,17 +192,27 @@ class OrderController extends Controller
             // update datos del cliente
             $client->setName($request->get("cuno"));
             $client->setPhone($request->get("phn"));
+            $client->setPhone1($request->get("phn1"));
             $client->setMail($request->get("eml"));
             $client->setContacto($request->get("nme"));
+            $client->setPhone1Car($request->get("phncar"));
+            $client->setPhone2Car($request->get("phn1car"));
 
             $em->flush();
         }else{
             // creo nuevo cliente
             $client = new Client();
             $client->setName($request->get("cuno"));
+
+            $client->setPhone1Car($request->get("phncar"));
+            $client->setPhone2Car($request->get("phn1car"));
+
+
             $client->setPhone($request->get("phn"));
+            $client->setPhone1($request->get("phn1"));
             $client->setMail($request->get("eml"));
             $client->setContacto($request->get("nme"));
+
             $em->persist($client);
             $em->flush();
             $order->setClientId($client->getId());
