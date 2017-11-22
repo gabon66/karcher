@@ -48,9 +48,6 @@ class MovilController extends Controller
 
         $repo =$em->getRepository('GSPEM\GSPEMBundle\Entity\User');
 
-
-
-
         $user_temp = $repo->findOneBy(array("username"=>$request->get("username")));
 
         //$user['username']=$request->get("username");
@@ -73,6 +70,26 @@ class MovilController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
         return new Response($serializer->serialize($user,"json"),200,array('Content-Type'=>'application/json'));
     }
+
+
+    /**
+     * @Method({"PUT"})
+     * @Route("/movil/user/token",options = { "expose" = true },name = "login_mov")
+     */
+    public function putTokenAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $user=$this->getUserLoged();
+
+        $user->setTokenPush($request->get("token"));
+        $em->flush();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($user,"json"),200,array('Content-Type'=>'application/json'));
+    }
+
 
     /**
      * @Method({"GET"})
@@ -385,6 +402,29 @@ class MovilController extends Controller
             ->andWhere("o.estd =".$state)
             ->orderBy("o.numero","DESC")
             ->setMaxResults($count)
+            ->execute();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($stmt->fetchAll(),"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+    /**
+     * @Method({"GET"})
+     * @Route("/movil/mensajes")
+     */
+    public function getMessagesAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $user=$this->getUserLoged();
+
+        $stmt = $em->getConnection()->createQueryBuilder()
+            ->select("m.* ,CONCAT(us.last_name ,' ' ,us.first_name ) as origen")
+            ->from("KARCHER.mensajes", "m")
+            ->leftJoin("m", "KARCHER.users", "us", "us.id = m.from_user")
+            ->where("m.to_user=".$user->getId())
+            ->orderBy("m.date","DESC")
             ->execute();
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
