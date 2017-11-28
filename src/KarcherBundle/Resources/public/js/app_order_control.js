@@ -103,8 +103,6 @@ GSPEMApp.controller('ordersControl', function($filter,$scope,$http,$uibModal,toa
             $scope.orders_ori=data.data;
             $scope.rowOrders=$scope.orders_ori.length;
             console.log($scope.orders);
-
-
             if($scope.orders_ori){
                 $scope.orders = $scope.orders_ori.slice(begin, end);
             }
@@ -224,6 +222,31 @@ GSPEMApp.controller('ordersControl', function($filter,$scope,$http,$uibModal,toa
         });
     }
 
+
+    $scope.files=function (item) {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'modal_orden_files.html',
+            controller: 'ModalOrden',
+            resolve: {
+                item: function () {
+                    return item;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            //$scope.selected = selectedItem;
+        }, function () {
+
+            //$scope.cargando=true;
+            getOrders();
+            //$log.info('Modal dismissed at: ' + new Date());
+        });
+    }
+
+
+
+
     $scope.showBarCode=function (order) {
         var modalInstance = $uibModal.open({
             templateUrl: 'modal_barcode.html',
@@ -269,7 +292,7 @@ GSPEMApp.controller('ordersControl', function($filter,$scope,$http,$uibModal,toa
 
 });
 
-GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstance,toastr,item) {
+GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstance,toastr,item,upload) {
     $scope.orden=item;
     console.log($scope.orden);
     $scope.orderUsersDist=[];
@@ -282,6 +305,41 @@ GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstan
     $scope.orderEstados.push({id:2,name:"Cerrada"});
 
 
+
+    if(item.files){
+        $scope.files=JSON.parse($scope.orden.files);
+        for (var e = 0; e < $scope.files.length; e++) {
+        }
+        console.log($scope.files)
+    }
+    
+    $scope.upload=function () {
+        if($scope.file){
+            //debugger
+            upload({
+                url: Routing.generate('postorderfiles')+"/"+$scope.orden.id,
+                method: 'POST',
+                data: {
+                    id: $scope.orden.id,
+                    file: $scope.file, // a jqLite type="file" element, upload() will extract all the files from the input and put them into the FormData object before sending.
+                }
+            }).then(
+                function (response) {
+                    toastr.success('Documento adjuntado con exito', 'Orden');
+                    $uibModalInstance.dismiss('cancel');
+                    console.log(response.data); // will output whatever you choose to return from the server on a successful upload
+                },
+                function (response) {
+                    console.error(response); //  Will return if status code is above 200 and lower than 300, same as $http
+                }
+            );
+
+        }else {
+            toastr.error('Error  , seleccione un documento para adjuntar', 'Orden');
+        }
+
+
+    }
 
     if ($scope.orden.estd!=null && $scope.orden.estd!=0 ){
         $scope.orderest=$scope.orderEstados[$scope.orden.estd];

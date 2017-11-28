@@ -51,17 +51,22 @@ class MovilController extends Controller
         $user_temp = $repo->findOneBy(array("username"=>$request->get("username")));
 
         //$user['username']=$request->get("username");
+
         if($user_temp instanceof User){
             $encoder = $factory->getEncoder($user_temp);
             $encodedPasswordToken = $encoder->encodePassword($request->get('password'), $user_temp->getSalt());
 
             if ($user_temp->getPassword()===$encodedPasswordToken){
 
-                $dateTime=new \DateTime();
-                $hash=hash('ripemd160', $dateTime->getTimestamp());
-                $user_temp->setTokenLogin($hash);
-                $em->flush();
-                $user=$user_temp;
+                if(!empty($user_temp->getTokenLogin())){
+                    $user=$user_temp;
+                }else{
+                    $dateTime=new \DateTime();
+                    $hash=hash('ripemd160', $dateTime->getTimestamp());
+                    $user_temp->setTokenLogin($hash);
+                    $em->flush();
+                    $user=$user_temp;
+                }
             }
         }
 
@@ -71,10 +76,9 @@ class MovilController extends Controller
         return new Response($serializer->serialize($user,"json"),200,array('Content-Type'=>'application/json'));
     }
 
-
     /**
      * @Method({"PUT"})
-     * @Route("/movil/user/token",options = { "expose" = true },name = "login_mov")
+     * @Route("/movil/user/token")
      */
     public function putTokenAction(\Symfony\Component\HttpFoundation\Request $request)
     {
@@ -130,7 +134,8 @@ class MovilController extends Controller
         $repo =$em->getRepository('KarcherBundle\Entity\Orden');
         $repoDist =$em->getRepository('KarcherBundle\Entity\Distribuidor');
         $repoUser =$em->getRepository('GSPEM\GSPEMBundle\Entity\User');
-
+        $users=null;
+        $dist=null;
         if ($user->getIdDistribuidor()){
             $orders=$repo->findBy(array("distId"=>$user->getIdDistribuidor()));
             if($orders!=null){

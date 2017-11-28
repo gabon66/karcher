@@ -202,6 +202,13 @@ class Orden
     private $fclose;
 
     /**
+     * @ORM\Column(name="files", type="string")
+     */
+    private $files;
+
+
+
+    /**
      * Get id
      *
      * @return int
@@ -1073,5 +1080,29 @@ class Orden
     public function getFclose()
     {
         return $this->fclose;
+    }
+
+    /**
+     * Set files
+     *
+     * @param string $files
+     *
+     * @return Orden
+     */
+    public function setFiles($files)
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    /**
+     * Get files
+     *
+     * @return string
+     */
+    public function getFiles()
+    {
+        return $this->files;
     }
 }
