@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Table1">
+	<Table>
+		<Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="4" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="5" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="6" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Row>
+			<Cell><Data ss:Type="String">stock</Data></Cell>
+			<Cell><Data ss:Type="String">id</Data></Cell>
+			<Cell><Data ss:Type="String">id_custom</Data></Cell>
+			<Cell><Data ss:Type="String">descript</Data></Cell>
+			<Cell><Data ss:Type="String">name</Data></Cell>
+			<Cell><Data ss:Type="String">origen</Data></Cell>
+		</Row>
+
+		<Row>
+			<Cell><Data ss:Type="Number">1</Data></Cell>
+			<Cell><Data ss:Type="Number">332</Data></Cell>
+			<Cell><Data ss:Type="String">DUS 4102</Data></Cell>
+			<Cell><Data ss:Type="String">PLACA 4G ERICSSON (s) TU8XZ08340 20160325</Data></Cell>
+			<Cell><Data ss:Type="String">HARDWARE KDU137624/11</Data></Cell>
+			<Cell><Data ss:Type="String">LIMAY TASA</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">1</Data></Cell>
+			<Cell><Data ss:Type="Number">333</Data></Cell>
+			<Cell><Data ss:Type="String">DUS 4102</Data></Cell>
+			<Cell><Data ss:Type="String">PLACA 4G ERICSSON (s) TU8XZ08340 20160325</Data></Cell>
+			<Cell><Data ss:Type="String">HARDWARE KDU137624/11</Data></Cell>
+			<Cell><Data ss:Type="String">LIMAY TASA</Data></Cell>
+		</Row>	</Table>
+</Worksheet>
+</Workbook>

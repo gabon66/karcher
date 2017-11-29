@@ -34,6 +34,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class MensajesController extends Controller
 {
 
+
+    /**
+     * @Method({"GET"})
+     * @Route("/karcher/me",options = { "expose" = true },name = "getme")
+     */
+    public function getMeAction()
+    {
+        $user=$this->get('security.token_storage')->getToken()->getUser();
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($user,"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+
     /**
      * @Method({"GET"})
      * @Route("/karcher/mensajes",options = { "expose" = true },name = "getmimensajes")
@@ -64,39 +79,96 @@ class MensajesController extends Controller
     public function newMessagesAction( \Symfony\Component\HttpFoundation\Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $userCurrten=$this->get('security.token_storage')->getToken()->getUser();
+        $userCurrent=$this->get('security.token_storage')->getToken()->getUser();
 
         // validar perfil y ver a quien van los mensajes
 
-
         $repoUser =$em->getRepository('GSPEM\GSPEMBundle\Entity\User');
 
-        $users=$repoUser->findAll();
+        if ($userCurrent->getLevel()==1){
+            // admin gral para todos todos
+            if($request->get("rol")==0){
+                $users=    $repoUser->findBy(array('level'=>array(1,2,3,4,5,6)));
+            }else{
+                $users=    $repoUser->findBy(array('level'=>array($request->get("rol"))));
+            }
+        }
+        if ($userCurrent->getLevel()==2){
+            if($request->get("rol")==0) {
+                // admin regional , por ahora a todos los usuarios
+                $users = $repoUser->findBy(array('level' => array(2, 3, 4, 5, 6)));
+            }else{
+                $users=    $repoUser->findBy(array('level'=>array($request->get("rol"))));
+            }
+        }
 
+        if ($userCurrent->getLevel()==3){
+            if($request->get("rol")==0) {
+                // admin nacional , aca filtro por pais.
+                $users = $repoUser->findBy(array('level' => array(3, 4, 5, 6), 'idPais' => $userCurrent->getPais()));
+            }else{
+                $users = $repoUser->findBy(array('level' => array($request->get("rol")), 'idPais' => $userCurrent->getPais()));
+            }
+        }
+
+        if ($userCurrent->getLevel()==4){
+            if($request->get("rol")==0) {
+                // admin disitri aca filtro tambien por distribuidor
+                $users = $repoUser->findBy(array('level' => array(4, 5), 'idDistribuidor' => $userCurrent->getIdDistribuidor()));
+            }else{
+                $users = $repoUser->findBy(array('level' => array($request->get("rol")), 'idDistribuidor' => $userCurrent->getIdDistribuidor()));
+            }
+        }
+
+        $message=null;
         foreach ($users as $user){
-
-            //if ($userCurrten->getId()!=$user->getId()){
-                $message= new Mensaje();
+            $message = new Mensaje();
+            if ($user->getId()==$userCurrent->getId()){
                 $message->setDate(new \DateTime());
-                $message->setFrom($userCurrten->getId());
+                $message->setFrom($userCurrent->getId());
                 $message->setState(0);
                 $message->setAsunto($request->get("asunto"));
                 $message->setMensaje($request->get("mensaje"));
                 $message->setTo($user->getId());
+                if(!empty($user->getTokenPush())){
+                    $this->notifiUser($user->getTokenPush(),$request->get("asunto"),$request->get("mensaje"));
+                }
                 $em->persist($message);
                 $em->flush();
-            //}
-
+            }
         }
-
-
-
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
         return new Response($serializer->serialize($message,"json"),200,array('Content-Type'=>'application/json'));
     }
+
+
+    public function notifiUser($token , $title ,$messageContent )
+    {
+        $tokens=array($token);
+
+        $message=array('body'=>$messageContent,'title'=>$title,'sound'=>'default');
+        //$message=array('body'=>$title." ".$messageContent,'sound'=>'default');
+
+        $fields=array('registration_ids'=>$tokens,
+            'notification'=>$message);
+
+        $headers= array("Authorization:key = ".$this->getParameter("push_key"),
+            "Content-Type: application/json");
+
+        $ch = \curl_init($this->getParameter("push_url"));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $output = curl_exec($ch);
+        //var_dump($output);
+        curl_close($ch);
+     }
 
 
 }

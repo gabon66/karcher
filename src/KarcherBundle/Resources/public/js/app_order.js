@@ -7,7 +7,16 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
 
 
 
+
     var cleanAll=function () {
+
+        $scope.editing_dir=true;
+        $scope.direccion="";
+        $scope.direccion_str="";
+
+        $scope.latitud=0;
+        $scope.longitud=0;
+
         $scope.orderUsersDist=[];
         $scope.newNumOrder="";
         $scope.distName="";
@@ -136,6 +145,10 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
                 $scope.phone1=$scope.client_from_old_orden.phone1;
                 $scope.mail=$scope.client_from_old_orden.mail;
 
+                $scope.direccion_str=$scope.client_from_old_orden.dir;
+                $scope.editing_dir=false;
+
+
             }
         });
     }
@@ -204,7 +217,17 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
             return false;
         }
 
-        if ($scope.cliente.length==0 && $scope.telefono.length==0){
+        if($scope.direccion){
+            $scope.direccion_str=$scope.direccion.formatted_address;
+        }
+
+        if($scope.direccion_str.length==0){
+            $scope.step=2;
+            toastr.error('Complete la dirección del cliente', 'Orden');
+            return false;
+        }
+
+        if ($scope.cliente.length==0 && $scope.telefono.length==0 ){
             $scope.step=2;
             toastr.error('Complete los datos del cliente', 'Orden');
             return false;
@@ -236,6 +259,10 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
                 tecnico: $scope.ordertec.id,
                 estado:$scope.orderest.id,
                 obs:$scope.obs,
+                dir: $scope.direccion_str,
+                coords:JSON.stringify({lng:$scope.longitud,lat: $scope.latitud}),
+
+
 
                 barra: $scope.barra,
                 serial: $scope.serie,
@@ -251,6 +278,8 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
                 acc6: $scope.acc6,
                 acc7: $scope.acc7,
                 acc8: $scope.acc8,
+
+
 
                 prd: $scope.orderpri.id
 
@@ -289,16 +318,22 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
             $scope.selected = selectedItem;
 
         }, function (item) {
-            console.log(item);
             if (angular.isObject(item)){
-                console.log(item);
+
                 $scope.cliente_id=item.id;
                 $scope.cliente=item.name;
                 $scope.contacto=item.contacto;
-                $scope.telefono=item.phone;
-                $scope.mail=item.mail;
-            }
 
+                $scope.mail=item.mail;
+                $scope.phone=item.phone;
+
+                $scope.phone_car=item.phone1Car;
+                $scope.phone1_car=item.phone2Car;
+                $scope.phone1=item.phone1;
+
+                $scope.direccion_str=item.dir;
+                $scope.editing_dir=false;
+            }
 
             $scope.cargando=true;
             //getClients()

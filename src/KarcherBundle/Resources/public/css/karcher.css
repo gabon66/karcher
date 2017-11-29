@@ -24,7 +24,7 @@
 
 .karcher-box-border{
     border: 3px solid #ededed;
-    height: 255px;
+    height: 310px;
 }
 
 
@@ -431,4 +431,9 @@ ul.sub-menu li{
 .h2-title{
     font-size: 16px;
     font-weight: bold;
+}
+
+
+.has-feedback .form-control {
+    padding-right: 0px!important;
 }

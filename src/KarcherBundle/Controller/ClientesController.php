@@ -72,14 +72,14 @@ class ClientesController extends Controller
         }
         $client->setName($request->get("name"));
         $client->setPhone($request->get("phone"));
-        $client->setMail1($request->get("mail1"));
         $client->setMail($request->get("mail"));
         $client->setObs($request->get("obs"));
         $client->setPhone1($request->get("phone1"));
         $client->setPhone1Car($request->get("phonecar"));
         $client->setPhone2Car($request->get("phone1car"));
         $client->setContacto($request->get("contacto"));
-
+        $client->setCoord($request->get("coords"));
+        $client->setDir($request->get("dir"));
 
         if ($id==0){
             $em->persist($client);

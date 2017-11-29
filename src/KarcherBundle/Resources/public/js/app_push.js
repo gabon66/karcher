@@ -6,6 +6,11 @@ GSPEMApp.controller('abmPush', function($filter,$scope,$http,$uibModal,toastr,Mo
     $scope.mensaje="";
     $scope.asunto="";
 
+    $scope.levels=[];
+
+
+
+
     $scope.sendMensaje= function () {
         if ($scope.mensaje.length == 0 ||  $scope.asunto.length==0) {
             toastr.warning('Complete todos los campos requeridos (*)', 'Atención');
@@ -17,6 +22,7 @@ GSPEMApp.controller('abmPush', function($filter,$scope,$http,$uibModal,toastr,Mo
                 method: "POST",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 data: {
+                    rol:$scope.levelselected.id,
                     mensaje: $scope.mensaje,
                     asunto: $scope.asunto
                 },
@@ -44,9 +50,74 @@ GSPEMApp.controller('abmPush', function($filter,$scope,$http,$uibModal,toastr,Mo
         ).then(function (resp) {
             $scope.mensajes=resp.data;
             console.log($scope.mensajes);
+
+
+
+
         });
     };
     getMyMessages();
+
+
+    var geMe = function() {
+        $http.get(Routing.generate('getme')
+        ).then(function (resp) {
+            $scope.me=resp.data;
+
+
+
+            if($scope.me.level==1 ){
+                $scope.levels.push(
+                    {id:0,name:"Todos"},
+                    {id:1,name:"Administradores General"},
+                    {id:2,name:"Administradores Regionales"},
+                    {id:3,name:"Administradores Nacionales"},
+                    {id:6,name:"Vendedores"},
+                    {id:4,name:"Administradores en Disitribuidoras"},
+                    {id:5,name:"Técnicos"}
+                );
+            }
+
+            if($scope.me.level==2){
+                $scope.levels.push(
+                    {id:0,name:"Todos"},
+                    {id:2,name:"Administradores Regionales"},
+                    {id:3,name:"Administradores Nacionales"},
+                    {id:6,name:"Vendedores"},
+                    {id:4,name:"Administradores en Disitribuidoras"},
+                    {id:5,name:"Técnicos"}
+                );
+            }
+
+            if($scope.me.level==3){
+                $scope.levels.push(
+                    {id:0,name:"Todos"},
+                    {id:3,name:"Administradores Nacionales"},
+                    {id:6,name:"Vendedores"},
+                    {id:4,name:"Administradores en Disitribuidoras"},
+                    {id:5,name:"Técnicos"}
+                );
+            }
+
+            if($scope.me.level==4){
+                $scope.levels.push(
+                    {id:0,name:"Todos"},
+                    {id:4,name:"Administradores en Disitribuidoras"},
+                    {id:5,name:"Técnicos"}
+                );
+            }
+
+            if($scope.me.level==5){
+                $scope.levels.push(
+                    {id:0,name:"Todos"},
+                    {id:5,name:"Técnicos"}
+                );
+            }
+
+            $scope.levelselected=$scope.levels[0];
+        });
+    };
+    geMe();
 
     $scope.showMensaje=function (men) {
         var modalInstance = $uibModal.open({

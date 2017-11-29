@@ -138,12 +138,12 @@
 
 
                     <div class="form-group has-success has-feedback">
-                        <label for="tel1" class="col-sm-3 control-label label-form">Celular:</label>
+                        <label for="tel1" class="col-sm-3 control-label label-form">Móvil:</label>
                         <div class="col-sm-2">
                             <input  ng-model="phone1_car" placeholder="011"   class="form-control" id="tel1">
                         </div>
                         <div class="col-sm-5" style="padding-right: 20px!important;">
-                            <input  ng-model="phone1"   placeholder="1599994444"  class="form-control" id="tel2">
+                            <input  ng-model="phone1"   placeholder="99994444"  class="form-control" id="tel2">
                         </div>
                     </div>
 
@@ -155,6 +155,27 @@
                         </div>
                     </div>
 
+
+
+            <!--        <div class="form-group has-success has-feedback">
+                        <button ng-show="id!=0" ng-click="editing=true" class="btn-karcher-sm">Editar</button>
+                        <label ng-show="!editing" >{{ direccion_str  }}</label>
+                        <input ng-show="editing" type="text" ng-model="direccion" placeholder="Ingrese dirección aqui (*)" class="form-control" g-places-autocomplete ng-model="myScopeVar" />
+                    </div>
+                    <span ng-show="alertDist" style="color: red">No tiene dirección google map cargada</span>
+                -->
+                    <div class="form-group has-success has-feedback">
+                        <label for="mail" class="col-sm-3 control-label label-form">Direccion:</label>
+                        <div class="col-sm-5">
+                            <input ng-show="editing_dir" type="text" ng-model="direccion" placeholder="Ingrese dirección aqui (*)" class="form-control" g-places-autocomplete ng-model="myScopeVar" />
+                            <input ng-show="!editing_dir"  disabled type="text" ng-model="direccion_str"  class="form-control"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" ng-click="editing_dir=true" class="btn-karcher-sm" style="height: 32px!important;" >EDITAR</button>
+                        </div>
+
+
+                    </div>
                 </fieldset>
             </div>
             <div class="col-md-2"></div>

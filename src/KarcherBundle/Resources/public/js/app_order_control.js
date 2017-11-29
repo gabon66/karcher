@@ -303,7 +303,7 @@ GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstan
     $scope.orderEstados.push({id:3,name:"Presupuesto"});
     $scope.orderEstados.push({id:4,name:"Aprobada"});
     $scope.orderEstados.push({id:2,name:"Cerrada"});
-
+    $scope.files=[];
 
 
     if(item.files){
@@ -315,6 +315,7 @@ GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstan
     
     $scope.upload=function () {
         if($scope.file){
+            console.log($scope.file);
             //debugger
             upload({
                 url: Routing.generate('postorderfiles')+"/"+$scope.orden.id,
@@ -326,7 +327,8 @@ GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstan
             }).then(
                 function (response) {
                     toastr.success('Documento adjuntado con exito', 'Orden');
-                    $uibModalInstance.dismiss('cancel');
+                    $scope.files.push($scope.file.name)
+                    //$uibModalInstance.dismiss('cancel');
                     console.log(response.data); // will output whatever you choose to return from the server on a successful upload
                 },
                 function (response) {

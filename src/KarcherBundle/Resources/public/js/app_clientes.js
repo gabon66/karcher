@@ -132,7 +132,7 @@ GSPEMApp.controller('abmClientes', function($rootScope,$filter,$scope,$http,$uib
 });
 GSPEMApp.controller('ModalNewCli', function($filter,$scope,$http, $uibModalInstance, item,toastr) {
     $scope.item = item;
-
+    $scope.editing=true;
     $scope.name="";
     $scope.obs="";
     $scope.mail="";
@@ -141,11 +141,21 @@ GSPEMApp.controller('ModalNewCli', function($filter,$scope,$http, $uibModalInsta
     $scope.phone1="";
     $scope.phonecar="";
     $scope.phone1car="";
-
+    $scope.direccion="";
+    $scope.latitud=0;
+    $scope.longitud=0;
     $scope.contacto="";
     $scope.id=0;
 
     if(item!=null){
+
+        if (item.coord){
+            $scope.alertDist=false;
+            $scope.latitud=JSON.parse(item.coord).lat;
+            $scope.longitud=JSON.parse(item.coord).lng;
+        }else {
+            $scope.alertDist=true;
+        }
 
         $scope.name=item.name;
         $scope.obs=item.obs;
@@ -156,7 +166,7 @@ GSPEMApp.controller('ModalNewCli', function($filter,$scope,$http, $uibModalInsta
         $scope.phone1=item.phone1;
         $scope.phonecar=item.phone1Car;
         $scope.phone1car=item.phone2Car;
-
+        $scope.direccion_str=item.dir;
         $scope.id=item.id;
         $scope.editing=false;
     }
@@ -165,10 +175,30 @@ GSPEMApp.controller('ModalNewCli', function($filter,$scope,$http, $uibModalInsta
         $uibModalInstance.dismiss('cancel');
     };
 
+    $scope.placeChanged=function (place) {
+        $scope.alertDist=false;
+    }
+
     $scope.saveCliente= function () {
         if ($scope.name.length == 0) {
             toastr.warning('Complete todos los campos requeridos (*)', 'Atención');
             return false;
+        }
+
+        if ($scope.direccion &&  $scope.direccion.geometry){
+            $scope.latitud  = $scope.direccion.geometry.location.lat()
+            $scope.longitud = $scope.direccion.geometry.location.lng()
+            $scope.direccion_str=$scope.direccion.formatted_address;
+        }else{
+            if ($scope.id){
+                if(!$scope.latitud){
+                    toastr.warning('Complete con una direccion valida', 'Atención');
+                    return false
+                }
+            }else {
+                toastr.warning('Complete con una direccion valida', 'Atención');
+                return false
+            }
         }
 
         //console.log($scope.direccion_str);
@@ -187,7 +217,9 @@ GSPEMApp.controller('ModalNewCli', function($filter,$scope,$http, $uibModalInsta
                 phone1car: $scope.phone1car,
                 contacto: $scope.contacto,
                 obs: $scope.obs,
-                id:$scope.id
+                id:$scope.id,
+                coords:JSON.stringify({lng:$scope.longitud,lat: $scope.latitud}),
+                dir: $scope.direccion_str
             },
             transformRequest: function (obj) {
                 var str = [];

@@ -83,12 +83,13 @@ class OrderController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("o.* ,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
+            ->select("o.* ,c.*,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
             ->from("orden", "o")
             ->leftJoin("o","users","us","us.id = o.tecnico_id")
             ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
             ->leftJoin("o","distribuidor","dist","dist.id = o.dist_id")
             ->leftJoin("o","materiales","m","m.id = o.maquina_id")
+            ->leftJoin("o","clients","c","c.id = o.client_id")
             ->where("o.tipo!=5") // fuera las prospecto
             ->orderBy("o.numero","DESC")
             ->execute();
@@ -198,6 +199,9 @@ class OrderController extends Controller
             $client->setPhone1Car($request->get("phncar"));
             $client->setPhone2Car($request->get("phn1car"));
 
+            $client->setDir($request->get("dir"));
+            $client->setCoord($request->get("coords"));
+
             $em->flush();
         }else{
             // creo nuevo cliente
@@ -212,6 +216,10 @@ class OrderController extends Controller
             $client->setPhone1($request->get("phn1"));
             $client->setMail($request->get("eml"));
             $client->setContacto($request->get("nme"));
+
+            $client->setDir($request->get("dir"));
+            $client->setCoord($request->get("coords"));
+
 
             $em->persist($client);
             $em->flush();

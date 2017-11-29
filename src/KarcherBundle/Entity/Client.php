@@ -66,6 +66,17 @@ class Client
      */
     private $obs;
 
+
+    /**
+     * @ORM\Column(name="coords", type="string")
+     */
+    private $coord;
+
+    /**
+     * @ORM\Column(name="dir", type="string")
+     */
+    private $dir;
+
     /**
      * Get id
      *
@@ -290,5 +301,53 @@ class Client
     public function getPhone2Car()
     {
         return $this->phone2Car;
+    }
+
+    /**
+     * Set coord
+     *
+     * @param string $coord
+     *
+     * @return Client
+     */
+    public function setCoord($coord)
+    {
+        $this->coord = $coord;
+
+        return $this;
+    }
+
+    /**
+     * Get coord
+     *
+     * @return string
+     */
+    public function getCoord()
+    {
+        return $this->coord;
+    }
+
+    /**
+     * Set dir
+     *
+     * @param string $dir
+     *
+     * @return Client
+     */
+    public function setDir($dir)
+    {
+        $this->dir = $dir;
+
+        return $this;
+    }
+
+    /**
+     * Get dir
+     *
+     * @return string
+     */
+    public function getDir()
+    {
+        return $this->dir;
     }
 }

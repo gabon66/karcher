@@ -122,23 +122,37 @@
             </div>
 
 
-            <div class="form-group has-success has-feedback">
+            <!--<div class="form-group has-success has-feedback">
                 <input
                         ng-model="mail1"
                         class="form-control"
                         placeholder="E-Mail 2">
+            </div>-->
+
+
+            <div class="form-group has-success has-feedback">
+                <button ng-show="id!=0" ng-click="editing=true" class="btn-karcher-sm">Editar</button>
+                <label ng-show="!editing" >{{ direccion_str  }}</label>
+                <input ng-show="editing" type="text" ng-model="direccion" placeholder="Ingrese dirección aqui (*)" class="form-control" g-places-autocomplete ng-model="myScopeVar" />
+                  <!--  <input type="text"  id="Autocomplete" placeholder="Ingrese direccion aqui " class="form-control" ng-autocomplete="result1" ng-change="placeChanged()" on-place-changed="placeChanged(place)" details="details1" options="options1"/>-->
             </div>
+            <span ng-show="alertDist" style="color: red">No tiene dirección google map cargada</span>
+
+
 
             <div class="form-group has-success has-feedback">
             <div class="row">
+                <label for="phon11" class="col-sm-3 control-label label-form" style="padding-top: 8px">Teléfono Fijo:</label>
+
                 <div class="col-md-3" style="padding-left: 0px!important;">
                             <input
+                            id="phon11"
                             ng-model="phonecar"
                             class="form-control"
                             placeholder="011">
                 </div>
 
-                <div class="col-md-9" style="padding-right: 8px!important;">
+                <div class="col-md-6" style="padding-right: 14px!important;">
                              <input
                             ng-model="phone"
                             class="form-control"
@@ -152,18 +166,28 @@
 
             <div class="form-group has-success has-feedback">
             <div class="row">
+                <label for="cel" class="col-sm-3 control-label label-form" style="padding-top: 8px">Teléfono Móvil:</label>
                 <div class="col-md-3" style="padding-left: 0px!important;">
                             <input
                             ng-model="phone1car"
                             class="form-control"
+                            id="cel"
                             placeholder="011">
                 </div>
 
-                <div class="col-md-9" style="padding-right: 8px!important;">
+
+                        <div class="col-md-2" style="padding-left: 0px!important;">
+                            <input
+                            disabled
+                            class="form-control"
+                            placeholder="15">
+                </div>
+
+                <div class="col-md-4" style="padding-right: 19px!important;">
                              <input
                             ng-model="phone1"
                             class="form-control"
-                            placeholder="1544445555">
+                            placeholder="44445555">
                 </div>
 
 
@@ -633,7 +657,10 @@
                     <label>Cliente: {{order.cuno}}</label><br>
                     <label>Contacto: {{order.nme}}</label><br>
                     <label>Email: {{order.eml}}</label><br>
-                    <label>Telefono: {{order.phn}}</label><br>
+                    <label>Telefono: {{order.phone_car}}{{order.phone}}</label><br>
+                    <label>Movíl: {{order.phone1_car}}{{order.phone1}}</label><br>
+                    <label>Dirección: {{order.dir}}</label><br>
+
                  </div>
                  <div class="col-md-4">
                     <label>Maquina: {{order.maquina}}</label>
@@ -807,17 +834,14 @@
         <fieldset>
             <div class="row">
                 <div class="col-md-6">
-                    <input name="file" file-model ="file" type="file" />
+                    <input name="file" file-model ="file" title="Seleccione Documento" type="file" />
                 </div>
                 <div class="col-md-6">
                     <label>Documentos adjuntos:</label>
                     <ul><li ng-repeat="file in files"><a target="_self" download="{{file}}" href="../upload/{{orden.id +'/'+ file }}"> {{file}}</a></li></ul>
                     <label ></label>
                 </div>
-
             </div>
-
-
         </fieldset>
 
 

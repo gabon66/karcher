@@ -1,0 +1,29 @@
+ALTER TABLE `KARCHER`.`users` 
+CHANGE COLUMN `token` `token_push` VARCHAR(1000) NULL DEFAULT NULL ,
+ADD COLUMN `token_login` VARCHAR(1000) NULL AFTER `id_pais`;
+
+
+alter table clients add column phone1_car INT;
+alter table clients add column phone_car INT;
+
+
+ALTER TABLE `KARCHER`.`clients` 
+CHANGE COLUMN `phone_car` `phone_car` VARCHAR(10) NULL DEFAULT NULL ,
+CHANGE COLUMN `phone1_car` `phone1_car` VARCHAR(10) NULL DEFAULT NULL ;
+
+
+
+ALTER TABLE `KARCHER`.`orden` 
+ADD COLUMN `files` VARCHAR(1000) NULL AFTER `fclose`;
+
+
+ordenes eliminar presups
+estado de orden , agregar presupuesto y aprovado como nuevos estados.
+
+
+
+
+Pendiente :
+
+push gerargico y por grupos
+en accerios opodre ajunsr documneto / facuras.
