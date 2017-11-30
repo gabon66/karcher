@@ -293,6 +293,7 @@ class DefaultController extends Controller
 
         $orden=$repoOrder->findOneBy(array("maquinaBarra"=>$barra));
 
+
         if(!empty($orden)){
 
             $client_id=$orden->getClientId();

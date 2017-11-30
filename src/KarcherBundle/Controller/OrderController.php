@@ -304,7 +304,7 @@ class OrderController extends Controller
      * @Method({"POST"})
      * @Route("/karcher/order/files/{id}",options = { "expose" = true },name = "postorderfiles")
      */
-    public function updatePhotoUserAction(Request $request)
+    public function updatePhotoUserAction(\Symfony\Component\HttpFoundation\Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager();
         $repoOrden = $em->getRepository('KarcherBundle\Entity\Orden');
@@ -315,22 +315,24 @@ class OrderController extends Controller
 
 
         $creo=false;
-        //mkdir($this->getTmpUploadRootDir().$orden->getId(), 0777, true);
-        if (!file_exists($this->getParameter("file_folder_path").$orden->getId())) {
-            $creo=true;
-            mkdir($this->getParameter("file_folder_path").$orden->getId(), 0777, true);
-        }
 
-
-        $file  =$request->files->get('file');
-        $name=$file->getClientOriginalName();
-
-
-        $date = new \DateTime();
-
-        //$nameImg =$date->getTimestamp()."_".$name;
-        $nameImg =$name;
         if ($orden) {
+
+            //mkdir($this->getTmpUploadRootDir().$orden->getId(), 0777, true);
+            if (!file_exists($this->getParameter("file_folder_path").$orden->getId())) {
+                $creo=true;
+                mkdir($this->getParameter("file_folder_path").$orden->getId(), 0777, true);
+            }
+
+            $file  =$request->files->get('file');
+            $name=$file->getClientOriginalName();
+
+
+            $date = new \DateTime();
+
+            //$nameImg =$date->getTimestamp()."_".$name;
+            $nameImg =$name;
+
             if ($orden->getFiles()) {
                 $files = json_decode($orden->getFiles());
                 $files[]=$nameImg;
@@ -339,15 +341,16 @@ class OrderController extends Controller
                 $files = json_encode(array($nameImg));
                 $orden->setFiles($files);
             }
-        }
-        $em->flush();
+            $em->flush();
 
-        $file->move($this->getParameter("file_folder_path").$orden->getId()."/", $nameImg);
+            $file->move($this->getParameter("file_folder_path").$orden->getId()."/", $nameImg);
+        }
+
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
-        return new Response($serializer->serialize(array("name"=>$name,"creo"=>$creo,"dir"=>$this->getParameter("file_folder_path").$orden->getId()),"json"),200,array('Content-Type'=>'application/json'));
+        return new Response($serializer->serialize(array("id"=>$request->get("id")),"json"),200,array('Content-Type'=>'application/json'));
     }
 
     protected function getTmpUploadRootDir()

@@ -123,6 +123,8 @@ GSPEMApp.controller('newOrder', function($scope,focus,$http,$filter,$uibModal,to
     $scope.checkBarra=function () {
 
         $scope.serie= $scope.barra.substring(8,$scope.barra.length);
+        console.log(Routing.generate('getmaterialesbynumber')+"/"+$scope.barra.substring(0,8)+"/"+$scope.barra);
+
         $http.get(Routing.generate('getmaterialesbynumber')+"/"+$scope.barra.substring(0,8)+"/"+$scope.barra).then(function (response) {
             console.log(response.data);
             if (response.data.material!=null){

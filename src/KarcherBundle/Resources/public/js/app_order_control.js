@@ -317,6 +317,7 @@ GSPEMApp.controller('ModalOrden', function($filter,$scope,$http, $uibModalInstan
         if($scope.file){
             console.log($scope.file);
             //debugger
+            console.log(Routing.generate('postorderfiles')+"/"+$scope.orden.id);
             upload({
                 url: Routing.generate('postorderfiles')+"/"+$scope.orden.id,
                 method: 'POST',

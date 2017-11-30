@@ -269,18 +269,21 @@ class MovilController extends Controller
             $client=$repoClient->findOneBy(array("id"=>(int)$request->get("client_id")));
             // update datos del cliente
             $client->setName($request->get("cuno"));
+            $client->setPhone1Car($request->get("phncar"));
             $client->setPhone($request->get("phn"));
             $client->setMail($request->get("eml"));
             $client->setContacto($request->get("nme"));
-
+            $client->setDir($request->get("dir"));
             $em->flush();
         }else{
             // creo nuevo cliente
             $client = new Client();
             $client->setName($request->get("cuno"));
+            $client->setPhone1Car($request->get("phncar"));
             $client->setPhone($request->get("phn"));
             $client->setMail($request->get("eml"));
             $client->setContacto($request->get("nme"));
+            $client->setDir($request->get("dir"));
             $em->persist($client);
             $em->flush();
             $order->setClientId($client->getId());
@@ -359,6 +362,29 @@ class MovilController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
         return new Response($serializer->serialize($orden,"json"),200,array('Content-Type'=>'application/json'));
     }
+
+
+    /**
+     * @Method({"PUT"})
+     * @Route("/movil/order/obs/{id}")
+     */
+    public function updateOrderObsAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repoOrden = $em->getRepository('KarcherBundle\Entity\Orden');
+
+        $orden=$repoOrden->findOneBy(array("id"=>$request->get("id")));
+        if ($orden){
+            $orden->setObs($request->get("obs"));
+        }
+        $em->flush();
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize($orden,"json"),200,array('Content-Type'=>'application/json'));
+    }
+
 
 
     /**
