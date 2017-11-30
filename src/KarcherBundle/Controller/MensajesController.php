@@ -145,6 +145,19 @@ class MensajesController extends Controller
     }
 
 
+
+
+    /**
+     * @Method({"GET"})
+     * @Route("/karcher/mensajes/demo")
+     */
+    public function newMessagesDemoAction()
+    {
+        $this->notifiUser("fHMa1BeOM4U:APA91bHGhP7wkprlxeZSFXF8U-6foVmtIvd0lKXoeoRntIx-wWLG3uuwH5yr1IvuWtkr2TZWpWvDgdq5V1leGAOimRdGGdZp8UuP7LDtsuhy2gqlvYCEdxLYIcORwPsF6VZqVQ30zXBQ","demo","demoooooo");
+    }
+
+
+
     public function notifiUser($token , $title ,$messageContent )
     {
         $tokens=array($token);
@@ -166,7 +179,7 @@ class MensajesController extends Controller
         curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $output = curl_exec($ch);
-        //var_dump($output);
+        var_dump($output);
         curl_close($ch);
      }
 
