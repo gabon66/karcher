@@ -395,16 +395,36 @@ class MovilController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("o.* ,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
-            ->from("orden", "o")
-            ->leftJoin("o","users","us","us.id = o.tecnico_id")
-            ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
-            ->leftJoin("o","distribuidor","dist","dist.id = o.dist_id")
-            ->leftJoin("o","materiales","m","m.id = o.maquina_id")
-            ->where("o.tipo!=5") // fuera las prospecto
-            ->orderBy("o.numero","DESC")
-            ->execute();
+
+        $user=$this->getUserLoged();
+
+        if ($user->getIdDistribuidor() && $user->getIdDistribuidor()> 0) {
+
+            // si tiene punto de disitribucion asociado filtro por punto tambien
+            $stmt = $em->getConnection()->createQueryBuilder()
+                ->select("o.* ,c.*,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
+                ->from("orden", "o")
+                ->leftJoin("o","users","us","us.id = o.tecnico_id")
+                ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
+                ->leftJoin("o","distribuidor","dist","dist.id = o.dist_id")
+                ->leftJoin("o","materiales","m","m.id = o.maquina_id")
+                ->leftJoin("o","clients","c","c.id = o.client_id")
+                ->where("o.tipo!=5") // fuera las prospecto
+                ->andWhere("o.dist_id =".$user->getIdDistribuidor())
+                ->orderBy("o.numero","DESC")
+                ->execute();
+        }else {
+            $stmt = $em->getConnection()->createQueryBuilder()
+                ->select("o.* ,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
+                ->from("orden", "o")
+                ->leftJoin("o", "users", "us", "us.id = o.tecnico_id")
+                ->leftJoin("o", "users", "us_rec", "us_rec.id = o.rec")
+                ->leftJoin("o", "distribuidor", "dist", "dist.id = o.dist_id")
+                ->leftJoin("o", "materiales", "m", "m.id = o.maquina_id")
+                ->where("o.tipo!=5")// fuera las prospecto
+                ->orderBy("o.numero", "DESC")
+                ->execute();
+        }
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());

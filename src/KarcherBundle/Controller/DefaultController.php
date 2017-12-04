@@ -193,7 +193,13 @@ class DefaultController extends Controller
         $user->setLastName($request->get("apellido"));
         $user->setUsername ($request->get("username"));
         $user->setContratista($request->get("contratista"));
-        $user->setIdDistribuidor($request->get("id_dist"));
+
+
+        if ($request->get("level")<4){
+            $user->setIdDistribuidor(0);
+        }else {
+            $user->setIdDistribuidor($request->get("id_dist"));
+        }
 
         if(!empty($request->get("level"))){
             $user->setLevel($request->get("level"));

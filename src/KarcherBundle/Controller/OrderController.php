@@ -43,7 +43,8 @@ class OrderController extends Controller
         $repo =$em->getRepository('KarcherBundle\Entity\Orden');
         $repoDist =$em->getRepository('KarcherBundle\Entity\Distribuidor');
         $repoUser =$em->getRepository('GSPEM\GSPEMBundle\Entity\User');
-
+        $users=[];
+        $dist=[];
         if ($user->getIdDistribuidor()){
             $orders=$repo->findBy(array("distId"=>$user->getIdDistribuidor()));
             if($orders!=null){
@@ -58,7 +59,7 @@ class OrderController extends Controller
             // si soy a
             if($user->getLevel()==5){
                 // es tecnico asi que solo puede su propio user
-                $users=null;
+                $users=[];
             }else{
                 // es administrador al menos , entoces ve todos los tecs
                 $users=$repoUser->findBy(array("idDistribuidor"=>$user->getIdDistribuidor()));
@@ -82,17 +83,39 @@ class OrderController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("o.* ,c.*,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
-            ->from("orden", "o")
-            ->leftJoin("o","users","us","us.id = o.tecnico_id")
-            ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
-            ->leftJoin("o","distribuidor","dist","dist.id = o.dist_id")
-            ->leftJoin("o","materiales","m","m.id = o.maquina_id")
-            ->leftJoin("o","clients","c","c.id = o.client_id")
-            ->where("o.tipo!=5") // fuera las prospecto
-            ->orderBy("o.numero","DESC")
-            ->execute();
+        $user=$this->get('security.token_storage')->getToken()->getUser();
+
+        if ($user->getIdDistribuidor() && $user->getIdDistribuidor()> 0) {
+
+            // si tiene punto de disitribucio asociado filtro por punto tambien
+            $stmt = $em->getConnection()->createQueryBuilder()
+                ->select("o.* ,c.*,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
+                ->from("orden", "o")
+                ->leftJoin("o","users","us","us.id = o.tecnico_id")
+                ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
+                ->leftJoin("o","distribuidor","dist","dist.id = o.dist_id")
+                ->leftJoin("o","materiales","m","m.id = o.maquina_id")
+                ->leftJoin("o","clients","c","c.id = o.client_id")
+                ->where("o.tipo!=5") // fuera las prospecto
+                ->andWhere("o.dist_id =".$user->getIdDistribuidor())
+                ->orderBy("o.numero","DESC")
+                ->execute();
+        }else {
+            $stmt = $em->getConnection()->createQueryBuilder()
+                ->select("o.* ,c.*,dist.name as dist_name, us_rec.id as rec_id , concat (us_rec.last_name ,' ', us_rec.first_name ) as tecnico_rec,us.id as tecnico_id , concat (us.last_name ,' ', us.first_name ) as tecnico_name,m.name as maquina")
+                ->from("orden", "o")
+                ->leftJoin("o","users","us","us.id = o.tecnico_id")
+                ->leftJoin("o","users","us_rec","us_rec.id = o.rec")
+                ->leftJoin("o","distribuidor","dist","dist.id = o.dist_id")
+                ->leftJoin("o","materiales","m","m.id = o.maquina_id")
+                ->leftJoin("o","clients","c","c.id = o.client_id")
+                ->where("o.tipo!=5") // fuera las prospecto
+                ->orderBy("o.numero","DESC")
+                ->execute();
+        }
+
+
+
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
@@ -299,6 +322,7 @@ class OrderController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
         return new Response($serializer->serialize($orden,"json"),200,array('Content-Type'=>'application/json'));
     }
+
 
     /**
      * @Method({"POST"})

@@ -235,7 +235,7 @@ GSPEMApp.controller('ModalNewUserCtrl', function($filter,$scope,$http,$uibModal,
     $scope.paisselected=item.paises[0];
 
     $scope.paisesenabled=false;
-    $scope.distenabled=false;
+    $scope.distenabled=true;
 
 
 
@@ -243,6 +243,7 @@ GSPEMApp.controller('ModalNewUserCtrl', function($filter,$scope,$http,$uibModal,
 
     $scope.dists=[];
     $scope.dists=item.dists;
+
     $scope.dists_ori=item.dists;
 
 
