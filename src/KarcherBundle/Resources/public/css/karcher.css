@@ -433,7 +433,19 @@ ul.sub-menu li{
     font-weight: bold;
 }
 
+.icon-android{
+    height: 50px;
+    background-size: 50px 10px;
+    background-position: 50% 50%;
+    background: url("../images/googleplay.png") no-repeat ;
+}
 
+.icon-ios{
+    height: 50px;
+    background-size: 50px 10px;
+    background-position: 50% 50%;
+    background: url("../images/app-store.png") no-repeat ;
+}
 .has-feedback .form-control {
     padding-right: 0px!important;
 }
