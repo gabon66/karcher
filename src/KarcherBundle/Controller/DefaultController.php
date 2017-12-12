@@ -57,6 +57,22 @@ class DefaultController extends Controller
         }
     }
 
+
+    /**
+     * @Method({"GET"})
+     * @Route("/me",options = { "expose" = true },name = "getme")
+     */
+    public function getMeAction()
+    {
+      $user=$this->get('security.token_storage')->getToken()->getUser();
+      $encoders = array(new XmlEncoder(), new JsonEncoder());
+      $normalizers = array(new ObjectNormalizer());
+      $serializer = new Serializer($normalizers, $encoders);
+      return new Response($serializer->serialize($user,"json"),200,array('Content-Type'=>'application/json'));
+
+    }
+
+
     /**
      * @Method({"GET"})
      * @Route("/karcher/distribuidores",options = { "expose" = true },name = "getdistribuidores")
@@ -236,6 +252,67 @@ class DefaultController extends Controller
 
 
     /**
+     * @Method({"POST"})
+     * @Route("/karcher/useredit/pass",options = { "expose" = true },name = "resetpass")
+     */
+    public function savePassAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $factory = $this->get('security.encoder_factory');
+        $usercurrent=$this->get('security.token_storage')->getToken()->getUser();
+        if ($usercurrent)
+        {
+            $repo =$em->getRepository('GSPEM\GSPEMBundle\Entity\User');
+            $user = $repo->findOneBy(array("id"=>$usercurrent->getId()));
+
+            $process=false;
+
+            if($request->get('password')!=""){
+                $encoder = $factory->getEncoder($user);
+                $encodedPasswordToken = $encoder->encodePassword($request->get('password'), $user->getSalt());
+                $user->setPassword ($encodedPasswordToken);
+                $process=true;
+            }
+            $em->flush();
+        }
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize(array("processsss"=>$process,"usercurremt"=>$user,"newpass"=>$usercurrent->getId()),"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+    /**
+     * @Method({"POST","GET"})
+     * @Route("/karcher/userpass/passtest",options = { "expose" = true },name = "resetpasstest")
+     */
+    public function savePassTESTAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $process=false;
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize(array("processsssss"=>$process),"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+
+    /**
+     * @Method({"POST","GET"})
+     * @Route("/karcher/userpass/passtest",options = { "expose" = true },name = "testpass")
+     */
+    public function saveTestPassAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $process=false;
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        return new Response($serializer->serialize(array("processsssss"=>$process),"json"),200,array('Content-Type'=>'application/json'));
+    }
+
+
+    /**
      * @Method({"DELETE"})
      * @Route("/karcher/distribuidores/{id}",options = { "expose" = true },name = "deletedistribuidores")
      */
@@ -263,7 +340,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $stmt = $em->getConnection()->createQueryBuilder()
-            ->select("m.id as id ,m.model as model   ,  m.serial_n as serial , m.cod_barra as barra , m.pn as pn,  m.umbralmax as umbralmax , m.umbralmin as umbralmin,   m.referencia as referencia ,m.ubicacion as ubicacion , 
+            ->select("m.id as id ,m.model as model   ,  m.serial_n as serial , m.cod_barra as barra , m.pn as pn,  m.umbralmax as umbralmax , m.umbralmin as umbralmin,   m.referencia as referencia ,m.ubicacion as ubicacion ,
             m.origen as origen ,mo.id as origen_id ,mt.id as type_id, m.id_custom as idCustom , m.descript as descript ,mt.name  as type , m.name as name")
             ->from("materiales", "m")
             ->leftJoin("m", "materiales_type", "mt", "m.type = mt.id")

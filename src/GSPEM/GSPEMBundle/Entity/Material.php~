@@ -341,4 +341,149 @@ class Material
     {
         return $this->umbralmax;
     }
+    /**
+     * @var string
+     */
+    private $cod_barra;
+
+    /**
+     * @var string
+     */
+    private $serial_n;
+
+    /**
+     * @var string
+     */
+    private $model;
+
+    /**
+     * @var string
+     */
+    private $pn;
+
+
+    /**
+     * Set codBarra
+     *
+     * @param string $codBarra
+     *
+     * @return Material
+     */
+    public function setCodBarra($codBarra)
+    {
+        $this->cod_barra = $codBarra;
+
+        return $this;
+    }
+
+    /**
+     * Get codBarra
+     *
+     * @return string
+     */
+    public function getCodBarra()
+    {
+        return $this->cod_barra;
+    }
+
+    /**
+     * Set serialN
+     *
+     * @param string $serialN
+     *
+     * @return Material
+     */
+    public function setSerialN($serialN)
+    {
+        $this->serial_n = $serialN;
+
+        return $this;
+    }
+
+    /**
+     * Get serialN
+     *
+     * @return string
+     */
+    public function getSerialN()
+    {
+        return $this->serial_n;
+    }
+
+    /**
+     * Set model
+     *
+     * @param string $model
+     *
+     * @return Material
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Get model
+     *
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Set pn
+     *
+     * @param string $pn
+     *
+     * @return Material
+     */
+    public function setPn($pn)
+    {
+        $this->pn = $pn;
+
+        return $this;
+    }
+
+    /**
+     * Get pn
+     *
+     * @return string
+     */
+    public function getPn()
+    {
+        return $this->pn;
+    }
+    /**
+     * @var integer
+     */
+    private $pn_number;
+
+
+    /**
+     * Set pnNumber
+     *
+     * @param integer $pnNumber
+     *
+     * @return Material
+     */
+    public function setPnNumber($pnNumber)
+    {
+        $this->pn_number = $pnNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get pnNumber
+     *
+     * @return integer
+     */
+    public function getPnNumber()
+    {
+        return $this->pn_number;
+    }
 }

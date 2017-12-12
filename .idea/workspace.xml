@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="171175b5-b600-4807-81d6-3bc889559dc8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/images/app-store.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/images/googleplay.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/56/1511912484_s-l1600.jpg" afterPath="$PROJECT_DIR$/web/upload/56/1511912484_s-l1600.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/57/1511909974_ap_sergui.jpg" afterPath="$PROJECT_DIR$/web/upload/57/1511909974_ap_sergui.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/58/1511909085_icon-oldddd.png" afterPath="$PROJECT_DIR$/web/upload/58/1511909085_icon-oldddd.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/58/1511909528_icon-oldddd.png" afterPath="$PROJECT_DIR$/web/upload/58/1511909528_icon-oldddd.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/58/1511909712_favicon.ico" afterPath="$PROJECT_DIR$/web/upload/58/1511909712_favicon.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/58/1511909734_ap_sergui.jpg" afterPath="$PROJECT_DIR$/web/upload/58/1511909734_ap_sergui.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/59/apple-touch-icon.png" afterPath="$PROJECT_DIR$/web/upload/59/apple-touch-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/59/favicon.ico" afterPath="$PROJECT_DIR$/web/upload/59/favicon.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/59/karcher.png" afterPath="$PROJECT_DIR$/web/upload/59/karcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/59/s-l1600.jpg" afterPath="$PROJECT_DIR$/web/upload/59/s-l1600.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Entity/Client.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Entity/Client.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php" afterPath="$PROJECT_DIR$/src/KarcherBundle/Entity/Orden.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/css/karcher.css" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/css/karcher.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/home.html" afterPath="$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/59/KARCHER_MOV-INTEGRATION" afterPath="$PROJECT_DIR$/web/upload/59/KARCHER_MOV-INTEGRATION" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/upload/59/consulta.xml" afterPath="$PROJECT_DIR$/web/upload/59/consulta.xml" />
     </list>
     <ignored path="GSPEM.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,8 +29,8 @@
       <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+            <state relative-caret-position="18">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -62,7 +44,7 @@
       <file leaf-file-name="karcher.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/css/karcher.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
+            <state relative-caret-position="7956">
               <caret line="442" column="9" selection-start-line="442" selection-start-column="1" selection-end-line="442" selection-end-column="9" />
               <folding />
             </state>
@@ -181,6 +163,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -651,8 +635,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -952,14 +934,9 @@
       <workItem from="1512154162447" duration="624000" />
       <workItem from="1512350420924" duration="2326000" />
       <workItem from="1512405398847" duration="608000" />
-      <workItem from="1512491216913" duration="3914000" />
-    </task>
-    <task id="LOCAL-00033" summary="fix">
-      <created>1493783084028</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1493783084028</updated>
+      <workItem from="1512491216913" duration="5459000" />
+      <workItem from="1512569257283" duration="245000" />
+      <workItem from="1512588811417" duration="100000" />
     </task>
     <task id="LOCAL-00034" summary="fix">
       <created>1493812355693</created>
@@ -1297,33 +1274,40 @@
       <option name="project" value="LOCAL" />
       <updated>1512352086770</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="fixes">
+      <created>1512500051534</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1512500051535</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1015134000" />
+    <option name="totallyTimeSpent" value="1017024000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="18" width="1323" height="750" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2607338" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27088213" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22644377" sideWeight="0.1186573" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19148937" sideWeight="0.46604216" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980484" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25683892" sideWeight="0.8813427" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2781155" sideWeight="0.8813427" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25075987" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1668,7 +1652,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1697,19 +1680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10278">
           <caret line="571" column="81" selection-start-line="571" selection-start-column="69" selection-end-line="571" selection-end-column="81" />
-          <folding>
-            <marker date="1501544950199" expanded="true" signature="109:7885" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="7941:9368" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="9425:16438" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="16499:20047" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="20111:20868" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="20926:21306" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="21361:23042" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="23095:27586" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="27640:29009" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="29062:29321" ph="..." />
-            <marker date="1501544950199" expanded="true" signature="29381:33690" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1724,9 +1694,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1501544950000" expanded="true" signature="93:1387" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1734,22 +1701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6210">
           <caret line="345" column="72" selection-start-line="345" selection-start-column="67" selection-end-line="345" selection-end-column="72" />
-          <folding>
-            <marker date="1511971305831" expanded="true" signature="107:2210" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="2264:4372" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="4427:8712" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="8773:13756" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="13823:16419" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="16475:18036" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="18091:18898" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="18957:19709" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="19773:25734" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="25790:28005" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="28063:29132" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="29187:29985" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="30041:33503" ph="..." />
-            <marker date="1511971305831" expanded="true" signature="33565:34507" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1765,7 +1716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7506">
           <caret line="417" column="43" selection-start-line="417" selection-start-column="35" selection-end-line="417" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1789,28 +1739,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="460" column="31" selection-start-line="460" selection-start-column="31" selection-end-line="460" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/css/karcher.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="442" column="9" selection-start-line="442" selection-start-column="1" selection-end-line="442" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/pages/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        <state relative-caret-position="18">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/KarcherBundle/Resources/public/css/karcher.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7956">
+          <caret line="442" column="9" selection-start-line="442" selection-start-column="1" selection-end-line="442" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

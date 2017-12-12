@@ -881,4 +881,62 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return $this->level;
     }
+    /**
+     * @var integer
+     */
+    private $idDistribuidor;
+
+
+    /**
+     * Set idDistribuidor
+     *
+     * @param integer $idDistribuidor
+     *
+     * @return User
+     */
+    public function setIdDistribuidor($idDistribuidor)
+    {
+        $this->idDistribuidor = $idDistribuidor;
+
+        return $this;
+    }
+
+    /**
+     * Get idDistribuidor
+     *
+     * @return integer
+     */
+    public function getIdDistribuidor()
+    {
+        return $this->idDistribuidor;
+    }
+    /**
+     * @var integer
+     */
+    private $idPais;
+
+
+    /**
+     * Set idPais
+     *
+     * @param integer $idPais
+     *
+     * @return User
+     */
+    public function setIdPais($idPais)
+    {
+        $this->idPais = $idPais;
+
+        return $this;
+    }
+
+    /**
+     * Get idPais
+     *
+     * @return integer
+     */
+    public function getIdPais()
+    {
+        return $this->idPais;
+    }
 }

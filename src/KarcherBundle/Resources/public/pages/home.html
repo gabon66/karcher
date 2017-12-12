@@ -1,5 +1,5 @@
 <div class="row">
- <div class="col-md-12 col-sm-12 col-xs-12">
+ <div class="col-md-12 col-sm-12 col-xs-12" ng-show="!passwordchange">
 
   <div class="row">
    <div class="col-md-8">
@@ -13,11 +13,10 @@
     </div>
 
    <div class="col-md-2" style="margin-top: 2px">
-    <a href=""  style="margin-top: 5px">
+    <a href="https://itunes.apple.com/us/app/karcher-postventa-sudamerica/id1320169141?ls=1&mt=8"  style="margin-top: 5px">
      <div class="icon-ios"></div>
     </a>
    </div>
-
   </div>
 
 
@@ -52,6 +51,44 @@
      <a target="_self" class="help-icon"  download="DocTec-GuiaUsuario_PostVenta-Latam-Karcher.pdf" href="../bundles/karcher/doc/DocTec-GuiaUsuario_PostVenta-Latam-Karcher.pdf" style="text-decoration: none;"> <i class="fa fa-question-circle fa-1x"></i> Manual de Usuario</a>
    </div>
  </div>
+ <div class="col-md-12 col-sm-12 col-xs-12" ng-show="passwordchange">
+    <div class="row">
+        <div class="col-md-8">
+        <h2>Por favor ingrese nueva clave para continuar</h2>
+        </div>
+    </div>
+
+
+
+      <div class="row">
+
+        <div class="col-md-4">
+        </div>
+       <div class="col-md-4">
+        <div class="form-group has-success has-feedback">
+         <label>Clave </label>
+         <input
+                 ng-model="password"
+                 type="password"
+                 class="form-control disabled"
+                 placeholder="">
+        </div>
+
+        <div class="form-group has-success has-feedback">
+         <label>Repetir Clave</label>
+         <input
+                 ng-model="password1"
+                 type="password"
+                 class="form-control"
+                 placeholder="">
+        </div>
+<div class="form-group has-success has-feedback">
+        <button type="button" style="width:100px!important"  ng-click="changepass()" class="btn-karcher">GUARDAR</button>
+  </div>
+
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+ </div>
 </div>
-
-

@@ -192,14 +192,10 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
     };
 
 
-
+    console.log("config");
     $locationProvider.hashPrefix('');
     $routeProvider
         .when('/', {
-            templateUrl : '../bundles/karcher/pages/home.html',
-            controller  : 'mainController'
-        })
-        .when('/home', {
             templateUrl : '../bundles/karcher/pages/home.html',
             controller  : 'mainController'
         })
@@ -383,10 +379,6 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
         })
 
 
-        .otherwise({
-            redirectTo: '/'
-        });
-
         angular.extend(toastrConfig, {
             autoDismiss: false,
             containerId: 'toast-container',
@@ -401,7 +393,62 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
 
 });
 
-GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$uibModal) {
+GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$uibModal,toastr) {
+
+    console.log("main");
+    $scope.password="";
+    $scope.password1="";
+
+    $scope.passwordchange=false;
+    var getMe=function(){
+      $http.get(Routing.generate('getme')
+    ).then(function (me) {
+          $scope.me=me.data;
+          console.log($scope.me);
+          if($scope.me.password==="z4Korh5Ub7HtjEI1Dgq6YVHuoBwNZkJQNRZW/ZsEp8mth6/sxLcncugtw5dhh1NXAPhUA0E1wbYWrihqOEhOBQ=="){
+
+            $scope.passwordchange=true;
+          }else {
+            $scope.passwordchange=false;
+          }
+      });
+    }
+    getMe();
+
+
+    $scope.changepass=function(){
+            if($scope.password !== $scope.password1){
+              toastr.warning('Las claves no son iguales', 'Atención');
+              return false;
+            }
+            if($scope.password.length <5){
+                toastr.warning('La clave no puede ser menor a 6 digitos', 'Atención');
+                return false;
+            }
+
+            console.log( Routing.generate('resetpass'));
+            $http({
+                url: Routing.generate('resetpass'),
+                method: "POST",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: {
+                    password:$scope.password,
+                },
+                transformRequest: function (obj) {
+                    var str = [];
+                    for (var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                }
+                }).then(function (response) {
+                    toastr.success('Clave actualizada con éxito !', 'Atención');
+                    //$uibModalInstance.dismiss('cancel');
+                },
+                function (response) { // optional
+                    console.log(response);
+                    // failed
+                });
+    }
 
     $scope.setPage = function (pageNo) {
         $scope.currentPage = pageNo;
