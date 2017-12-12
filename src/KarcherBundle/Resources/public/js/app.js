@@ -199,6 +199,10 @@ GSPEMApp.config(function($routeProvider,$mdDateLocaleProvider,toastrConfig,$loca
             templateUrl : '../bundles/karcher/pages/home.html',
             controller  : 'mainController'
         })
+        .when('/home', {
+            templateUrl : '../bundles/karcher/pages/home.html',
+            controller  : 'mainController'
+        })
         .when('/perfil', {
             templateUrl : '../bundles/karcher/pages/perfil.html',
             controller  : 'abmPerfil'
@@ -441,6 +445,7 @@ GSPEMApp.controller('mainController', function($location,$scope,MovPend,$http,$u
                     return str.join("&");
                 }
                 }).then(function (response) {
+                    $scope.passwordchange=false;
                     toastr.success('Clave actualizada con éxito !', 'Atención');
                     //$uibModalInstance.dismiss('cancel');
                 },
